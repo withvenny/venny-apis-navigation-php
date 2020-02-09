@@ -1,6 +1,9 @@
 <?php
 
     //
+    header('Content-Type: application/json');
+
+    //
     $db = parse_url(getenv("DATABASE_URL"));
     $db["path"] = ltrim($db["path"], "/");
 
