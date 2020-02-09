@@ -10,4 +10,7 @@
     //
     $conn = pg_connect(getenv("DATABASE_URL"));
 
+    //
+    print_r($conn);
+
 ?>
