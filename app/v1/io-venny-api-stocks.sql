@@ -74,3 +74,9 @@ CREATE TABLE company_files (
 
 select * from company_files;
 SELECT * FROM company_files;
+
+SELECT id, file_data, mime_type FROM company_files WHERE id=5;
+
+/* PostgreSQL PHP: Delete Data From a Table */
+SELECT * FROM stocks ORDER BY id;
+

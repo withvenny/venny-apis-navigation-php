@@ -303,6 +303,33 @@
             return $stmt->fetchObject();
         }
 
+        /**
+         * Delete a row in the stocks table specified by id
+         * @param int $id
+         * @return the number row deleted
+         */
+        public function delete($id) {
+            $sql = 'DELETE FROM stocks WHERE id = :id';
+    
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':id', $id);
+    
+            $stmt->execute();
+    
+            return $stmt->rowCount();
+        }
+
+        /**
+         * Delete all rows in the stocks table
+         * @return int the number of rows deleted
+         */
+        public function deleteAll() {
+    
+            $stmt = $this->pdo->prepare('DELETE FROM stocks');
+            $stmt->execute();
+            return $stmt->rowCount();
+        }
+
     }
 
     class AccountDB {
@@ -533,6 +560,34 @@
             // output the file
             header("Content-type: " . $mimeType);
             fpassthru($stream);
+        }
+
+        /**
+         * Delete the large object in the database
+         * @param int $id
+         * @throws \Exception
+         */
+        public function delete($id) {
+            try {
+                $this->pdo->beginTransaction();
+                // select the file data from the database
+                $stmt = $this->pdo->prepare('SELECT file_data '
+                        . 'FROM company_files '
+                        . 'WHERE id=:id');
+                $stmt->execute([$id]);
+                $stmt->bindColumn('file_data', $fileData, \PDO::PARAM_STR);
+                $stmt->closeCursor();
+    
+                // delete the large object
+                $this->pdo->pgsqlLOBUnlink($fileData);
+                $stmt = $this->pdo->prepare("DELETE FROM company_files WHERE id = :id");
+                $stmt->execute([$id]);
+    
+                $this->pdo->commit();
+            } catch (\Exception $e) {
+                $this->pdo->rollBack();
+                throw $e;
+            }
         }
 
     }

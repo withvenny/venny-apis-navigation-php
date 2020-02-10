@@ -156,6 +156,7 @@
     }
     */
 
+    /*
     try {
         // connect to the PostgreSQL database
         $pdo = Connection::get()->connect();
@@ -164,6 +165,20 @@
         $fileId = $blobDB->insert(5, 'logo', 'image/png', 'assets/images/google.png');
      
         echo 'A file has been inserted with id ' . $fileId;
+    } catch (\PDOException $e) {
+        echo $e->getMessage();
+    }
+    */
+
+    try {
+        // connect to the PostgreSQL database
+        $pdo = Connection::get()->connect();
+        // 
+        $stockDB = new StockDB($pdo);
+        // delete a stock with a specified id
+        $deletedRows = $stockDB->delete(1);
+        echo 'The number of row(s) deleted: ' . $deletedRows . '<br>';
+        
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }
