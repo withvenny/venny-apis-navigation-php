@@ -7,10 +7,5 @@
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
-  },
-  "autoload": {
-      "psr-4": {
-          "PostgreSQLTutorial\\": "app/v1/"
-      }
   }
 }
