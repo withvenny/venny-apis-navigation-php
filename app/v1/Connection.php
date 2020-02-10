@@ -1,31 +1,4 @@
 <?php
-
-    //
-    $db = parse_url(getenv("DATABASE_URL"));
-    $db["path"] = ltrim($db["path"], "/");
-
-    //
-    $pdo = new PDO("pgsql:" . sprintf(
-        "host=%s;port=%s;user=%s;password=%s;dbname=%s",
-        $db["host"],
-        $db["port"],
-        $db["user"],
-        $db["pass"],
-        ltrim($db["path"], "/")
-    ));
-
-    //
-    print_r($db);
-
-    //
-    $conn = pg_connect(getenv("DATABASE_URL"));
-
-    //
-    print_r($conn);
-
-?>
-
-<?php
  
 namespace PostgreSQLTutorial;
  
@@ -46,7 +19,7 @@ class Connection {
      * @throws \Exception
      */
     public function connect() {
- 
+
         // read parameters in the ini configuration file
         //$params = parse_ini_file('database.ini');
         $db = parse_url(getenv("DATABASE_URL"));

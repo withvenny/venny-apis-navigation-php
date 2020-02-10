@@ -1,7 +1,6 @@
 <?php
  
     require 'vendor/autoload.php';
-    require 'Connection.php';
     
     use PostgreSQLTutorial\Connection as Connection;
     
