@@ -8,7 +8,8 @@
     //use PostgreSQLTutorial\PostgreSQLPHPUpdate as PostgreSQLPHPUpdate;
     //use PostgreSQLTutorial\StockDB as StockDB;
     //use PostgreSQLTutorial\AccountDB as AccountDB;
-    use PostgreSQLTutorial\StoreProc as StoreProc;
+    //use PostgreSQLTutorial\StoreProc as StoreProc;
+    use PostgreSQLTutorial\BlobDB as BlobDB;
 
     // Connection
     /*
@@ -141,6 +142,7 @@
     */
 
     //
+    /*
     try {
         // connect to the PostgreSQL database
         $pdo = Connection::get()->connect();
@@ -149,6 +151,19 @@
        
         $accounts = $storeProc->getAccounts();
         
+    } catch (\PDOException $e) {
+        echo $e->getMessage();
+    }
+    */
+
+    try {
+        // connect to the PostgreSQL database
+        $pdo = Connection::get()->connect();
+        // 
+        $blobDB = new BlobDB($pdo);
+        $fileId = $blobDB->insert(2, 'logo', 'image/png', 'assets/images/google.png');
+     
+        echo 'A file has been inserted with id ' . $fileId;
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }
