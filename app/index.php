@@ -9,14 +9,17 @@
 
     
     // Connection
+    /*
     try {
         Connection::get()->connect();
         echo 'A connection to the PostgreSQL database sever has been established successfully.';
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }
+    */
 
     // PostgreSQLCreateTable
+    /*
     try {
     
         // connect to the PostgreSQL database
@@ -37,6 +40,7 @@
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }
+    */
 
     // PostgreSQLPHPInsert
     /*
