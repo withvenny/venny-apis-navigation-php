@@ -5,6 +5,8 @@
     use PostgreSQLTutorial\Connection as Connection;
     use PostgreSQLTutorial\PostgreSQLCreateTable as PostgreSQLCreateTable;
     use PostgreSQLTutorial\PostgreSQLPHPInsert as PostgreSQLPHPInsert;
+    use PostgreSQLTutorial\PostgreSQLPHPUpdate as PostgreSQLPHPUpdate;
+
     
     // Connection
     try {
@@ -37,6 +39,7 @@
     }
 
     // PostgreSQLPHPInsert
+    /*
     try {
         // connect to the PostgreSQL database
         $pdo = Connection::get()->connect();
@@ -57,6 +60,23 @@
         foreach ($list as $id) {
             echo 'The stock has been inserted with the id ' . $id . '<br>';
         }
+    } catch (\PDOException $e) {
+        echo $e->getMessage();
+    }
+    */
+
+    //
+    try {
+        // connect to the PostgreSQL database
+        $pdo = Connection::get()->connect();
+    
+        // 
+        $updateDemo = new PostgreSQLPHPUpdate($pdo);
+    
+        // insert a stock into the stocks table
+        $affectedRows = $updateDemo->updateStock(3, 'GOOGL', 'Alphabet Inc.');
+    
+        echo 'Number of row affected ' . $affectedRows;
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }

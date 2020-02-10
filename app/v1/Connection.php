@@ -195,4 +195,53 @@
 
     }
 
+        /**
+     * Represent the table data insertion
+     */
+    class PostgreSQLPHPUpdate {
+
+        /**
+         * PDO object
+         * @var \PDO
+         */
+        private $pdo;
+    
+        /**
+         * init the object with a \PDO object
+         * @param type $pdo
+         */
+        public function __construct($pdo) {
+            $this->pdo = $pdo;
+        }
+
+        public function updateStock($id, $symbol, $company) {
+
+            /**
+             * Update stock based on the specified id
+             * @param int $id
+             * @param string $symbol
+             * @param string $company
+             * @return int
+             */
+ 
+            // sql statement to update a row in the stock table
+            $sql = 'UPDATE stocks '
+                    . 'SET company = :company, '
+                    . 'symbol = :symbol '
+                    . 'WHERE id = :id';
+     
+            $stmt = $this->pdo->prepare($sql);
+     
+            // bind values to the statement
+            $stmt->bindValue(':symbol', $symbol);
+            $stmt->bindValue(':company', $company);
+            $stmt->bindValue(':id', $id);
+            // update data in the database
+            $stmt->execute();
+     
+            // return the number of row affected
+            return $stmt->rowCount();
+        }
+
+    }
 ?>
