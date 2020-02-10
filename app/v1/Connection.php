@@ -387,4 +387,37 @@
         }
     }
 
+    class StoreProc {
+
+        /**
+         * PDO object
+         * @var \PDO
+         */
+        private $pdo;
+    
+        /**
+         * init the object with a \PDO object
+         * @param type $pdo
+         */
+        public function __construct($pdo) {
+            $this->pdo = $pdo;
+        }
+
+        /**
+         * Call a simple stored procedure
+         * @param int $a
+         * @param int $b
+         * @return int
+         */
+        public function add($a, $b) {
+            $stmt = $this->pdo->prepare('SELECT * FROM add(:a,:b)');
+            $stmt->setFetchMode(\PDO::FETCH_ASSOC);
+            $stmt->execute([
+                ':a' => $a,
+                ':b' => $b
+            ]);
+            return $stmt->fetchColumn(0);
+        }
+    }
+
 ?>

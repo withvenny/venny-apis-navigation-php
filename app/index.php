@@ -7,9 +7,9 @@
     //use PostgreSQLTutorial\PostgreSQLPHPInsert as PostgreSQLPHPInsert;
     //use PostgreSQLTutorial\PostgreSQLPHPUpdate as PostgreSQLPHPUpdate;
     //use PostgreSQLTutorial\StockDB as StockDB;
-    use PostgreSQLTutorial\AccountDB as AccountDB;
+    //use PostgreSQLTutorial\AccountDB as AccountDB;
+    use PostgreSQLTutorial\StoreProc as StoreProc;
 
-    
     // Connection
     /*
     try {
@@ -103,6 +103,7 @@
     */
 
     //
+    /*
     try {
         // connect to the PostgreSQL database
         $pdo = Connection::get()->connect();
@@ -118,6 +119,21 @@
         echo 'The new accounts have been added.' . '<br>';
         // 
         $accountDB->addAccount('Susan', 'Wilson', 99, date('Y-m-d'));
+    } catch (\PDOException $e) {
+        echo $e->getMessage();
+    }
+    */
+
+    //
+    try {
+        // connect to the PostgreSQL database
+        $pdo = Connection::get()->connect();
+        // 
+        $storeProc = new StoreProc($pdo);
+     
+        $result = $storeProc->add(20, 30);
+        echo $result;
+        
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }
