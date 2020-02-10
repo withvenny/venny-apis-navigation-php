@@ -510,6 +510,9 @@
          * @param int $id
          */
         public function read($id) {
+
+            var_dump($id);
+            echo 'read()NEXT'; 
     
             $this->pdo->beginTransaction();
     

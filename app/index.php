@@ -168,47 +168,4 @@
         echo $e->getMessage();
     }
 
-    $pdo = Connection::get()->connect();
-    $blobDB = new BlobDB($pdo);
-    
-    // get document id from the query string
-    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-    
-    $file = $blobDB->read($id);
-
 ?>
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>PostgreSQL PHP: calling stored procedure demo</title>
-        <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Account List</h1>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Plan</th>
-                        <th>Effective Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($accounts as $account) : ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($account['id']) ?></td>
-                            <td><?php echo htmlspecialchars($account['first_name']); ?></td>
-                            <td><?php echo htmlspecialchars($account['last_name']); ?></td>
-                            <td><?php echo htmlspecialchars($account['plan']); ?></td>
-                            <td><?php echo htmlspecialchars($account['effective_date']); ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </body>
-</html>
