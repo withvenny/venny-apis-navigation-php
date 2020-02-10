@@ -516,11 +516,13 @@
             $stmt = $this->pdo->prepare("SELECT id, file_data, mime_type "
                     . "FROM company_files "
                     . "WHERE id= :id");
-
-            exit;
     
             // query blob from the database
             $stmt->execute([$id]);
+
+            
+            exit;
+
     
             $stmt->bindColumn('file_data', $fileData, \PDO::PARAM_STR);
             $stmt->bindColumn('mime_type', $mimeType, \PDO::PARAM_STR);
