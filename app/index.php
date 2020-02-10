@@ -156,6 +156,7 @@
     }
     */
 
+    /*
     try {
         // connect to the PostgreSQL database
         $pdo = Connection::get()->connect();
@@ -167,6 +168,15 @@
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }
+    */
+
+    $pdo = Connection::get()->connect();
+    $blobDB = new BlobDB($pdo);
+    
+    // get document id from the query string
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    
+    $file = $blobDB->read($id);
 
 ?>
 

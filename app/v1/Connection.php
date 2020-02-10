@@ -505,6 +505,30 @@
             return $this->pdo->lastInsertId('company_files_id_seq');
         }
 
+        /**
+         * Read BLOB from the database and output to the web browser
+         * @param int $id
+         */
+        public function read($id) {
+    
+            $this->pdo->beginTransaction();
+    
+            $stmt = $this->pdo->prepare("SELECT id, file_data, mime_type "
+                    . "FROM company_files "
+                    . "WHERE id= :id");
+    
+            // query blob from the database
+            $stmt->execute([$id]);
+    
+            $stmt->bindColumn('file_data', $fileData, \PDO::PARAM_STR);
+            $stmt->bindColumn('mime_type', $mimeType, \PDO::PARAM_STR);
+            $stmt->fetch(\PDO::FETCH_BOUND);
+            $stream = $this->pdo->pgsqlLOBOpen($fileData, 'r');
+    
+            // output the file
+            header("Content-type: " . $mimeType);
+            fpassthru($stream);
+        }
 
     }
 

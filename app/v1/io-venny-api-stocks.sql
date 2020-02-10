@@ -57,3 +57,20 @@ BEGIN
 END; $$
  
 LANGUAGE plpgsql;
+
+
+
+
+/* PostgreSQL PHP: Working with BLOB */
+
+CREATE TABLE company_files (
+     id        SERIAL PRIMARY KEY,
+     stock_id  INTEGER NOT NULL,
+     mime_type CHARACTER VARYING(255) NOT NULL,
+     file_name CHARACTER VARYING(255) NOT NULL,
+     file_data BYTEA NOT NULL,
+     FOREIGN KEY(stock_id) REFERENCES stocks(id)
+);
+
+select * from company_files;
+SELECT * FROM company_files;
