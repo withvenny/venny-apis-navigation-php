@@ -520,8 +520,8 @@
             // query blob from the database
             $stmt->execute([$id]);
     
-            $stmt->bindColumn('file_data', $fileData, \PDO::PARAM_STR);exit;
-            $stmt->bindColumn('mime_type', $mimeType, \PDO::PARAM_STR);
+            $stmt->bindColumn('file_data', $fileData, \PDO::PARAM_STR);
+            $stmt->bindColumn('mime_type', $mimeType, \PDO::PARAM_STR);exit;
             $stmt->fetch(\PDO::FETCH_BOUND);
             $stream = $this->pdo->pgsqlLOBOpen($fileData, 'r');
     
