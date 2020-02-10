@@ -512,6 +512,8 @@
         public function read($id) {
     
             $this->pdo->beginTransaction();
+
+            exit;
     
             $stmt = $this->pdo->prepare("SELECT id, file_data, mime_type "
                     . "FROM company_files "
