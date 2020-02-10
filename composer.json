@@ -10,7 +10,7 @@
   },
   "autoload": {
     "psr-4": {
-      "PostgreSQLTutorial\\": "v1/"
+      "PostgreSQLTutorial\\": "app/v1/"
     }
   }
 }
