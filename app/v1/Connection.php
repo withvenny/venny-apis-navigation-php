@@ -517,7 +517,7 @@
                     . "FROM company_files "
                     . "WHERE id= :id");
 
-                    var_dump($stmt); exit;
+            //var_dump($stmt); exit;
     
             // query blob from the database
             $stmt->execute([$id]);
