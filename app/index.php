@@ -6,6 +6,7 @@
     use PostgreSQLTutorial\PostgreSQLCreateTable as PostgreSQLCreateTable;
     use PostgreSQLTutorial\PostgreSQLPHPInsert as PostgreSQLPHPInsert;
     
+    // Connection
     try {
         Connection::get()->connect();
         echo 'A connection to the PostgreSQL database sever has been established successfully.';
@@ -13,6 +14,7 @@
         echo $e->getMessage();
     }
 
+    // PostgreSQLCreateTable
     try {
     
         // connect to the PostgreSQL database
@@ -34,6 +36,7 @@
         echo $e->getMessage();
     }
 
+    // PostgreSQLPHPInsert
     try {
         // connect to the PostgreSQL database
         $pdo = Connection::get()->connect();
