@@ -6,7 +6,9 @@
     //use PostgreSQLTutorial\PostgreSQLCreateTable as PostgreSQLCreateTable;
     //use PostgreSQLTutorial\PostgreSQLPHPInsert as PostgreSQLPHPInsert;
     //use PostgreSQLTutorial\PostgreSQLPHPUpdate as PostgreSQLPHPUpdate;
-    use PostgreSQLTutorial\StockDB as StockDB;
+    //use PostgreSQLTutorial\StockDB as StockDB;
+    use PostgreSQLTutorial\AccountDB as AccountDB;
+
     
     // Connection
     /*
@@ -87,6 +89,7 @@
     }*/
 
     //
+    /*
     try {
         // connect to the PostgreSQL database
         $pdo = Connection::get()->connect();
@@ -94,6 +97,27 @@
         $stockDB = new StockDB($pdo);
         // get all stocks data
         $stocks = $stockDB->all();
+    } catch (\PDOException $e) {
+        echo $e->getMessage();
+    }
+    */
+
+    //
+    try {
+        // connect to the PostgreSQL database
+        $pdo = Connection::get()->connect();
+     
+        $accountDB = new AccountDB($pdo);
+     
+        // add accounts
+        $accountDB->addAccount('John', 'Doe', 1, date('Y-m-d'));
+        $accountDB->addAccount('Linda', 'Williams', 2, date('Y-m-d'));
+        $accountDB->addAccount('Maria', 'Miller', 3, date('Y-m-d'));
+     
+     
+        echo 'The new accounts have been added.' . '<br>';
+        // 
+        $accountDB->addAccount('Susan', 'Wilson', 99, date('Y-m-d'));
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }
