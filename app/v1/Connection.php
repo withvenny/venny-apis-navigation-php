@@ -134,6 +134,20 @@
     class PostgreSQLPHPInsert {
 
         /**
+         * PDO object
+         * @var \PDO
+         */
+        private $pdo;
+    
+        /**
+         * init the object with a \PDO object
+         * @param type $pdo
+         */
+        public function __construct($pdo) {
+            $this->pdo = $pdo;
+        }
+
+        /**
          * insert a new row into the stocks table
          * @param type $symbol
          * @param type $company
