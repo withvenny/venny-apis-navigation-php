@@ -418,6 +418,25 @@
             ]);
             return $stmt->fetchColumn(0);
         }
+
+        /**
+         * Call a stored procedure that returns a result set
+         * @return array
+         */
+        function getAccounts() {
+            $stmt = $this->pdo->query('SELECT * FROM get_accounts()');
+            $accounts = [];
+            while ($row = $stmt->fetch()) {
+                $accounts[] = [
+                    'id' => $row['id'],
+                    'first_name' => $row['first_name'],
+                    'last_name' => $row['last_name'],
+                    'plan' => $row['plan'],
+                    'effective_date' => $row['effective_date']
+                ];
+            }
+            return $accounts;
+        }
     }
 
 ?>
