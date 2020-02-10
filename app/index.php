@@ -3,10 +3,10 @@
     require '../vendor/autoload.php';
     
     use PostgreSQLTutorial\Connection as Connection;
-    use PostgreSQLTutorial\PostgreSQLCreateTable as PostgreSQLCreateTable;
-    use PostgreSQLTutorial\PostgreSQLPHPInsert as PostgreSQLPHPInsert;
-    use PostgreSQLTutorial\PostgreSQLPHPUpdate as PostgreSQLPHPUpdate;
-
+    //use PostgreSQLTutorial\PostgreSQLCreateTable as PostgreSQLCreateTable;
+    //use PostgreSQLTutorial\PostgreSQLPHPInsert as PostgreSQLPHPInsert;
+    //use PostgreSQLTutorial\PostgreSQLPHPUpdate as PostgreSQLPHPUpdate;
+    use PostgreSQLTutorial\StockDB as StockDB;
     
     // Connection
     /*
@@ -70,6 +70,7 @@
     */
 
     //
+    /*
     try {
         // connect to the PostgreSQL database
         $pdo = Connection::get()->connect();
@@ -83,6 +84,49 @@
         echo 'Number of row affected ' . $affectedRows;
     } catch (\PDOException $e) {
         echo $e->getMessage();
+    }*/
+
+    //
+    try {
+        // connect to the PostgreSQL database
+        $pdo = Connection::get()->connect();
+        // 
+        $stockDB = new StockDB($pdo);
+        // get all stocks data
+        $stocks = $stockDB->all();
+    } catch (\PDOException $e) {
+        echo $e->getMessage();
     }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PostgreSQL PHP Querying Data Demo</title>
+        <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Stock List</h1>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Symbol</th>
+                        <th>Company</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($stocks as $stock) : ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($stock['id']) ?></td>
+                            <td><?php echo htmlspecialchars($stock['symbol']); ?></td>
+                            <td><?php echo htmlspecialchars($stock['company']); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

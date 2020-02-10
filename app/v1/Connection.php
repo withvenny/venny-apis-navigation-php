@@ -195,7 +195,7 @@
 
     }
 
-        /**
+    /**
      * Represent the table data insertion
      */
     class PostgreSQLPHPUpdate {
@@ -244,4 +244,65 @@
         }
 
     }
+
+    /**
+     * Represent the table data insertion
+     */
+    class StockDB {
+
+        /**
+         * PDO object
+         * @var \PDO
+         */
+        private $pdo;
+    
+        /**
+         * init the object with a \PDO object
+         * @param type $pdo
+         */
+        public function __construct($pdo) {
+            $this->pdo = $pdo;
+        }
+
+        /**
+         * Return all rows in the stocks table
+         * @return array
+         */
+        public function all() {
+            $stmt = $this->pdo->query('SELECT id, symbol, company '
+                    . 'FROM stocks '
+                    . 'ORDER BY symbol');
+            $stocks = [];
+            while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $stocks[] = [
+                    'id' => $row['id'],
+                    'symbol' => $row['symbol'],
+                    'company' => $row['company']
+                ];
+            }
+            return $stocks;
+        }
+
+        /**
+         * Find stock by id
+         * @param int $id
+         * @return a stock object
+         */
+        public function findByPK($id) {
+            // prepare SELECT statement
+            $stmt = $this->pdo->prepare('SELECT id, symbol, company
+                                        FROM stocks
+                                        WHERE id = :id');
+            // bind value to the :id parameter
+            $stmt->bindValue(':id', $id);
+            
+            // execute the statement
+            $stmt->execute();
+    
+            // return the result set as an object
+            return $stmt->fetchObject();
+        }
+
+    }
+
 ?>
