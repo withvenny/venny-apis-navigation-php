@@ -176,7 +176,7 @@
         // 
         $stockDB = new StockDB($pdo);
         // delete a stock with a specified id
-        $deletedRows = $stockDB->delete(1);
+        $deletedRows = $stockDB->delete(4);
         echo 'The number of row(s) deleted: ' . $deletedRows . '<br>';
         
     } catch (\PDOException $e) {
