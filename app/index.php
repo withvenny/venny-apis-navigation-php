@@ -6,10 +6,10 @@
     //use PostgreSQLTutorial\PostgreSQLCreateTable as PostgreSQLCreateTable;
     //use PostgreSQLTutorial\PostgreSQLPHPInsert as PostgreSQLPHPInsert;
     //use PostgreSQLTutorial\PostgreSQLPHPUpdate as PostgreSQLPHPUpdate;
-    //use PostgreSQLTutorial\StockDB as StockDB;
+    use PostgreSQLTutorial\StockDB as StockDB;
     //use PostgreSQLTutorial\AccountDB as AccountDB;
     //use PostgreSQLTutorial\StoreProc as StoreProc;
-    use PostgreSQLTutorial\BlobDB as BlobDB;
+    //use PostgreSQLTutorial\BlobDB as BlobDB;
 
     // Connection
     /*
