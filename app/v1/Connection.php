@@ -144,8 +144,9 @@
 
             // prepare statement for insert
             $sql = 'INSERT INTO stocks(symbol,company) VALUES(:symbol,:company)';
-            echo $sql; exit;
+            //echo $sql; exit;
             $stmt = $this->pdo->prepare($sql);
+            print_r($stmt); exit;
             
             // pass values to the statement
             $stmt->bindValue(':symbol', $symbol);
