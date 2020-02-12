@@ -161,8 +161,8 @@
             $sql = 'INSERT INTO persons (
                 person_id,
                 person_attributes,
-                person_name_first,
-                person_name_last,
+                person_first_name,
+                person_last_name,
                 person_email,
                 person_phone,
                 person_entitlements,
@@ -170,8 +170,8 @@
             ) VALUES (
                 :person_id,
                 :person_attributes,
-                :person_name_first,
-                :person_name_last,
+                :person_first_name,
+                :person_last_name,
                 :person_email,
                 :person_phone,
                 :person_entitlements,
