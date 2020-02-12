@@ -210,17 +210,30 @@
         * Return all rows in the stocks table
         * @return array
         */
-        public function all() {
-            $stmt = $this->pdo->query('SELECT id, symbol, company '
-                    . 'FROM stocks '
-                    . 'ORDER BY symbol'
+        public function selectPersons() {
+            $stmt = $this->pdo->query(
+                'SELECT
+                    person_id,
+                    person_attributes,
+                    person_first_name,
+                    person_last_name,
+                    person_email,
+                    person_phone,
+                    person_entitlements
+                '
+                    . 'FROM persons '
+                    . 'ORDER BY time_finished'
                 );
             $results = [];
             while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
                 $results[] = [
-                    'id' => $row['id'],
-                    'symbol' => $row['symbol'],
-                    'company' => $row['company']
+                    'id' => $row['person_id'],
+                    'attributes' => $row['person_attributes'],
+                    'first_name' => $row['person_first_name'],
+                    'last_name' => $row['person_last_name'],
+                    'email' => $row['person_email'],
+                    'phone' => $row['person_phone'],
+                    'entitlements' => $row['person_entitlements']
                 ];
             }
 

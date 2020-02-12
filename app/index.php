@@ -190,19 +190,44 @@
     }
     */
 
-    try {
-        // connect to the PostgreSQL database
-        $pdo = Connection::get()->connect();
-        // 
-        $person = new Person($pdo);
-     
-        // insert a stock into the stocks table
-        $id = $person->insertPerson($_REQUEST);
+    //
+    switch ($_REQUEST) {
 
-        echo 'The stock has been inserted with the id ' . $id . '<br>';
-     
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
+        //
+        case 'POST':
+
+            try {
+                // connect to the PostgreSQL database
+                $pdo = Connection::get()->connect();
+                // 
+                $person = new Person($pdo);
+            
+                // insert a stock into the stocks table
+                $id = $person->insertPerson($_REQUEST);
+
+                echo 'The stock has been inserted with the id ' . $id . '<br>';
+            
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+            }
+
+        break;
+
+        case 'GET':
+
+            try {
+                // connect to the PostgreSQL database
+                $pdo = Connection::get()->connect();
+                // 
+                $person = new Person($pdo);
+                // get all stocks data
+                $persons = $person->all();
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+            }
+
+        break;
+
     }
 
 ?>
