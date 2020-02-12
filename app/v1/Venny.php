@@ -203,7 +203,7 @@
             $stmt->execute();
             
             // return generated id
-            return $this->pdo->lastInsertId('person_id_seq');
+            return $this->pdo->lastInsertId('persons_sequence');
         }
 
         /**
