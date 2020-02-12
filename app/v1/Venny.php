@@ -1,6 +1,6 @@
 <?php
 
-    namespace PostgreSQLTutorial;
+    namespace Venny;
 
     /**
      * Represent the Connection
@@ -22,22 +22,23 @@
 
             // read parameters in the ini configuration file
             //$params = parse_ini_file('database.ini');
-            $db = parse_url(getenv("DATABASE_URL"));
+            $environment = parse_url(getenv("DATABASE_URL"));
 
             //if ($params === false) {throw new \Exception("Error reading database configuration file");}
-            if ($db === false) {throw new \Exception("Error reading database configuration file");}
+            if ($environment === false) {throw new \Exception("Error reading database configuration file");}
             // connect to the postgresql database
-            $conStr = sprintf("pgsql:host=%s;port=%d;dbname=%s;user=%s;password=%s", 
-                    $db['host'], 
-                    $db['port'], 
-                    ltrim($db["path"], "/"), 
-                    $db['user'], 
-                    $db['pass']);
+            $connection = sprintf("pgsql:host=%s;port=%d;dbname=%s;user=%s;password=%s", 
+                    $environment['host'], 
+                    $environment['port'], 
+                    ltrim($environment["path"], "/"), 
+                    $environment['user'], 
+                    $environment['pass']);
     
-            $pdo = new \PDO($conStr);
+            $pdo = new \PDO($connection);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     
             return $pdo;
+
         }
     
         /**
@@ -131,7 +132,7 @@
     /**
      * Represent the table data insertion
      */
-    class PostgreSQLPHPInsert {
+    class Person {
 
         /**
          * PDO object
@@ -154,43 +155,72 @@
          * @return the id of the inserted row
          */
 
-        public function insertStock($symbol, $company) {
+        public function insertPerson($request) {
 
             // prepare statement for insert
-            $sql = 'INSERT INTO stocks(symbol,company) VALUES(:symbol,:company)';
-            //echo $sql; exit;
+            $sql = 'INSERT INTO persons (
+                person_id,
+                person_attributes,
+                person_name_first,
+                person_name_last,
+                person_email,
+                person_phone,
+                person_entitlements,
+                app_id
+            ) VALUES (
+                :person_id,
+                :person_attributes,
+                :person_name_first,
+                :person_name_last,
+                :person_email,
+                :person_phone,
+                :person_entitlements,
+                :app_id
+            )';
+    
+            //
             $stmt = $this->pdo->prepare($sql);
-            //print_r($stmt); exit;
             
             // pass values to the statement
-            $stmt->bindValue(':symbol', $symbol);
-            $stmt->bindValue(':company', $company);
+            //$stmt->bindValue(':symbol', $symbol);
+            //$stmt->bindValue(':company', $company);
+            $stmt->bindValue(':person_id', $request['id']);
+            $stmt->bindValue(':person_attributes', $request['attributes']);
+            $stmt->bindValue(':person_first_name', $request['first_name']);
+            $stmt->bindValue(':person_last_name', $request['last_name']);
+            $stmt->bindValue(':person_person_email', $request['email']);
+            $stmt->bindValue(':person_phone', $request['phone']);
+            $stmt->bindValue(':person_entitlements', $request['entitlements']);
+            $stmt->bindValue(':app_id', $request['app_id']);
             
             // execute the insert statement
             $stmt->execute();
             
             // return generated id
-            return $this->pdo->lastInsertId('stocks_id_seq');
+            return $this->pdo->lastInsertId('persons_id_seq');
         }
 
         /**
-         * Insert multiple stocks into the stocks table
-         * @param array $stocks
-         * @return a list of inserted ID
-         */
-
-        public function insertStockList($stocks) {
-            $sql = 'INSERT INTO stocks(symbol,company) VALUES(:symbol,:company)';
-            $stmt = $this->pdo->prepare($sql);
-
-            $idList = [];
-            foreach ($stocks as $stock) {
-                $stmt->bindValue(':symbol', $stock['symbol']);
-                $stmt->bindValue(':company', $stock['company']);
-                $stmt->execute();
-                $idList[] = $this->pdo->lastInsertId('stocks_id_seq');
+        * Return all rows in the stocks table
+        * @return array
+        */
+        public function all() {
+            $stmt = $this->pdo->query('SELECT id, symbol, company '
+                    . 'FROM stocks '
+                    . 'ORDER BY symbol'
+                );
+            $results = [];
+            while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $results[] = [
+                    'id' => $row['id'],
+                    'symbol' => $row['symbol'],
+                    'company' => $row['company']
+                ];
             }
-            return $idList;
+
+            //
+            return $results;
+
         }
 
     }

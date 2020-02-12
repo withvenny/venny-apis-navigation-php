@@ -170,6 +170,7 @@
     }
     */
 
+    /*
     try {
         // connect to the PostgreSQL database
         $pdo = Connection::get()->connect();
@@ -180,6 +181,22 @@
         //$deletedRows = $stockDB->deleteAll(); // didn't try this because there's still fkeys for some.
         echo 'The number of row(s) deleted: ' . $deletedRows . '<br>';
         
+    } catch (\PDOException $e) {
+        echo $e->getMessage();
+    }
+    */
+
+    try {
+        // connect to the PostgreSQL database
+        $pdo = Connection::get()->connect();
+        // 
+        $person = new Person($pdo);
+     
+        // insert a stock into the stocks table
+        $id = $person->insertPerson($_REQUEST);
+
+        echo 'The stock has been inserted with the id ' . $id . '<br>';
+     
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }

@@ -332,9 +332,6 @@
 
     }
 
-    /**
-     * Represent 
-     */
     class AccountDB {
 
         /**
@@ -417,9 +414,6 @@
         }
     }
 
-    /**
-     * Represent 
-     */
     class StoreProc {
 
         /**
@@ -472,9 +466,6 @@
         }
     }
 
-    /**
-     * Represent 
-     */
     class BlobDB {
 
         /**
