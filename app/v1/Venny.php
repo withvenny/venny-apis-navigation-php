@@ -166,7 +166,9 @@
                 person_email,
                 person_phone,
                 person_entitlements,
-                app_id
+                app_id,
+                event_id,
+                process_id
             ) VALUES (
                 :person_id,
                 :person_attributes,
@@ -175,7 +177,9 @@
                 :person_email,
                 :person_phone,
                 :person_entitlements,
-                :app_id
+                :app_id,
+                :event_id,
+                :process_id
             )';
     
             //
@@ -192,6 +196,8 @@
             $stmt->bindValue(':person_phone', $request['phone']);
             $stmt->bindValue(':person_entitlements', $request['entitlements']);
             $stmt->bindValue(':app_id', $request['app_id']);
+            $stmt->bindValue(':event_id', $request['event_id']);
+            $stmt->bindValue(':process_id', $request['process_id']);
             
             // execute the insert statement
             $stmt->execute();
