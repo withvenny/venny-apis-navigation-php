@@ -82,3 +82,29 @@ SELECT * FROM stocks ORDER BY id;
 
 /* Playing around with Stored Procedures */
 
+CREATE TABLE IF NOT EXISTS	persons	(
+ID	SERIAL	,
+person_ID	VARCHAR(30)	NOT NULL UNIQUE,
+person_attributes	JSON	NULL,
+person_name_first	VARCHAR(255)	NOT NULL,
+person_name_middle	VARCHAR(255)	NOT NULL,
+person_name_last	VARCHAR(255)	NULL,
+person_email	VARCHAR(255)	NOT NULL UNIQUE,
+person_phone_primary	VARCHAR(255)	NULL,
+person_phone_secondary	VARCHAR(255)	NULL,
+person_entitlements	JSON	NULL,
+app_id	VARCHAR(30)	NOT NULL,
+event_id	VARCHAR(30)	NOT NULL,
+process_id	VARCHAR(30)	NOT NULL,
+time_started	TIMESTAMP	NOT NULL DEFAULT NOW(),
+time_updated	TIMESTAMP	NOT NULL DEFAULT NOW(),
+time_finished	TIMESTAMP	NOT NULL DEFAULT NOW(),
+active	INT	NOT NULL DEFAULT 1
+);
+CREATE SEQUENCE persons_sequence;		
+CREATE SEQUENCE persons_sequence;		
+CREATE SEQUENCE person_id_seq;		
+ALTER SEQUENCE persons_sequence RESTART WITH 8301;		
+ALTER TABLE persons ALTER COLUMN ID SET DEFAULT nextval('persons_sequence');		
+select * from persons;
+
