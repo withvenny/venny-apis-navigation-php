@@ -188,7 +188,7 @@
             $stmt->bindValue(':person_attributes', $request['attributes']);
             $stmt->bindValue(':person_first_name', $request['first_name']);
             $stmt->bindValue(':person_last_name', $request['last_name']);
-            $stmt->bindValue(':person_person_email', $request['email']);
+            $stmt->bindValue(':person_email', $request['email']);
             $stmt->bindValue(':person_phone', $request['phone']);
             $stmt->bindValue(':person_entitlements', $request['entitlements']);
             $stmt->bindValue(':app_id', $request['app_id']);
