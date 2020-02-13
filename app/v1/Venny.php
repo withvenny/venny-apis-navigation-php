@@ -230,7 +230,7 @@
                         person_entitlements
                     '
                     . 'FROM persons '
-                    . 'WHERE `person_id` = :id '
+                    . 'WHERE person_id = :id '
                     . `$limit`
 
                 );
