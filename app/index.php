@@ -224,7 +224,7 @@
                 $person = new Person($pdo);
 
                 // get all stocks data
-                $persons = $person->selectPersons();
+                $persons = $person->selectPersons($_REQUEST);
 
                 echo json_encode($persons);
 

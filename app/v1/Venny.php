@@ -210,37 +210,50 @@
         * Return all rows in the stocks table
         * @return array
         */
-        public function selectPersons() {
-            $stmt = $this->pdo->query(
-                'SELECT
-                    person_id,
-                    person_attributes,
-                    person_first_name,
-                    person_last_name,
-                    person_email,
-                    person_phone,
-                    person_entitlements
-                '
+        public function selectPersons($request) {
+
+            //
+            if(!empty($request['id'])) {
+
+                //
+                $stmt = $this->pdo->prepare(
+                    'SELECT
+                        person_id,
+                        person_attributes,
+                        person_first_name,
+                        person_last_name,
+                        person_email,
+                        person_phone,
+                        person_entitlements
+                    '
                     . 'FROM persons '
+                    . 'WHERE person_id = :id '
                     . 'ORDER BY time_finished'
-            );
+
+                );
+
+                // bind value to the :id parameter
+                $stmt->bindValue(':id', $request['id']);
+                
+                // execute the statement
+                $stmt->execute();      
+
+                //
+                $results = [];
+                
+                //
+                while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                    $results[] = [
+                        'id' => $row['person_id'],
+                        'attributes' => $row['person_attributes'],
+                        'first_name' => $row['person_first_name'],
+                        'last_name' => $row['person_last_name'],
+                        'email' => $row['person_email'],
+                        'phone' => $row['person_phone'],
+                        'entitlements' => $row['person_entitlements']
+                    ];
+                }
             
-            //print_r($stmt);exit;
-            
-            //
-            $results = [];
-            
-            //
-            while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-                $results[] = [
-                    'id' => $row['person_id'],
-                    'attributes' => $row['person_attributes'],
-                    'first_name' => $row['person_first_name'],
-                    'last_name' => $row['person_last_name'],
-                    'email' => $row['person_email'],
-                    'phone' => $row['person_phone'],
-                    'entitlements' => $row['person_entitlements']
-                ];
             }
 
             //print_r($results);exit;
@@ -248,6 +261,26 @@
             //
             return $results;
 
+        }
+
+        /**
+         * Find stock by id
+         * @param int $id
+         * @return a stock object
+         */
+        public function findByPK($id) {
+            // prepare SELECT statement
+            $stmt = $this->pdo->prepare('SELECT id, symbol, company
+                                        FROM stocks
+                                        WHERE id = :id');
+            // bind value to the :id parameter
+            $stmt->bindValue(':id', $id);
+            
+            // execute the statement
+            $stmt->execute();
+    
+            // return the result set as an object
+            return $stmt->fetchObject();
         }
 
     }
