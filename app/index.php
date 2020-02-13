@@ -216,14 +216,22 @@
         case 'GET':
 
             try {
+
                 // connect to the PostgreSQL database
                 $pdo = Connection::get()->connect();
+
                 // 
                 $person = new Person($pdo);
+
                 // get all stocks data
                 $persons = $person->selectPersons();
+
+                echo json_encode($persons);
+
             } catch (\PDOException $e) {
+
                 echo $e->getMessage();
+
             }
 
         break;
