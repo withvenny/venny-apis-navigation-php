@@ -271,7 +271,7 @@
             $results = [];
             
             //
-            while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            while ($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
                 $results[] = [
                     'id' => $row['person_id'],
                     'attributes' => $row['person_attributes'],
