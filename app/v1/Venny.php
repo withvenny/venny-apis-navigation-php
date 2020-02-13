@@ -223,9 +223,14 @@
                 '
                     . 'FROM persons '
                     . 'ORDER BY time_finished'
-                );
-                print_r($stmt);exit;
+            );
+            
+            //print_r($stmt);exit;
+            
+            //
             $results = [];
+            
+            //
             while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
                 $results[] = [
                     'id' => $row['person_id'],
@@ -237,6 +242,8 @@
                     'entitlements' => $row['person_entitlements']
                 ];
             }
+
+            print_r($results);exit;
 
             //
             return $results;
