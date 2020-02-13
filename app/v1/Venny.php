@@ -244,7 +244,7 @@
                 $limit = "";
 
                 //
-                $stmt = $this->pdo->prepare(
+                $statement = $this->pdo->prepare(
                     'SELECT
                         person_id,
                         person_attributes,
@@ -265,7 +265,7 @@
             }
                 
             // execute the statement
-            $stmt->execute();
+            $statement->execute();
 
             //
             $results = [];
