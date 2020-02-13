@@ -191,7 +191,7 @@
     */
 
     //
-    switch ($_REQUEST) {
+    switch ($_SERVER['REQUEST_METHOD']) {
 
         //
         case 'POST':
