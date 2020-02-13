@@ -224,7 +224,7 @@
                     . 'FROM persons '
                     . 'ORDER BY time_finished'
                 );
-                echo $stmt;exit;
+                print_r($stmt);exit;
             $results = [];
             while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
                 $results[] = [
