@@ -249,13 +249,12 @@
                         person_entitlements
                     '
                     . 'FROM persons '
-                    . 'WHERE person_id = :id '
                     . 'ORDER BY time_finished'
 
                 );
 
                 // bind value to the :id parameter
-                $stmt->bindValue(':id', $request['id']);
+                //$stmt->bindValue(':id', $request['id']);
 
             }
                 
