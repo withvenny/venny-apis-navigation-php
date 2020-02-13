@@ -221,7 +221,7 @@
                 // 
                 $person = new Person($pdo);
                 // get all stocks data
-                $persons = $person->all();
+                $persons = $person->selectPersons();
             } catch (\PDOException $e) {
                 echo $e->getMessage();
             }
