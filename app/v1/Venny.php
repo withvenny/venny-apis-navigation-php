@@ -183,24 +183,24 @@
             )';
     
             //
-            $stmt = $this->pdo->prepare($sql);
+            $statement = $this->pdo->prepare($sql);
             
             // pass values to the statement
             //$stmt->bindValue(':symbol', $symbol);
             //$stmt->bindValue(':company', $company);
-            $stmt->bindValue(':person_id', $request['id']);
-            $stmt->bindValue(':person_attributes', $request['attributes']);
-            $stmt->bindValue(':person_first_name', $request['first_name']);
-            $stmt->bindValue(':person_last_name', $request['last_name']);
-            $stmt->bindValue(':person_email', $request['email']);
-            $stmt->bindValue(':person_phone', $request['phone']);
-            $stmt->bindValue(':person_entitlements', $request['entitlements']);
-            $stmt->bindValue(':app_id', $request['app_id']);
-            $stmt->bindValue(':event_id', $request['event_id']);
-            $stmt->bindValue(':process_id', $request['process_id']);
+            $statement->bindValue(':person_id', $request['id']);
+            $statement->bindValue(':person_attributes', $request['attributes']);
+            $statement->bindValue(':person_first_name', $request['first_name']);
+            $statement->bindValue(':person_last_name', $request['last_name']);
+            $statement->bindValue(':person_email', $request['email']);
+            $statement->bindValue(':person_phone', $request['phone']);
+            $statement->bindValue(':person_entitlements', $request['entitlements']);
+            $statement->bindValue(':app_id', $request['app_id']);
+            $statement->bindValue(':event_id', $request['event_id']);
+            $statement->bindValue(':process_id', $request['process_id']);
             
             // execute the insert statement
-            $stmt->execute();
+            $statement->execute();
             
             // return generated id
             return $this->pdo->lastInsertId('persons_sequence');
@@ -215,8 +215,11 @@
             //
             if(!empty($request['id'])) {
 
+                $conditions = "";
+                $limit = "LIMIT 1";
+
                 //
-                $stmt = $this->pdo->prepare(
+                $statement = $this->pdo->prepare(
                     'SELECT
                         person_id,
                         person_attributes,
@@ -227,15 +230,18 @@
                         person_entitlements
                     '
                     . 'FROM persons '
-                    . 'WHERE person_id = :id '
-                    . 'ORDER BY time_finished'
+                    . 'WHERE `person_id` = :id '
+                    . `$limit`
 
                 );
 
                 // bind value to the :id parameter
-                $stmt->bindValue(':id', $request['id']);
+                $statement->bindValue(':id', $request['id']);
 
             } else {
+
+                $conditions = "";
+                $limit = "";
 
                 //
                 $stmt = $this->pdo->prepare(
