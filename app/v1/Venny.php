@@ -252,7 +252,7 @@
                 $statement = $this->pdo->prepare($sql);
 
                 // bind value to the :id parameter
-                $statement->bindValue(':idd', $request['id']);
+                $statement->bindValue(':id', $request['id']);
 
             } else {
 
