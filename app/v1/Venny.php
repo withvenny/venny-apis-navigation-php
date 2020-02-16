@@ -268,15 +268,12 @@
                             person_phone,
                             person_entitlements
                             FROM persons
-                            ORDER BY time_finished
+                            ORDER BY time_finished DESC
                             {$limit}
                 ";
 
                 //
                 $statement = $this->pdo->prepare($sql);
-
-                // bind value to the :id parameter
-                //$stmt->bindValue(':id', $request['id']);
 
             }
                 
