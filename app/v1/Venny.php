@@ -240,9 +240,9 @@
                             person_phone,
                             person_entitlements
                         
-                    .   'FROM persons '
-                    .   'WHERE person_id = :id '
-                    .   `$limit`
+                    FROM persons
+                    WHERE person_id = :id
+                    {$limit}
                 
                 ";
 
