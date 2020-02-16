@@ -212,6 +212,8 @@
         */
         public function selectPersons($request) {
 
+            print_r($request);
+
             //
             $start = 0;
 
@@ -229,22 +231,23 @@
                 $conditions = "";
                 $limit = " LIMIT 1";
 
-                //
-                $statement = $this->pdo->prepare(
-                    'SELECT
-                        person_id,
-                        person_attributes,
-                        person_first_name,
-                        person_last_name,
-                        person_email,
-                        person_phone,
-                        person_entitlements
-                    '
-                    . 'FROM persons '
-                    . 'WHERE person_id = :id '
-                    . `$limit`
+                $sql = "SELECT
+                            person_id,
+                            person_attributes,
+                            person_first_name,
+                            person_last_name,
+                            person_email,
+                            person_phone,
+                            person_entitlements
+                        
+                    .   'FROM persons '
+                    .   'WHERE person_id = :id '
+                    .   `$limit`
+                
+                ";
 
-                );
+                //
+                $statement = $this->pdo->prepare($sql);
 
                 // bind value to the :id parameter
                 $statement->bindValue(':id', $request['id']);
@@ -294,7 +297,7 @@
                         'first_name' => $row['person_first_name'],
                         'last_name' => $row['person_last_name'],
                         'email' => $row['person_email'],
-                        //'phone' => $row['person_phone'],
+                        'phone' => $row['person_phone'],
                         'entitlements' => $row['person_entitlements']
                     ];
 
