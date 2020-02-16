@@ -282,8 +282,8 @@
 
             //
             $results = [];
-            $count = $statement->rowCount();
-            $pages = ceil($count/$request['per']); //
+            $total = $statement->rowCount();
+            $pages = ceil($total/$request['per']); //
             //$current = 1; // current page
             //$limit = $result['limit'];
             //$max = $result['max'];
@@ -299,6 +299,9 @@
     
                     //
                     $data[] = [
+                        'page' => $request['page'],
+                        'pages' => $pages,
+                        'count' => $count,
                         'id' => $row['person_id'],
                         'attributes' => $row['person_attributes'],
                         'first_name' => $row['person_first_name'],
@@ -318,9 +321,12 @@
             }
 
             $results[] = [
-                'data' => $data,
-                'count' => $count,
                 'status' => 200,
+                'message' => 'Successful',
+                'details' => $total,
+                'data' => $data,
+                'event' => substr(md5(uniqid(microtime(true),true)),0,8),
+                'process' => substr(md5(uniqid(microtime(true),true)),0,12)
             ];
 
             //
