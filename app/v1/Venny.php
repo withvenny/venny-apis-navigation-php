@@ -212,7 +212,7 @@
         */
         public function selectPersons($request) {
 
-            print_r($request);
+            //print_r($request);
 
             //
             $start = 0;
@@ -246,7 +246,7 @@
                 
                 ";
 
-                echo $sql;
+                //echo $sql;
 
                 //
                 $statement = $this->pdo->prepare($sql);
