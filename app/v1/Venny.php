@@ -281,16 +281,24 @@
             $statement->execute();
 
             //
-            if($statement->rowCount()>0) {
+            if($statement->rowCount() > 0) {
 
                 //
                 $results = [];
+                $count = $statement->rowCount();
+                $pages = ceil($count/$request['per']); //
+                //$current = 1; // current page
+                //$limit = $result['limit'];
+                //$max = $result['max'];
             
                 //
                 while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
     
                     //
                     $results[] = [
+                        'page' => $request['page'],
+                        'pages' => $pages,
+                        'count' => $count,
                         'id' => $row['person_id'],
                         'attributes' => $row['person_attributes'],
                         'first_name' => $row['person_first_name'],

@@ -107,4 +107,50 @@ CREATE SEQUENCE person_id_seq;
 ALTER SEQUENCE persons_sequence RESTART WITH 8301;		
 ALTER TABLE persons ALTER COLUMN ID SET DEFAULT nextval('persons_sequence');		
 select * from persons;
+select count(*) from persons;
+SELECT last_value FROM persons_sequence;
 
+SELECT
+person_id,
+person_attributes,
+person_first_name,
+person_last_name,
+person_email,
+person_phone,
+person_entitlements
+FROM persons
+ORDER BY time_finished;
+
+SELECT
+person_id,
+person_attributes,
+person_first_name,
+person_last_name,
+person_email,
+person_phone,
+person_entitlements
+FROM persons ORDER BY time_finished
+
+SELECT
+                            person_id,
+                            person_attributes,
+                            person_first_name,
+                            person_last_name,
+                            person_email,
+                            person_phone,
+                            person_entitlements
+                      FROM persons 
+                       WHERE person_id = '8301_02132020_0430'
+                       LIMIT 1;
+                       
+SELECT
+                            person_id,
+                            person_attributes,
+                            person_first_name,
+                            person_last_name,
+                            person_email,
+                            person_phone,
+                            person_entitlements
+                            FROM persons
+                            ORDER BY time_finished DESC
+                            offset 1 limit 8;
