@@ -294,7 +294,7 @@
                         'first_name' => $row['person_first_name'],
                         'last_name' => $row['person_last_name'],
                         'email' => $row['person_email'],
-                        'phone' => $row['person_phone'],
+                        //'phone' => $row['person_phone'],
                         'entitlements' => $row['person_entitlements']
                     ];
 
