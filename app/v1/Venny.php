@@ -281,24 +281,24 @@
             $statement->execute();
 
             //
+            $results = [];
+            $count = $statement->rowCount();
+            $pages = ceil($count/$request['per']); //
+            //$current = 1; // current page
+            //$limit = $result['limit'];
+            //$max = $result['max'];
+
+            //
             if($statement->rowCount() > 0) {
 
                 //
-                $results = [];
-                $count = $statement->rowCount();
-                $pages = ceil($count/$request['per']); //
-                //$current = 1; // current page
-                //$limit = $result['limit'];
-                //$max = $result['max'];
+                $data = [];
             
                 //
                 while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
     
                     //
-                    $results[] = [
-                        'page' => $request['page'],
-                        'pages' => $pages,
-                        'count' => $count,
+                    $data[] = [
                         'id' => $row['person_id'],
                         'attributes' => $row['person_attributes'],
                         'first_name' => $row['person_first_name'],
@@ -316,6 +316,12 @@
                 echo 'No data in your DATABASE...';
 
             }
+
+            $results[] = [
+                'data' => $data,
+                'count' => $count,
+                'status' => 200,
+            ];
 
             //
             return $results;
