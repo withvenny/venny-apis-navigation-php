@@ -201,7 +201,7 @@
             
             // execute the insert statement
             $statement->execute();
-            
+
             // return generated id
             return $this->pdo->lastInsertId('persons_sequence');
         }
@@ -213,10 +213,21 @@
         public function selectPersons($request) {
 
             //
+            $start = 0;
+
+            //
+            if(isset($request['page'])) {
+
+                //
+                $start = ($request['page'] - 1) * $request['per'];
+            
+            }
+
+            //
             if(!empty($request['id'])) {
 
                 $conditions = "";
-                $limit = "LIMIT 1";
+                $limit = " LIMIT 1";
 
                 //
                 $statement = $this->pdo->prepare(
@@ -241,7 +252,7 @@
             } else {
 
                 $conditions = "";
-                $limit = "";
+                $limit = " LIMIT {$start},{$request['per']}";
 
                 //
                 $statement = $this->pdo->prepare(
@@ -268,19 +279,32 @@
             $statement->execute();
 
             //
-            $results = [];
+            if($statement->rowCount()>0) {
+
+                //
+                $results = [];
             
-            //
-            while ($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
-                $results[] = [
-                    'id' => $row['person_id'],
-                    'attributes' => $row['person_attributes'],
-                    'first_name' => $row['person_first_name'],
-                    'last_name' => $row['person_last_name'],
-                    'email' => $row['person_email'],
-                    'phone' => $row['person_phone'],
-                    'entitlements' => $row['person_entitlements']
-                ];
+                //
+                while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+    
+                    //
+                    $results[] = [
+                        'id' => $row['person_id'],
+                        'attributes' => $row['person_attributes'],
+                        'first_name' => $row['person_first_name'],
+                        'last_name' => $row['person_last_name'],
+                        'email' => $row['person_email'],
+                        'phone' => $row['person_phone'],
+                        'entitlements' => $row['person_entitlements']
+                    ];
+
+                }
+
+            } else {
+
+                //
+                echo 'No data in your DATABASE...';
+
             }
 
             //
@@ -295,7 +319,7 @@
          */
         public function findByPK($id) {
             // prepare SELECT statement
-            $stmt = $this->pdo->prepare('SELECT id, symbol, company
+            $statement = $this->pdo->prepare('SELECT id, symbol, company
                                         FROM stocks
                                         WHERE id = :id');
             // bind value to the :id parameter
