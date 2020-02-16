@@ -323,10 +323,16 @@
             $results[] = [
                 'status' => 200,
                 'message' => 'Successful',
-                'details' => $total,
+                'metadata' => [
+                    'page' => $request['page'],
+                    'pages' => $pages,
+                    'total' => $total,
+                ],
                 'data' => $data,
-                'event' => substr(md5(uniqid(microtime(true),true)),0,8),
-                'process' => substr(md5(uniqid(microtime(true),true)),0,12)
+                'log' => [
+                    'event' => substr(md5(uniqid(microtime(true),true)),0,8),
+                    'process' => substr(md5(uniqid(microtime(true),true)),0,12)
+                ],
             ];
 
             //
