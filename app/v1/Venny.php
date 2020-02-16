@@ -257,7 +257,7 @@
             } else {
 
                 $conditions = "";
-                $limit = " LIMIT {$start}" . " OFFSET {$request['per']}";
+                $limit = " OFFSET {$request['per']}" . " LIMIT {$start}";
 
                 $sql = "SELECT
                             person_id,
