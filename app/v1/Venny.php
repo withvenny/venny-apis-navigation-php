@@ -273,10 +273,7 @@
                 ";
 
                 //
-                $statement = $this->pdo->prepare(
-                    
-
-                );
+                $statement = $this->pdo->prepare($sql);
 
                 // bind value to the :id parameter
                 //$stmt->bindValue(':id', $request['id']);
