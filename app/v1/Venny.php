@@ -326,7 +326,7 @@
                 'metadata' => [
                     'page' => $request['page'],
                     'pages' => $pages,
-                    'total' => $total,
+                    'total' => $total
                 ],
                 'data' => $data,
                 'log' => [
