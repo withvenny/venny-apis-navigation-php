@@ -285,7 +285,7 @@
                 $results = [];
             
                 //
-                while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
     
                     //
                     $results[] = [
