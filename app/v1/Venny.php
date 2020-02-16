@@ -259,19 +259,22 @@
                 $conditions = "";
                 $limit = " LIMIT {$start},{$request['per']}";
 
+                $sql = "SELECT
+                            person_id,
+                            person_attributes,
+                            person_first_name,
+                            person_last_name,
+                            person_email,
+                            person_phone,
+                            person_entitlements
+                            FROM persons
+                            ORDER BY time_finished
+                            {$limit}
+                ";
+
                 //
                 $statement = $this->pdo->prepare(
-                    'SELECT
-                        person_id,
-                        person_attributes,
-                        person_first_name,
-                        person_last_name,
-                        person_email,
-                        person_phone,
-                        person_entitlements
-                    '
-                    . 'FROM persons '
-                    . 'ORDER BY time_finished'
+                    
 
                 );
 
