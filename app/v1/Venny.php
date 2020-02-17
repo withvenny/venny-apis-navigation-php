@@ -221,7 +221,7 @@
                 person_email,
                 person_phone,
                 person_entitlements
-                
+
             ";
 
             $table = "persons";
@@ -243,6 +243,7 @@
             if(!empty($request['id'])) {
 
                 $conditions = " WHERE person_id = :id ";
+                $conditions.= " ORDER BY time_finished DESC ";
                 $limit = " LIMIT 1";
 
                 $sql = "SELECT ";
@@ -261,21 +262,16 @@
 
             } else {
 
-                $conditions = "";
+                $conditions = " WHERE person_id = :id ";
+                $conditions.= " ORDER BY time_finished DESC ";
                 $limit = " OFFSET {$start}" . " LIMIT {$request['per']}";
-                $sql = "SELECT
-                            person_id,
-                            person_attributes,
-                            person_first_name,
-                            person_last_name,
-                            person_email,
-                            person_phone,
-                            person_entitlements
-                            FROM persons
-                            ORDER BY time_finished DESC
-                            {$limit}
-                ";
 
+                $sql = "SELECT ";
+                $sql.= $columns;
+                $sql.= "FROM " . $table;
+                $sql.= $conditions;
+                $sql.= $limit;
+                
                 //
                 $statement = $this->pdo->prepare($sql);
 
