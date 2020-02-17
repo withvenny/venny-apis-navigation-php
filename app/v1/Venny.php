@@ -213,6 +213,7 @@
         public function selectPersons($request) {
 
             $columns = "
+
                 person_id,
                 person_attributes,
                 person_first_name,
@@ -220,6 +221,7 @@
                 person_email,
                 person_phone,
                 person_entitlements
+                
             ";
 
             $table = "persons";
