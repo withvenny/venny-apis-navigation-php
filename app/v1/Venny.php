@@ -213,7 +213,6 @@
         public function selectPersons($request) {
 
             $columns = "
-
                 person_id,
                 person_attributes,
                 person_first_name,
@@ -221,11 +220,9 @@
                 person_email,
                 person_phone,
                 person_entitlements
-
             ";
 
             $table = "persons";
-            $from = "FROM " . $table . " ";
 
             //print_r($request);
 
@@ -243,16 +240,16 @@
             //
             if(!empty($request['id'])) {
 
-                $conditions = "WHERE person_id = :id ";
+                $conditions = " WHERE person_id = :id ";
                 $limit = " LIMIT 1";
 
                 $sql = "SELECT ";
                 $sql.= $columns;
-                $sql.= $from;
+                $sql.= "FROM " . $table;
                 $sql.= $conditions;
                 $sql.= $limit;
                 
-                echo $sql; exit;
+                //echo $sql; exit;
 
                 //
                 $statement = $this->pdo->prepare($sql);
