@@ -242,8 +242,11 @@
             //
             if(!empty($request['id'])) {
 
-                $conditions = " WHERE person_id = :id ";
+                $conditions = " WHERE";
+                $conditions = " person_id = :id ";
+                $conditions.= " active = 1 ";
                 $conditions.= " ORDER BY time_finished DESC ";
+                
                 $limit = " LIMIT 1";
 
                 $sql = "SELECT ";
@@ -262,7 +265,8 @@
 
             } else {
 
-                $conditions = " WHERE person_id = :id ";
+                $conditions = " WHERE ";
+                $conditions.= " active = 1 ";
                 $conditions.= " ORDER BY time_finished DESC ";
                 $limit = " OFFSET {$start}" . " LIMIT {$request['per']}";
 
