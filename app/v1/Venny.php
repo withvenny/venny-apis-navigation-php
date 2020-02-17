@@ -243,7 +243,7 @@
             if(!empty($request['id'])) {
 
                 $conditions = " WHERE";
-                $conditions = " person_id = :id ";
+                $conditions.= " " . substr($table,0,-1) . "_id = :id ";
                 $conditions.= " active = 1 ";
                 $conditions.= " ORDER BY time_finished DESC ";
                 
