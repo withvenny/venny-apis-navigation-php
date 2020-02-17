@@ -212,6 +212,21 @@
         */
         public function selectPersons($request) {
 
+            $columns = "
+
+                person_id,
+                person_attributes,
+                person_first_name,
+                person_last_name,
+                person_email,
+                person_phone,
+                person_entitlements
+
+            ";
+
+            $table = "persons";
+            $from = "FROM " . $table;
+
             //print_r($request);
 
             //
@@ -228,25 +243,16 @@
             //
             if(!empty($request['id'])) {
 
-                $conditions = "";
+                $conditions = "WHERE person_id = :id";
                 $limit = " LIMIT 1";
 
-                $sql = "SELECT
-                            person_id,
-                            person_attributes,
-                            person_first_name,
-                            person_last_name,
-                            person_email,
-                            person_phone,
-                            person_entitlements
-                        
-                    FROM persons
-                    WHERE person_id = :id
-                    {$limit}
+                $sql = "SELECT ";
+                $sql.= $columns;
+                $sql.= $from;
+                $sql.= $conditions;
+                $sql.= $limit;
                 
-                ";
-
-                //echo $sql;
+                echo $sql; exit;
 
                 //
                 $statement = $this->pdo->prepare($sql);
@@ -258,7 +264,6 @@
 
                 $conditions = "";
                 $limit = " OFFSET {$start}" . " LIMIT {$request['per']}";
-
                 $sql = "SELECT
                             person_id,
                             person_attributes,
@@ -299,9 +304,7 @@
     
                     //
                     $data[] = [
-                        'page' => $request['page'],
-                        'pages' => $pages,
-                        'count' => $count,
+
                         'id' => $row['person_id'],
                         'attributes' => $row['person_attributes'],
                         'first_name' => $row['person_first_name'],
@@ -330,8 +333,8 @@
                 ],
                 'data' => $data,
                 'log' => [
-                    'event' => substr(md5(uniqid(microtime(true),true)),0,8),
-                    'process' => substr(md5(uniqid(microtime(true),true)),0,12)
+                    'event' => substr(md5(uniqid(microtime(true),true)),0,13),
+                    'process' => substr(md5(uniqid(microtime(true),true)),0,13)
                 ],
             ];
 
