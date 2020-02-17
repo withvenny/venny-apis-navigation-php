@@ -225,7 +225,7 @@
             ";
 
             $table = "persons";
-            $from = "FROM " . $table;
+            $from = "FROM " . $table . " ";
 
             //print_r($request);
 
@@ -243,7 +243,7 @@
             //
             if(!empty($request['id'])) {
 
-                $conditions = "WHERE person_id = :id";
+                $conditions = "WHERE person_id = :id ";
                 $limit = " LIMIT 1";
 
                 $sql = "SELECT ";
