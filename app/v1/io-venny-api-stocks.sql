@@ -153,4 +153,23 @@ SELECT
                             person_entitlements
                             FROM persons
                             ORDER BY time_finished DESC
-                            offset 1 limit 8;
+                            limit 8;
+                            
+SELECT person_id,
+                person_attributes,
+                person_first_name,
+                person_last_name,
+                person_email,
+                person_phone,
+                person_entitlements FROM persons WHERE person_id = '8301_02132020_0430'  LIMIT 1;
+                
+SELECT person_id, person_attributes, person_first_name, person_last_name, person_email, person_phone, person_entitlements FROM persons WHERE person_id = '8301_02132020_0430' AND active = 1 ORDER BY time_finished DESC LIMIT 1;
+
+
+
+
+             
+
+
+
+
