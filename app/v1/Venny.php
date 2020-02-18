@@ -246,16 +246,9 @@
             $conditions = "";
             $limit = "";
             $domain = $request['domain'];
-            
-            //
-            if(isset($request['id'])){$id=clean($request['id']);$conditions.="AND ".substr($domain,0,-1)."_title LIKE '%".$title."%' ";}else{$conditions.="";}
-            if(isset($_GET['description'])){$description=clean($_GET['description']);$conditions.="AND ".substr($domain,0,-1)."_description LIKE '%".$description."%' ";}else{$conditions.="";}
-            if(isset($_GET['issuer'])){$issuer=clean($_GET['issuer']);$conditions.="AND ".substr($domain,0,-1)."_issuer LIKE '%".$issuer."%' ";}else{$conditions.="";}
-            if(isset($_GET['issue_year'])){$issue_year=clean($_GET['issue_year']);$conditions.="AND ".substr($domain,0,-1)."_issue_year = '".$issue_year."' ";}else{$conditions.="";}
-            if(isset($_GET['issue_month'])){$issue_month=clean($_GET['issue_month']);$conditions.="AND ".substr($domain,0,-1)."_issue_month = '".$issue_month."' ";}else{$conditions.="";}
-            if(isset($_GET['organization_ID'])){$organization_ID=clean($_GET['organization_ID']);$conditions.="AND ".substr($domain,0,-1)."_organization_ID = '".$organization_ID."' ";}else{$conditions.="";}
-            if(isset($_GET['member_ID'])){$member_ID=clean($_GET['member_ID']);$conditions.="AND member_ID = '".$member_ID."' ";}else{$conditions.="";}
 
+            //
+            if(isset($request['id'])){$id=clean($request['id']);$conditions.="AND ".substr($domain,0,-1)."_id LIKE '%".$id."%' ";}else{$conditions.="";}
 
             $columns = "
 
