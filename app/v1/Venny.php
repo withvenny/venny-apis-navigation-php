@@ -244,7 +244,6 @@
 
             //
             $conditions = "";
-            $limit = "";
             $domain = $request['domain'];
             $prefix = prefixed($domain);
 
@@ -284,15 +283,15 @@
                 $conditions.= " AND active = 1 ";
                 $conditions.= " ORDER BY time_finished DESC ";
                 
-                $limit = " LIMIT 1";
+                $subset = " LIMIT 1";
 
                 $sql = "SELECT ";
                 $sql.= $columns;
                 $sql.= " FROM " . $table;
                 $sql.= $conditions;
-                $sql.= $limit;
+                $sql.= $subset;
                 
-                echo $sql; exit;
+                //echo $sql; exit;
 
                 //
                 $statement = $this->pdo->prepare($sql);
@@ -305,13 +304,13 @@
                 $conditions = " WHERE ";
                 $conditions.= " active = 1 ";
                 $conditions.= " ORDER BY time_finished DESC ";
-                $limit = " OFFSET {$start}" . " LIMIT {$request['per']}";
+                $subset = " OFFSET {$start}" . " LIMIT {$request['per']}";
 
                 $sql = "SELECT ";
                 $sql.= $columns;
                 $sql.= "FROM " . $table;
                 $sql.= $conditions;
-                $sql.= $limit;
+                $sql.= $subset;
                 
                 //
                 $statement = $this->pdo->prepare($sql);
