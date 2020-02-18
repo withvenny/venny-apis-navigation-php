@@ -245,7 +245,7 @@
             //
             $conditions = "";
             $limit = "";
-            $prefix = $prefixed($domain);
+            $prefix = prefixed($domain);
             $domain = $request['domain'];
 
             //
