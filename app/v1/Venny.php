@@ -245,8 +245,8 @@
             //
             $conditions = "";
             $limit = "";
-            $prefix = prefixed($domain);
             $domain = $request['domain'];
+            $prefix = prefixed($domain);
 
             //
             if(isset($request['id'])){$id=clean($request['id']);$conditions.="AND ".substr($domain,0,-1)."_id LIKE '%".$id."%' ";}else{$conditions.="";}
