@@ -281,7 +281,7 @@
 
                 $conditions = " WHERE";
                 $conditions.= " " . $prefix . "_id = :id ";
-                $conditions.= " active = 1 ";
+                $conditions.= " AND active = 1 ";
                 $conditions.= " ORDER BY time_finished DESC ";
                 
                 $limit = " LIMIT 1";
