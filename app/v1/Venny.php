@@ -245,6 +245,7 @@
             //
             $conditions = "";
             $limit = "";
+            $prefix = $prefixed($domain);
             $domain = $request['domain'];
 
             //
@@ -279,7 +280,7 @@
             if(!empty($request['id'])) {
 
                 $conditions = " WHERE";
-                $conditions.= " " . prefixed($domain) . "_id = :id ";
+                $conditions.= " " . $prefix . "_id = :id ";
                 $conditions.= " active = 1 ";
                 $conditions.= " ORDER BY time_finished DESC ";
                 
