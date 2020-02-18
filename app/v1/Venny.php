@@ -262,9 +262,7 @@
 
             ";
 
-            $table = "persons";
-
-            //print_r($request);
+            $table = $domain;
 
             //
             $start = 0;
@@ -281,7 +279,7 @@
             if(!empty($request['id'])) {
 
                 $conditions = " WHERE";
-                $conditions.= " " . substr($table,0,-1) . "_id = :id ";
+                $conditions.= " " . prefixed($domain) . "_id = :id ";
                 $conditions.= " active = 1 ";
                 $conditions.= " ORDER BY time_finished DESC ";
                 
@@ -289,11 +287,11 @@
 
                 $sql = "SELECT ";
                 $sql.= $columns;
-                $sql.= "FROM " . $table;
+                $sql.= " FROM " . $table;
                 $sql.= $conditions;
                 $sql.= $limit;
                 
-                //echo $sql; exit;
+                echo $sql; exit;
 
                 //
                 $statement = $this->pdo->prepare($sql);

@@ -6,6 +6,19 @@
 		//return htmlentities($string);
 		return $string;
 
+    }
+    
+    // domain to table prefix convertor
+	function prefixed($string) {
+
+        if(isset($sting)){
+            
+            $string = substr($string,0,-1);
+        
+        }
+
+		return $string;
+
 	}
 
 	//
