@@ -186,8 +186,6 @@
             $statement = $this->pdo->prepare($sql);
             
             // pass values to the statement
-            //$stmt->bindValue(':symbol', $symbol);
-            //$stmt->bindValue(':company', $company);
             $statement->bindValue(':person_id', $request['id']);
             $statement->bindValue(':person_attributes', $request['attributes']);
             $statement->bindValue(':person_first_name', $request['first_name']);
@@ -202,8 +200,38 @@
             // execute the insert statement
             $statement->execute();
 
+            //
+            if($statement->rowCount() > 0) {
+                //
+                $data = [];
+            
+                //
+                while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
+    
+                    //
+                    $data[] = [
+
+                        'id' => $row['person_id'],
+                        'attributes' => $row['person_attributes'],
+                        'first_name' => $row['person_first_name'],
+                        'last_name' => $row['person_last_name'],
+                        'email' => $row['person_email'],
+                        'phone' => $row['person_phone'],
+                        'entitlements' => $row['person_entitlements']
+                    ];
+
+                }
+
+            } else {
+
+                //
+                echo 'No data in your DATABASE...';
+
+            }
+
             // return generated id
-            return $this->pdo->lastInsertId('persons_sequence');
+            //return $this->pdo->lastInsertId('persons_sequence');
+            return $this->pdo->selectPersons('persons_sequence');
         }
 
         /**
@@ -211,6 +239,23 @@
         * @return array
         */
         public function selectPersons($request) {
+
+            // domain, app always present
+
+            //
+            $conditions = "";
+            $limit = "";
+            $domain = $request['domain'];
+            
+            //
+            if(isset($request['id'])){$id=clean($request['id']);$conditions.="AND ".substr($domain,0,-1)."_title LIKE '%".$title."%' ";}else{$conditions.="";}
+            if(isset($_GET['description'])){$description=clean($_GET['description']);$conditions.="AND ".substr($domain,0,-1)."_description LIKE '%".$description."%' ";}else{$conditions.="";}
+            if(isset($_GET['issuer'])){$issuer=clean($_GET['issuer']);$conditions.="AND ".substr($domain,0,-1)."_issuer LIKE '%".$issuer."%' ";}else{$conditions.="";}
+            if(isset($_GET['issue_year'])){$issue_year=clean($_GET['issue_year']);$conditions.="AND ".substr($domain,0,-1)."_issue_year = '".$issue_year."' ";}else{$conditions.="";}
+            if(isset($_GET['issue_month'])){$issue_month=clean($_GET['issue_month']);$conditions.="AND ".substr($domain,0,-1)."_issue_month = '".$issue_month."' ";}else{$conditions.="";}
+            if(isset($_GET['organization_ID'])){$organization_ID=clean($_GET['organization_ID']);$conditions.="AND ".substr($domain,0,-1)."_organization_ID = '".$organization_ID."' ";}else{$conditions.="";}
+            if(isset($_GET['member_ID'])){$member_ID=clean($_GET['member_ID']);$conditions.="AND member_ID = '".$member_ID."' ";}else{$conditions.="";}
+
 
             $columns = "
 
