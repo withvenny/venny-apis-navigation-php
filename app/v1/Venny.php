@@ -375,8 +375,8 @@
                 ],
             ];
 
-            echo " results ";
-            echo json_encode($results);
+            //echo " results ";
+            //echo json_encode($results);
 
             //
             return $results;

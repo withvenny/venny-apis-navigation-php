@@ -50,7 +50,7 @@
                 // get all stocks data
                 $persons = $person->selectPersons($_REQUEST);
 
-                return $persons;
+                echo json_encode($persons);
 
             } catch (\PDOException $e) {
 
