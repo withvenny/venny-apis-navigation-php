@@ -3,7 +3,7 @@
 #RewriteRule ^ index.php [QSA,L]
 
 #Alternate default index page
-DirectoryIndex template-guest-hello.php
+#DirectoryIndex template-guest-hello.php
 
 #SUPER IMPORTANT
 Header set Access-Control-Allow-Origin "*"

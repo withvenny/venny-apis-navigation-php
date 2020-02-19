@@ -17,7 +17,7 @@
         //
         case 'POST':
 
-            echo "POST"; exit;
+            echo "POST";
 
             try {
                 // connect to the PostgreSQL database
@@ -38,7 +38,7 @@
 
         case 'GET':
 
-            echo "GET"; exit;
+            echo "GET";
 
             try {
 
