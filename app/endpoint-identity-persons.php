@@ -2,6 +2,7 @@
 
     //
     use Core\Connection as Connection;
+    use Core\Token as Token;
     use Identity\Person as Person;
  
     //
