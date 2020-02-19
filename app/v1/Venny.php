@@ -6,8 +6,6 @@
      * Represent the Connection
      */
     class Connection {
-
-        echo "Venny.php"; exit;
     
         /**
          * Connection
