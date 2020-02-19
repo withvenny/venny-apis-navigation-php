@@ -278,8 +278,9 @@
             //
             if(!empty($request['id'])) {
 
-                var_dump($request);
-                
+                echo " INSIDE emptyrequest ";
+                echo json_encode($request);
+
                 $conditions = " WHERE";
                 $conditions.= " " . $prefix . "_id = :id ";
                 $conditions.= " AND active = 1 ";
