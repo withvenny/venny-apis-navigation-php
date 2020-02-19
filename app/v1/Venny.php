@@ -241,7 +241,6 @@
         public function selectPersons($request) {
 
             // domain, app always present
-            var_dump($request);
 
             //
             $conditions = "";
@@ -279,6 +278,8 @@
             //
             if(!empty($request['id'])) {
 
+                var_dump($request);
+                
                 $conditions = " WHERE";
                 $conditions.= " " . $prefix . "_id = :id ";
                 $conditions.= " AND active = 1 ";
