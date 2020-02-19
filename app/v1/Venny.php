@@ -333,9 +333,6 @@
             //
             if($statement->rowCount() > 0) {
 
-                echo " INSIDE rowcount ";
-                echo json_encode($request);
-
                 //
                 $data = [];
             
@@ -377,6 +374,9 @@
                     'process' => substr(md5(uniqid(microtime(true),true)),0,13)
                 ],
             ];
+
+            echo " results ";
+            echo json_encode($results);
 
             //
             return $results;
