@@ -17,6 +17,8 @@
         //
         case 'POST':
 
+            echo "POST"; exit;
+
             try {
                 // connect to the PostgreSQL database
                 $pdo = Connection::get()->connect();
