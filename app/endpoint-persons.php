@@ -1,28 +1,6 @@
 <?php
  
     //
-    header('Content-Type: application/json');
-
-    //
-    require '../vendor/autoload.php';
-    require 'v1/functions.php';
-
-    //
-    use Venny\Connection as Connection;
-    use Venny\Person as Person;
-
-    //
-    switch ($_REQUEST['domain']) {
-
-        //
-        case 'persons': require 'endpoint-persons.php'; break;
-
-        //
-        default: header("Location: template-guest-hello.php");
-    
-    }
-
-    //
     switch ($_SERVER['REQUEST_METHOD']) {
 
         //
@@ -43,11 +21,14 @@
                 echo 'The stock has been inserted with the id ' . $id . '<br>';
             
             } catch (\PDOException $e) {
+
                 echo $e->getMessage();
+
             }
 
         break;
 
+        //
         case 'GET':
 
             try {
