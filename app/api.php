@@ -41,10 +41,10 @@
 
             try {
 
-                echo "TRY GET";
-
                 // connect to the PostgreSQL database
                 $pdo = Connection::get()->connect();
+
+                echo "TRY GET";
 
                 // 
                 $person = new Person($pdo);
