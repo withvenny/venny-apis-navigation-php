@@ -1,5 +1,7 @@
 <?php
 
+    echo "Venny.php"; exit;
+
     namespace Venny;
 
     /**
