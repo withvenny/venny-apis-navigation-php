@@ -113,7 +113,7 @@
         */
         public function selectPersons($request) {
 
-            Core::checkToken($request['token']);
+            Tokens::checkToken($request['token']);
 
             // domain, app always present
 
