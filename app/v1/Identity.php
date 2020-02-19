@@ -123,6 +123,8 @@
 
             //
             if($checked) {
+
+                echo "yes, checked present";
                 
                 // domain, app always present
 
@@ -234,6 +236,7 @@
                             'email' => $row['person_email'],
                             'phone' => $row['person_phone'],
                             'entitlements' => $row['person_entitlements']
+
                         ];
 
                     }
@@ -242,6 +245,8 @@
 
                     //
                     //echo 'No data in your DATABASE...';
+
+                    echo "no checked present";
 
                     //
                     $data[] = NULL;
