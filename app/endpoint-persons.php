@@ -12,8 +12,6 @@
 
             try {
 
-                echo "TRY POST";
-
                 // connect to the PostgreSQL database
                 $pdo = Connection::get()->connect();
                 // 
