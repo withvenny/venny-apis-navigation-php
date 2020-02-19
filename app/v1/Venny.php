@@ -291,13 +291,15 @@
                 $sql.= $conditions;
                 $sql.= $subset;
                 
-                echo $sql; exit;
+                //echo $sql; exit;
 
                 //
                 $statement = $this->pdo->prepare($sql);
 
                 // bind value to the :id parameter
                 $statement->bindValue(':id', $request['id']);
+
+                echo $sql; exit;
 
             } else {
 
