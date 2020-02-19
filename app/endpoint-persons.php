@@ -1,4 +1,7 @@
 <?php
+
+    //
+    use Venny\Connection as Connection;
  
     //
     switch ($_SERVER['REQUEST_METHOD']) {
