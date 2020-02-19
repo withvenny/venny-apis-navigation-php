@@ -27,7 +27,6 @@
          * @param type $company
          * @return the id of the inserted row
          */
-
         public function insertPerson($request) {
 
             // prepare statement for insert
@@ -113,8 +112,7 @@
         */
         public function selectPersons($request) {
 
-            $token = new Token();
-            $checked = $token->checkToken($request['token']);
+            Core\Token::checkToken($request['token']);
 
             // domain, app always present
 
