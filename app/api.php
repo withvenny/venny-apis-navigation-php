@@ -3,8 +3,6 @@
     //
     header('Content-Type: application/json');
 
-    echo "start";
-
     //
     require '../vendor/autoload.php';
     require 'v1/functions.php';
@@ -37,6 +35,8 @@
         break;
 
         case 'GET':
+
+            echo "GET"; exit;
 
             try {
 
