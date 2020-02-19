@@ -299,7 +299,7 @@
                 // bind value to the :id parameter
                 $statement->bindValue(':id', $request['id']);
 
-                echo $sql; exit;
+                //echo $sql; exit;
 
             } else {
 
@@ -332,6 +332,9 @@
 
             //
             if($statement->rowCount() > 0) {
+
+                echo " INSIDE rowcount ";
+                echo json_encode($request);
 
                 //
                 $data = [];
