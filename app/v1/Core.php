@@ -104,9 +104,16 @@
             return $stocks;
         }
 
+        //
         public function checkToken() {
-            echo 'Token is checked...'; exit;
+            
+            //
+            echo 'Token is checked...';
+            
+            //exit;
+
         }
+
         /**
          * Find stock by id
          * @param int $id
