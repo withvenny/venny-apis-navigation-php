@@ -69,7 +69,7 @@
     /**
      * Represent the table data insertion
      */
-    class Tokens {
+    class Token {
 
         /**
          * PDO object
