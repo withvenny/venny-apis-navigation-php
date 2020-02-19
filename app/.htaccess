@@ -13,8 +13,8 @@ Header set Access-Control-Allow-Origin "*"
 #Options +FollowSymLinks +SymLinksIfOwnerMatch
 
 RewriteEngine On
-RewriteRule ^([a-zA-Z0-9_-]+)$ profile.php?profile_username=$1
-RewriteRule ^([a-zA-Z0-9_-]+)/$ profile.php?profile_username=$1
+#RewriteRule ^([a-zA-Z0-9_-]+)$ profile.php?profile_username=$1
+#RewriteRule ^([a-zA-Z0-9_-]+)/$ profile.php?profile_username=$1
 
 #API
 RewriteEngine On
