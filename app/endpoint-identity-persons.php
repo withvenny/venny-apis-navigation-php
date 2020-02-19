@@ -2,7 +2,7 @@
 
     //
     use Venny\Connection as Connection;
-    use Venny\Person as Person;
+    use Venny\Identity as Identity;
  
     //
     switch ($_SERVER['REQUEST_METHOD']) {

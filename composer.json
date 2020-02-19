@@ -10,8 +10,8 @@
   },
   "autoload": {
     "psr-4": {
-      "PostgreSQLTutorial\\": "app/v1/",
-      "Venny\\": "app/v1/"
+      "Connection\\": "app/v1/",
+      "Identity\\": "app/v1/"
     }
   }
 }
