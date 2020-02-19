@@ -113,7 +113,8 @@
         */
         public function selectPersons($request) {
 
-            Tokens::checkToken($request['token']);
+            $tokens = new Tokens();
+            $checked = $tokens->checkToken($request['token']);
 
             // domain, app always present
 
