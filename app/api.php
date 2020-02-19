@@ -44,10 +44,10 @@
                 // connect to the PostgreSQL database
                 $pdo = Connection::get()->connect();
 
-                echo "TRY GET";
-
                 // 
                 $person = new Person($pdo);
+
+                echo "TRY GET";
 
                 // get all stocks data
                 $persons = $person->selectPersons($_REQUEST);
