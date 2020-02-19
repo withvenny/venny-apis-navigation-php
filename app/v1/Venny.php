@@ -278,9 +278,6 @@
             //
             if(!empty($request['id'])) {
 
-                echo " INSIDE emptyrequest ";
-                echo json_encode($request);
-
                 $conditions = " WHERE";
                 $conditions.= " " . $prefix . "_id = :id ";
                 $conditions.= " AND active = 1 ";
@@ -294,7 +291,7 @@
                 $sql.= $conditions;
                 $sql.= $subset;
                 
-                //echo $sql; exit;
+                echo $sql; exit;
 
                 //
                 $statement = $this->pdo->prepare($sql);
