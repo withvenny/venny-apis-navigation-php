@@ -112,7 +112,7 @@
         */
         public function selectPersons($request) {
 
-            $token = new \Core\Token($pdo);
+            $token = new \Core\Token($this->pdo);
             $checked = $token->checkToken($request['token']);
 
             // domain, app always present
