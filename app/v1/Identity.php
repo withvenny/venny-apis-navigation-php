@@ -119,7 +119,7 @@
         public function selectPersons($request) {
 
             //$token = new \Core\Token($this->pdo);
-            $checked = $this->token->checkToken($request['token']);
+            $checked = $this->token->validatedToken($request['token']);
 
             //
             if($checked) {

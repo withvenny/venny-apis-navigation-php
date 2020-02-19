@@ -105,10 +105,10 @@
         }
 
         //
-        public function checkToken() {
+        public function validatedToken() {
             
             //
-            echo 'Token is checked...';
+            return true;
             
             //exit;
 
