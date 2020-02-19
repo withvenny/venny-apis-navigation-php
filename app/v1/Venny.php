@@ -1,13 +1,13 @@
 <?php
 
-    echo "Venny.php"; exit;
-
     namespace Venny;
 
     /**
      * Represent the Connection
      */
     class Connection {
+
+        echo "Venny.php"; exit;
     
         /**
          * Connection
