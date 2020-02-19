@@ -1,8 +1,8 @@
 <?php
 
     //
-    use Venny\Connection as Connection;
-    use Venny\Identity as Identity;
+    use Connection\Connection as Connection;
+    use Identity\Person as Person;
  
     //
     switch ($_SERVER['REQUEST_METHOD']) {
