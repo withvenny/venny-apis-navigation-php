@@ -47,7 +47,7 @@
                 // get all stocks data
                 $persons = $person->selectPersons($_REQUEST);
 
-                echo $persons;
+                return $persons;
 
             } catch (\PDOException $e) {
 
