@@ -366,7 +366,7 @@
                     'pages' => $pages,
                     'total' => $total
                 ],
-                'data' => $data,
+                'data' => json_encode($data),
                 'log' => [
                     'event' => substr(md5(uniqid(microtime(true),true)),0,13),
                     'process' => substr(md5(uniqid(microtime(true),true)),0,13)
