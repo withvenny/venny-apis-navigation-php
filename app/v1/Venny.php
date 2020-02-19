@@ -241,8 +241,7 @@
         public function selectPersons($request) {
 
             // domain, app always present
-            echo "TRY GET";
-            print_r($request);
+            var_dump($request);
 
             //
             $conditions = "";
