@@ -17,9 +17,10 @@
         //
         case 'POST':
 
-            echo "POST";
-
             try {
+
+                echo "TRY POST";
+
                 // connect to the PostgreSQL database
                 $pdo = Connection::get()->connect();
                 // 
@@ -38,9 +39,9 @@
 
         case 'GET':
 
-            echo "GET";
-
             try {
+
+                echo "TRY GET";
 
                 // connect to the PostgreSQL database
                 $pdo = Connection::get()->connect();
