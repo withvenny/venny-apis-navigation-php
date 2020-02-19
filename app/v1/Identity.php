@@ -19,6 +19,8 @@
          */
         public function __construct($pdo) {
             $this->pdo = $pdo;
+            $this->token = new \Core\Token($this->pdo);
+
         }
 
         /**
@@ -112,7 +114,7 @@
         */
         public function selectPersons($request) {
 
-            $token = new \Core\Token($this->pdo);
+            //$token = new \Core\Token($this->pdo);
             $checked = $token->checkToken($request['token']);
 
             // domain, app always present
@@ -125,6 +127,7 @@
             //
             if(isset($request['id'])){$id=clean($request['id']);$conditions.="AND ".substr($domain,0,-1)."_id LIKE '%".$id."%' ";}else{$conditions.="";}
 
+            //
             $columns = "
 
                 person_id,
