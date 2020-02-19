@@ -112,7 +112,8 @@
         */
         public function selectPersons($request) {
 
-            \Core\Token::checkToken($request['token']);
+            $token = new \Core\Token;
+            $checked = $token->checkToken($request['token']);
 
             // domain, app always present
 
