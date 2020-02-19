@@ -1,3 +1,21 @@
 #RewriteEngine On
 #RewriteCond %{REQUEST_FILENAME} !-f
 #RewriteRule ^ index.php [QSA,L]
+
+#Alternate default index page
+DirectoryIndex template-guest-hello.php
+
+#SUPER IMPORTANT
+Header set Access-Control-Allow-Origin "*"
+
+#Options -Indexes
+
+#Options +FollowSymLinks +SymLinksIfOwnerMatch
+
+RewriteEngine On
+RewriteRule ^([a-zA-Z0-9_-]+)$ profile.php?profile_username=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ profile.php?profile_username=$1
+
+#API
+RewriteEngine On
+RewriteRule ^v1/([^/]*)(.*)$ api.php?domain=$1$2 [QSA]
