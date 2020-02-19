@@ -154,7 +154,6 @@
          * @param type $company
          * @return the id of the inserted row
          */
-
         public function insertPerson($request) {
 
             // prepare statement for insert

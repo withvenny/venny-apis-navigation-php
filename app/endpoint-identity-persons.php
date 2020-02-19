@@ -1,7 +1,7 @@
 <?php
 
     //
-    use Connection\Connection as Connection;
+    use Core\Connection as Connection;
     use Identity\Person as Person;
  
     //

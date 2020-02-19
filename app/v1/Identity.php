@@ -103,8 +103,8 @@
             }
 
             // return generated id
-            //return $this->pdo->lastInsertId('persons_sequence');
-            return $this->pdo->selectPersons('persons_sequence');
+            return $this->pdo->lastInsertId('persons_sequence');
+            //return $this->pdo->selectPersons('persons_sequence');
         }
 
         /**
@@ -112,6 +112,8 @@
         * @return array
         */
         public function selectPersons($request) {
+
+            Core::checkToken($request['token']);
 
             // domain, app always present
 

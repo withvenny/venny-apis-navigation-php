@@ -10,7 +10,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Connection\\": "app/v1/",
+      "Core\\": "app/v1/",
       "Identity\\": "app/v1/"
     }
   }

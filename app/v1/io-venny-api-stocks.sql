@@ -165,9 +165,32 @@ SELECT person_id,
                 
 SELECT person_id, person_attributes, person_first_name, person_last_name, person_email, person_phone, person_entitlements FROM persons WHERE person_id = '8301_02132020_0430' AND active = 1 ORDER BY time_finished DESC LIMIT 1;
 
+SELECT person_id, person_attributes, person_first_name, person_last_name, person_email, person_phone, person_entitlements FROM persons WHERE person_id = '8301_02132020_0430' AND active = 1 ORDER BY time_finished DESC LIMIT 1;
 
+CREATE TABLE IF NOT EXISTS	tokens	(
+ID	SERIAL	,
+token_ID	VARCHAR(30)	NOT NULL UNIQUE,
+token_attributes	JSON	NULL,
+token_key	VARCHAR(255)	NOT NULL UNIQUE,
+token_secret	VARCHAR(255)	NOT NULL UNIQUE,
+token_expires	TIMESTAMP	NULL,
+token_limit	INT	NULL,
+token_balance	INT	NULL,
+token_status	VARCHAR(255)	NULL,
+app_id	VARCHAR(30)	NOT NULL,
+event_id	VARCHAR(30)	NOT NULL,
+process_id	VARCHAR(30)	NOT NULL,
+time_started	TIMESTAMP	NOT NULL DEFAULT NOW(),
+time_updated	TIMESTAMP	NOT NULL DEFAULT NOW(),
+time_finished	TIMESTAMP	NOT NULL DEFAULT NOW(),
+active	INT	NOT NULL DEFAULT 1
+);
+CREATE SEQUENCE tokens_sequence;		
+ALTER SEQUENCE tokens_sequence RESTART WITH 8301;		
+ALTER TABLE tokens ALTER COLUMN ID SET DEFAULT nextval('tokens_sequence');
 
-
+INSERT INTO tokens(token_id,token_attributes,token_key,token_secret,token_expires,token_limit,token_balance,token_status,app_id,event_id,process_id) values ('token_83838383','{"app":"83838383"}','token_SDW4ReFR345E','token_SDW4ReFR345E','12/31/2020 11:59:59',9999,9999,'active','app_83838383','event_83838383','process_83838383');
+select * from tokens;
              
 
 
