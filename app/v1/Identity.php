@@ -18,7 +18,11 @@
          * @param type $pdo
          */
         public function __construct($pdo) {
+
+            //
             $this->pdo = $pdo;
+
+            //
             $this->token = new \Core\Token($this->pdo);
 
         }
@@ -117,124 +121,134 @@
             //$token = new \Core\Token($this->pdo);
             $checked = $this->token->checkToken($request['token']);
 
-            // domain, app always present
-
             //
-            $conditions = "";
-            $domain = $request['domain'];
-            $prefix = prefixed($domain);
-
-            //
-            if(isset($request['id'])){$id=clean($request['id']);$conditions.="AND ".substr($domain,0,-1)."_id LIKE '%".$id."%' ";}else{$conditions.="";}
-
-            //
-            $columns = "
-
-                person_id,
-                person_attributes,
-                person_first_name,
-                person_last_name,
-                person_email,
-                person_phone,
-                person_entitlements
-
-            ";
-
-            $table = $domain;
-
-            //
-            $start = 0;
-
-            //
-            if(isset($request['page'])) {
-
-                //
-                $start = ($request['page'] - 1) * $request['per'];
-            
-            }
-
-            //
-            if(!empty($request['id'])) {
-
-                $conditions = " WHERE";
-                $conditions.= " " . $prefix . "_id = :id ";
-                $conditions.= " AND active = 1 ";
-                $conditions.= " ORDER BY time_finished DESC ";
+            if($checked) {
                 
-                $subset = " LIMIT 1";
-
-                $sql = "SELECT ";
-                $sql.= $columns;
-                $sql.= " FROM " . $table;
-                $sql.= $conditions;
-                $sql.= $subset;
-                
-                //echo $sql; exit;
+                // domain, app always present
 
                 //
-                $statement = $this->pdo->prepare($sql);
-
-                // bind value to the :id parameter
-                $statement->bindValue(':id', $request['id']);
-
-                //echo $sql; exit;
-
-            } else {
-
-                $conditions = " WHERE ";
-                $conditions.= " active = 1 ";
-                $conditions.= " ORDER BY time_finished DESC ";
-                $subset = " OFFSET {$start}" . " LIMIT {$request['per']}";
-
-                $sql = "SELECT ";
-                $sql.= $columns;
-                $sql.= "FROM " . $table;
-                $sql.= $conditions;
-                $sql.= $subset;
-                
-                //
-                $statement = $this->pdo->prepare($sql);
-
-            }
-                
-            // execute the statement
-            $statement->execute();
-
-            //
-            $results = [];
-            $total = $statement->rowCount();
-            $pages = ceil($total/$request['per']); //
-            //$current = 1; // current page
-            //$limit = $result['limit'];
-            //$max = $result['max'];
-
-            //
-            if($statement->rowCount() > 0) {
+                $conditions = "";
+                $domain = $request['domain'];
+                $prefix = prefixed($domain);
 
                 //
-                $data = [];
-            
+                if(isset($request['id'])){$id=clean($request['id']);$conditions.="AND ".substr($domain,0,-1)."_id LIKE '%".$id."%' ";}else{$conditions.="";}
+
                 //
-                while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
-    
+                $columns = "
+
+                    person_id,
+                    person_attributes,
+                    person_first_name,
+                    person_last_name,
+                    person_email,
+                    person_phone,
+                    person_entitlements
+
+                ";
+
+                $table = $domain;
+
+                //
+                $start = 0;
+
+                //
+                if(isset($request['page'])) {
+
                     //
-                    $data[] = [
+                    $start = ($request['page'] - 1) * $request['per'];
+                
+                }
 
-                        'id' => $row['person_id'],
-                        'attributes' => $row['person_attributes'],
-                        'first_name' => $row['person_first_name'],
-                        'last_name' => $row['person_last_name'],
-                        'email' => $row['person_email'],
-                        'phone' => $row['person_phone'],
-                        'entitlements' => $row['person_entitlements']
-                    ];
+                //
+                if(!empty($request['id'])) {
+
+                    $conditions = " WHERE";
+                    $conditions.= " " . $prefix . "_id = :id ";
+                    $conditions.= " AND active = 1 ";
+                    $conditions.= " ORDER BY time_finished DESC ";
+                    
+                    $subset = " LIMIT 1";
+
+                    $sql = "SELECT ";
+                    $sql.= $columns;
+                    $sql.= " FROM " . $table;
+                    $sql.= $conditions;
+                    $sql.= $subset;
+                    
+                    //echo $sql; exit;
+
+                    //
+                    $statement = $this->pdo->prepare($sql);
+
+                    // bind value to the :id parameter
+                    $statement->bindValue(':id', $request['id']);
+
+                    //echo $sql; exit;
+
+                } else {
+
+                    $conditions = " WHERE ";
+                    $conditions.= " active = 1 ";
+                    $conditions.= " ORDER BY time_finished DESC ";
+                    $subset = " OFFSET {$start}" . " LIMIT {$request['per']}";
+
+                    $sql = "SELECT ";
+                    $sql.= $columns;
+                    $sql.= "FROM " . $table;
+                    $sql.= $conditions;
+                    $sql.= $subset;
+                    
+                    //
+                    $statement = $this->pdo->prepare($sql);
+
+                }
+                    
+                // execute the statement
+                $statement->execute();
+
+                //
+                $results = [];
+                $total = $statement->rowCount();
+                $pages = ceil($total/$request['per']); //
+                //$current = 1; // current page
+                //$limit = $result['limit'];
+                //$max = $result['max'];
+
+                //
+                if($statement->rowCount() > 0) {
+
+                    //
+                    $data = [];
+                
+                    //
+                    while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
+        
+                        //
+                        $data[] = [
+
+                            'id' => $row['person_id'],
+                            'attributes' => $row['person_attributes'],
+                            'first_name' => $row['person_first_name'],
+                            'last_name' => $row['person_last_name'],
+                            'email' => $row['person_email'],
+                            'phone' => $row['person_phone'],
+                            'entitlements' => $row['person_entitlements']
+                        ];
+
+                    }
+
+                } else {
+
+                    //
+                    //echo 'No data in your DATABASE...';
+
+                    //
+                    $data[] = NULL;
 
                 }
 
             } else {
-
-                //
-                echo 'No data in your DATABASE...';
 
             }
 
