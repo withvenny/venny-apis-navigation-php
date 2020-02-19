@@ -4,7 +4,7 @@
     header('Content-Type: application/json');
 
     //
-    require '../vendor/autoload.php';
+    require 'vendor/autoload.php';
     require 'v1/functions.php';
 
     //
