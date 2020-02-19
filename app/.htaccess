@@ -19,3 +19,7 @@ RewriteRule ^([a-zA-Z0-9_-]+)/$ profile.php?profile_username=$1
 #API
 RewriteEngine On
 RewriteRule ^v1/([^/]*)(.*)$ api.php?domain=$1$2 [QSA]
+
+#API
+RewriteEngine On
+RewriteRule ^v2/([^/]*)(.*)$ api.php?domain=$1$2 [QSA]
