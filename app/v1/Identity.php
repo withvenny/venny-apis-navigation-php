@@ -256,17 +256,24 @@
 
                     }
 
+                    $code = 200;
+                    $message = "OK";
+
                 } else {
 
                     //
                     $data[] = NULL;
+                    $code = 204;
+                    $message = "No Content";
 
                 }
 
-                $code = 200;
-                $message = "SUCCESSFUL";
-
             } else {
+
+                //
+                $data[] = NULL;
+                $code = 401;
+                $message = "Forbidden - Valid token required";
 
             }
 
