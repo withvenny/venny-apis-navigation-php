@@ -3,9 +3,6 @@
     //
     use Core\Connection as Connection;
     use Identity\Person as Person;
-
-    //
-    header('Content-Type: application/json');
  
     //
     switch ($_SERVER['REQUEST_METHOD']) {
