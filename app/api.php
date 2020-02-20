@@ -11,7 +11,7 @@
     switch ($_REQUEST['domain']) {
 
         //
-        case 'persons': require 'endpoint-persons.php'; break;
+        case 'persons': require 'endpoint-identity-persons.php'; break;
 
         //
         default: header("Location: template-guest-hello.php");
