@@ -7,15 +7,22 @@
     require '../vendor/autoload.php';
     require 'v1/functions.php';
 
-    //
-    switch ($_REQUEST['domain']) {
+    //$token = new \Core\Token($this->pdo);
+    if(isset($request['token'])) {
+
+        $token = $this->token->validatedToken($request['token']);
 
         //
-        case 'persons': require 'endpoint-identity-persons.php'; break;
+        switch ($_REQUEST['domain']) {
 
-        //
-        default: header("Location: template-guest-hello.php");
-    
+            //
+            case 'persons': require 'endpoint-identity-persons.php'; break;
+
+            //
+            default: header("Location: template-guest-hello.php");
+        
+        }
+
     }
 
 ?>
