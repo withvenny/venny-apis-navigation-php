@@ -1,6 +1,9 @@
 <?php
 
     //
+    header('Content-Type: application/json');
+
+    //
     use Core\Connection as Connection;
     use Identity\Person as Person;
  
