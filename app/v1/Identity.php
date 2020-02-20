@@ -126,7 +126,11 @@
         public function selectPersons($request) {
 
             //$token = new \Core\Token($this->pdo);
-            $token = $this->token->validatedToken($request['token']);
+            if(isset($request['token'])) {
+                $token = $this->token->validatedToken($request['token']);
+            } else {
+                $token=NULL;
+            }
 
             // Retrieve data ONLY if token  
             if($token) {
