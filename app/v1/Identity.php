@@ -245,10 +245,11 @@
 
                             'id' => $row['person_id'],
                             'attributes' => $row['person_attributes'],
-                            'first_name' => $row['person_first_name'],
-                            'last_name' => $row['person_last_name'],
+                            'name_first' => $row['person_name_first'],
+                            'name_middle' => $row['person_name_middle'],
+                            'name_last' => $row['person_name_last'],
                             'email' => $row['person_email'],
-                            'phone' => $row['person_phone'],
+                            'phone_primary' => $row['person_phone_primary'],
                             'entitlements' => $row['person_entitlements']
 
                         ];
