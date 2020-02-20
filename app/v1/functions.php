@@ -11,7 +11,7 @@
     // domain to table prefix convertor
 	function prefixed($string) {
 
-        if(isset($string)){
+        if(isset($string)) {
             
             $string = substr($string,0,-1);
         
