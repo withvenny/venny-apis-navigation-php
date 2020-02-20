@@ -2,7 +2,6 @@
 
     //
     use Core\Connection as Connection;
-    use Core\Token as Token;
     use Identity\Person as Person;
  
     //
@@ -15,6 +14,7 @@
 
                 // connect to the PostgreSQL database
                 $pdo = Connection::get()->connect();
+
                 // 
                 $person = new Person($pdo);
             

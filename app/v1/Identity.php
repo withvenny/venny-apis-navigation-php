@@ -25,6 +25,13 @@
             //
             $this->token = new \Core\Token($this->pdo);
 
+            //
+            $this->event_id = new \Core\Token($this->pdo);
+
+            //
+            $this->process_id = new \Core\Token($this->pdo);
+
+
         }
 
         /**
@@ -119,12 +126,10 @@
         public function selectPersons($request) {
 
             //$token = new \Core\Token($this->pdo);
-            $checked = $this->token->validatedToken($request['token']);
+            $token = $this->token->validatedToken($request['token']);
 
-            //
-            if($checked) {
-
-                echo "yes, checked present";
+            // Retrieve data ONLY if token  
+            if($token) {
                 
                 // domain, app always present
 
@@ -134,7 +139,14 @@
                 $prefix = prefixed($domain);
 
                 //
-                if(isset($request['id'])){$id=clean($request['id']);$conditions.="AND ".substr($domain,0,-1)."_id LIKE '%".$id."%' ";}else{$conditions.="";}
+                if(isset($request['id'])){$id=clean($request['id']);$conditions.="AND ".prefixed($domain)."_id LIKE '%".$id."%' ";}else{$conditions.="";}
+                if(isset($request['attributes'])){$attributes=clean($request['attributes']);$conditions.="AND ".prefixed($domain)."_attributes LIKE '%".$attributes."%' ";}else{$conditions.="";}
+                if(isset($request['name_first'])){$name_first=clean($request['name_first']);$conditions.="AND ".prefixed($domain)."_name_first LIKE '%".$name_first."%' ";}else{$conditions.="";}
+                if(isset($request['name_last'])){$name_last=clean($request['name_last']);$conditions.="AND ".prefixed($domain)."_name_last LIKE '%".$name_last."%' ";}else{$conditions.="";}
+                if(isset($request['email'])){$email=clean($request['email']);$conditions.="AND ".prefixed($domain)."_email LIKE '%".$email."%' ";}else{$conditions.="";}
+                if(isset($request['phone_primary'])){$phone_primary=clean($request['phone_primary']);$conditions.="AND ".prefixed($domain)."_phone_primary LIKE '%".$phone_primary."%' ";}else{$conditions.="";}
+                if(isset($request['phone_secondary'])){$phone_secondary=clean($request['phone_secondary']);$conditions.="AND ".prefixed($domain)."_phone_secondary LIKE '%".$phone_secondary."%' ";}else{$conditions.="";}
+                if(isset($request['entitlements'])){$entitlements=clean($request['entitlements']);$conditions.="AND ".prefixed($domain)."_entitlements LIKE '%".$entitlements."%' ";}else{$conditions.="";}
 
                 //
                 $columns = "
@@ -244,22 +256,20 @@
                 } else {
 
                     //
-                    //echo 'No data in your DATABASE...';
-
-                    echo "no checked present";
-
-                    //
                     $data[] = NULL;
 
                 }
+
+                $code = 200;
+                $message = "SUCCESSFUL";
 
             } else {
 
             }
 
             $results[] = [
-                'status' => 200,
-                'message' => 'Successful',
+                'status' => $code,
+                'message' => $message,
                 'metadata' => [
                     'page' => $request['page'],
                     'pages' => $pages,
@@ -267,13 +277,10 @@
                 ],
                 'data' => $data,
                 'log' => [
-                    'event' => substr(md5(uniqid(microtime(true),true)),0,13),
-                    'process' => substr(md5(uniqid(microtime(true),true)),0,13)
+                    'process' => $process_id = $this->token->process_id(),
+                    'event' => $event_id = $this->token->event_id($process_id)
                 ],
             ];
-
-            //echo " results ";
-            //echo json_encode($results);
 
             //
             return $results;

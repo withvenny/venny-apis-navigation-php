@@ -114,6 +114,32 @@
 
         }
 
+        //
+        public function process_id() {
+
+            //
+            $id = substr(md5(uniqid(microtime(true),true)),0,13);
+
+            //
+            return $id;
+            
+            //exit;
+
+        }
+        
+        //
+        public function event_id() {
+
+            //
+            $id = substr(md5(uniqid(microtime(true),true)),0,13);
+    
+            //
+            return $id;
+            
+            //exit;
+
+        }
+
         /**
          * Find stock by id
          * @param int $id
