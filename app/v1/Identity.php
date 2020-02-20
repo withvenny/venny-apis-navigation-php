@@ -153,10 +153,12 @@
 
                     person_id,
                     person_attributes,
-                    person_first_name,
-                    person_last_name,
+                    person_name_first,
+                    person_name_middle,
+                    person_name_last,
                     person_email,
-                    person_phone,
+                    person_phone_primary,
+                    person_phone_secondary,
                     person_entitlements
 
                 ";
