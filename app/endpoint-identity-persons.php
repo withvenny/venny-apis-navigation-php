@@ -12,108 +12,54 @@
     $pdo = Connection::get()->connect();
     
     //
-    if(isset($_REQUEST['token'])) {
+    switch ($_SERVER['REQUEST_METHOD']) {
 
         //
-        if(isset($_REQUEST['app_id'])) {
- 
-            //
-            switch ($_SERVER['REQUEST_METHOD']) {
+        case 'POST':
 
-                //
-                case 'POST':
+            try {
 
-                    try {
+                // 
+                $person = new Person($pdo);
+            
+                // insert a stock into the stocks table
+                $id = $person->insertPerson($_REQUEST);
 
-                        // 
-                        $person = new Person($pdo);
-                    
-                        // insert a stock into the stocks table
-                        $id = $person->insertPerson($_REQUEST);
+                echo 'The stock has been inserted with the id ' . $id . '<br>';
+            
+            } catch (\PDOException $e) {
 
-                        echo 'The stock has been inserted with the id ' . $id . '<br>';
-                    
-                    } catch (\PDOException $e) {
-
-                        echo $e->getMessage();
-
-                    }
-
-                break;
-
-                //
-                case 'GET':
-
-                    try {
-
-                        // 
-                        $person = new Person($pdo);
-
-                        // get all stocks data
-                        $persons = $person->selectPersons($_REQUEST);
-
-                        $persons = json_encode($persons);
-
-                        echo $persons;
-
-                    } catch (\PDOException $e) {
-
-                        echo $e->getMessage();
-
-                    }
-
-                break;
+                echo $e->getMessage();
 
             }
 
-        } else { 
+        break;
 
-            // connect to the PostgreSQL database
+        //
+        case 'GET':
 
-            $data[] = NULL;
-            $code = 401;
-            $message = "Forbidden - Valid App ID required";
+            try {
 
-            $results = array(
-                'status' => $code,
-                'message' => $message,
-                'data' => $data,
-                /*
-                'log' => [
-                    'process' => $process_id = Token::process_id(),
-                    'event' => $event_id = Token::event_id($process_id)
-                ]*/
-            );
-            
-            $results = json_encode($results);
-        
-            echo $results;
-        
-        }
+                // 
+                $person = new Person($pdo);
 
-    } else {
+                // get all stocks data
+                $persons = $person->selectPersons($_REQUEST);
 
-        // connect to the PostgreSQL database
+                $persons = json_encode($persons);
 
-        $data[] = NULL;
-        $code = 401;
-        $message = "Forbidden - Valid token required";
+                echo $persons;
 
-        $results = array(
-            'status' => $code,
-            'message' => $message,
-            'data' => $data,
-            /*
-            'log' => [
-                'process' => $process_id = Token::process_id(),
-                'event' => $event_id = Token::event_id($process_id)
-            ]*/
-        );
+            } catch (\PDOException $e) {
 
-        $results = json_encode($results);
-        
-        echo $results;
+                echo $e->getMessage();
+
+            }
+
+        break;
 
     }
+
+
 
 ?>
