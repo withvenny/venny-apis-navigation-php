@@ -21,6 +21,7 @@
     }
 
     if(isset($_REQUEST['app'])){$request['app'] = clean($_REQUEST['app']);}
+    if(isset($_REQUEST['domain'])){$request['domain'] = clean($_REQUEST['domain']);}
 
     // data cleanse
     if(isset($_REQUEST['id'])){$request['id'] = clean($_REQUEST['id']);}
