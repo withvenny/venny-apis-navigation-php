@@ -21,6 +21,8 @@
 
                     try {
 
+                        $pdo = new Connection;
+
                         // 
                         $person = new Person($pdo);
                     
