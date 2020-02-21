@@ -66,6 +66,9 @@
 
         } else { 
 
+            // connect to the PostgreSQL database
+            $token = Token::process_id();
+
             $data = NULL;
             $code = 401;
             $message = "Forbidden - Valid token required";
@@ -74,12 +77,10 @@
                 'status' => $code,
                 'message' => $message,
                 'data' => $data,
-                
                 'log' => [
-                    'process' => process_id(),
+                    'process' => Token::process_id(),
                     'event' => event_id($process_id)
                 ]
-                
             ];
             
             echo json_encode($results);
