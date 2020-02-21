@@ -76,8 +76,8 @@
                 'message' => $message,
                 'data' => $data,
                 'log' => [
-                    'process' => $process_id = process_id(),
-                    'event' => $event_id = event_id($process_id)
+                    'process' => \Core\Token::process_id(),
+                    'event' => $event_id = \Core\Token::event_id($process_id)
                 ],
             ];
             
