@@ -235,13 +235,13 @@
                 if($statement->rowCount() > 0) {
 
                     //
-                    $data = [];
+                    $data = array();
                 
                     //
                     while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
         
                         //
-                        $data[] = [
+                        $data = array(
 
                             'id' => $row['person_id'],
                             'attributes' => $row['person_attributes'],
@@ -252,7 +252,7 @@
                             'phone_primary' => $row['person_phone_primary'],
                             'entitlements' => $row['person_entitlements']
 
-                        ];
+                        );
 
                     }
 
@@ -262,7 +262,7 @@
                 } else {
 
                     //
-                    $data[] = NULL;
+                    $data = NULL;
                     $code = 204;
                     $message = "No Content";
 
@@ -277,7 +277,8 @@
 
             }
 
-            $results[] = [
+            $results = array(
+
                 'status' => $code,
                 'message' => $message,
                 'metadata' => [
@@ -289,8 +290,9 @@
                 'log' => [
                     'process' => $process_id = $this->token->process_id(),
                     'event' => $event_id = $this->token->event_id($process_id)
-                ],
-            ];
+                ]
+
+            );
 
             //
             return $results;

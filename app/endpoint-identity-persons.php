@@ -52,7 +52,9 @@
                         // get all stocks data
                         $persons = $person->selectPersons($_REQUEST);
 
-                        echo json_encode($persons);
+                        $persons = json_encode($persons);
+
+                        echo $persons;
 
                     } catch (\PDOException $e) {
 
@@ -94,7 +96,7 @@
         // connect to the PostgreSQL database
 
         $data = NULL;
-        $code = 401.2;
+        $code = 401;
         $message = "Forbidden - Valid token required";
 
         $results = array(
