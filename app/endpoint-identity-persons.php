@@ -5,8 +5,12 @@
 
     //
     use Core\Connection as Connection;
+    use Core\Token as Token;
     use Identity\Person as Person;
 
+    // connect to the PostgreSQL database
+    $pdo = Connection::get()->connect();
+    
     //
     if(isset($_REQUEST['token'])) {
 
@@ -20,8 +24,6 @@
                 case 'POST':
 
                     try {
-
-                        $pdo = new Connection;
 
                         // 
                         $person = new Person($pdo);
@@ -72,12 +74,10 @@
                 'status' => $code,
                 'message' => $message,
                 'data' => $data,
-                /*
-                'log' => [
+                /*'log' => [
                     'process' => \Core\Token::process_id(),
                     'event' => $event_id = \Core\Token::event_id($process_id)
-                ],
-                */
+                ],*/
             ];
             
             echo json_encode($results);
