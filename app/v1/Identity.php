@@ -36,7 +36,8 @@
         public function insertPerson($request) {
 
             // prepare statement for insert
-            $sql = 'INSERT INTO persons (
+            $sql = "INSERT INTO " . prefixed($request['domain']) . " (";
+            $sql.= "
                 person_id,
                 person_attributes,
                 person_name_first,
@@ -49,7 +50,9 @@
                 app_id,
                 event_id,
                 process_id
-            ) VALUES (
+            ";
+            $sql.= ") VALUES (";
+            $sql.= "
                 :person_id,
                 :person_attributes,
                 :person_name_first,
@@ -62,7 +65,9 @@
                 :app_id,
                 :event_id,
                 :process_id
-            )';
+            ";
+            $sql. = ")";
+            echo $sql; exit;
     
             //
             $statement = $this->pdo->prepare($sql);
