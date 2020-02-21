@@ -105,6 +105,8 @@
                 'event' => $event_id = Token::event_id($process_id)
             ]*/
         );
+
+        $results = json_encode($results);
         
         echo $results;
 
