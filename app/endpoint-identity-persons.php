@@ -7,6 +7,10 @@
     use Core\Connection as Connection;
     use Core\Token as Token;
     use Identity\Person as Person;
+
+    // connect to the PostgreSQL database
+    $pdo = Connection::get()->connect();
+
     
     //
     if(isset($_REQUEST['token'])) {
@@ -21,9 +25,6 @@
                 case 'POST':
 
                     try {
-
-                        // connect to the PostgreSQL database
-                        $pdo = Connection::get()->connect();
 
                         // 
                         $person = new Person($pdo);
@@ -46,9 +47,6 @@
 
                     try {
 
-                        // connect to the PostgreSQL database
-                        $pdo = Connection::get()->connect();
-
                         // 
                         $person = new Person($pdo);
 
@@ -69,8 +67,6 @@
 
         } else { 
 
-            $token = new Token;
-
             $data[] = NULL;
             $code = 401;
             $message = "Forbidden - Valid token required";
@@ -80,8 +76,8 @@
                 'message' => $message,
                 'data' => $data,
                 'log' => [
-                    'process' => $process_id = $token->process_id(),
-                    'event' => $event_id = $token->event_id($process_id)
+                    'process' => $process_id = Token::process_id(),
+                    'event' => $event_id = Token::event_id($process_id)
                 ],
             ];
             
