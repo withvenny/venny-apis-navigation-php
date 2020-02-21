@@ -75,11 +75,6 @@
             $results[] = [
                 'status' => $code,
                 'message' => $message,
-                'metadata' => [
-                    'page' => $request['page'],
-                    'pages' => $pages,
-                    'total' => $total
-                ],
                 'data' => $data,
                 'log' => [
                     'process' => $process_id = $this->token->process_id(),
