@@ -51,18 +51,18 @@
             ";
 
             $values = "
-                person_id,
-                person_attributes,
-                person_name_first,
-                person_name_middle,
-                person_name_last,
-                person_email,
-                person_phone_primary,
-                person_phone_secondary,
-                person_entitlements,
-                app_id,
-                event_id,
-                process_id
+                :person_id,
+                :person_attributes,
+                :person_name_first,
+                :person_name_middle,
+                :person_name_last,
+                :person_email,
+                :person_phone_primary,
+                :person_phone_secondary,
+                :person_entitlements,
+                :app_id,
+                :event_id,
+                :process_id
             ";
 
             // prepare statement for insert
