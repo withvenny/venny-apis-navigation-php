@@ -106,7 +106,7 @@
             ]*/
         );
         
-        return $results;
+        echo $results;
 
     }
 
