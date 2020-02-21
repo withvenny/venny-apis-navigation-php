@@ -73,10 +73,11 @@
             // pass values to the statement
             $statement->bindValue(':person_id', $request['id']);
             $statement->bindValue(':person_attributes', $request['attributes']);
-            $statement->bindValue(':person_first_name', $request['first_name']);
-            $statement->bindValue(':person_last_name', $request['last_name']);
+            $statement->bindValue(':person_name_first', $request['name_first']);
+            $statement->bindValue(':person_name_last', $request['name_last']);
             $statement->bindValue(':person_email', $request['email']);
-            $statement->bindValue(':person_phone', $request['phone']);
+            $statement->bindValue(':person_phone_primary', $request['phone_primary']);
+            $statement->bindValue(':person_phone_secondary', $request['phone_secondary']);
             $statement->bindValue(':person_entitlements', $request['entitlements']);
             $statement->bindValue(':app_id', $request['app_id']);
             $statement->bindValue(':event_id', $request['event_id']);
@@ -98,10 +99,11 @@
 
                         'id' => $row['person_id'],
                         'attributes' => $row['person_attributes'],
-                        'first_name' => $row['person_first_name'],
-                        'last_name' => $row['person_last_name'],
+                        'name_first' => $row['person_name_first'],
+                        'name_last' => $row['person_name_last'],
                         'email' => $row['person_email'],
-                        'phone' => $row['person_phone'],
+                        'phone_primary' => $row['person_phone_primary'],
+                        'phone_secondary' => $row['person_phone_secondary'],
                         'entitlements' => $row['person_entitlements']
                     ];
 
