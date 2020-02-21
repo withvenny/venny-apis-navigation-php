@@ -7,6 +7,9 @@
     use Core\Connection as Connection;
     use Core\Token as Token;
     use Identity\Person as Person;
+
+    $token = new Token;
+    
     //
     if(isset($_REQUEST['token'])) {
 
@@ -77,7 +80,7 @@
                 'message' => $message,
                 'data' => $data,
                 'log' => [
-                    'process' => $process_id = \Core\Token::process_id(),
+                    'process' => $process_id = $token->process_id(),
                     'event' => $event_id = \Core\Token::event_id($process_id)
                 ],
             ];
