@@ -28,15 +28,15 @@
 
             // connect to the PostgreSQL database
 
-            $data = NULL;
+            //$data = NULL;
             $code = 401;
             $message = "Forbidden - Valid App ID required";
 
             $results = array(
                 'status' => $code,
                 'message' => $message,
-                'data' => $data,
                 /*
+                'data' => $data,
                 'log' => [
                     'process' => $process_id = Token::process_id(),
                     'event' => $event_id = Token::event_id($process_id)
@@ -53,15 +53,15 @@
 
         // connect to the PostgreSQL database
 
-        $data = NULL;
+        //$data = NULL;
         $code = 401;
         $message = "Forbidden - Valid token required";
 
         $results = array(
             'status' => $code,
             'message' => $message,
-            'data' => $data,
             /*
+            'data' => $data,
             'log' => [
                 'process' => $process_id = Token::process_id(),
                 'event' => $event_id = Token::event_id($process_id)

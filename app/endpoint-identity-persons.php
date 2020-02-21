@@ -12,14 +12,6 @@
     $pdo = Connection::get()->connect();
 
     // STEP 1. Receive passed variables / information
-    if (!isset($_REQUEST['app'])) {
-        $return['status'] = 401;
-        $return['message'] = 'Forbidden - Missing valid app Id.';
-        $return = json_encode($return);
-        echo $return;
-        return;
-    }
-
     if(isset($_REQUEST['app'])){$request['app'] = clean($_REQUEST['app']);}
     if(isset($_REQUEST['domain'])){$request['domain'] = clean($_REQUEST['domain']);}
 
