@@ -95,7 +95,7 @@
         $code = 401;
         $message = "Forbidden - Valid token required";
 
-        $results = [
+        $results = array(
             'status' => $code,
             'message' => $message,
             'data' => $data,
@@ -104,7 +104,7 @@
                 'process' => $process_id = Token::process_id(),
                 'event' => $event_id = Token::event_id($process_id)
             ]*/
-        ];
+        );
         
         return $results;
 
