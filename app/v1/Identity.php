@@ -241,7 +241,7 @@
                     while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
         
                         //
-                        $data = array(
+                        $data[] = [
 
                             'id' => $row['person_id'],
                             'attributes' => $row['person_attributes'],
@@ -252,7 +252,7 @@
                             'phone_primary' => $row['person_phone_primary'],
                             'entitlements' => $row['person_entitlements']
 
-                        );
+                        ];
 
                     }
 

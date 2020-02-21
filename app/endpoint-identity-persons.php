@@ -70,7 +70,7 @@
 
             // connect to the PostgreSQL database
 
-            $data = NULL;
+            $data[] = NULL;
             $code = 401;
             $message = "Forbidden - Valid App ID required";
 
@@ -95,7 +95,7 @@
 
         // connect to the PostgreSQL database
 
-        $data = NULL;
+        $data[] = NULL;
         $code = 401;
         $message = "Forbidden - Valid token required";
 
