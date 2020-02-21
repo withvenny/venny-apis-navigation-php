@@ -8,7 +8,7 @@
     use Core\Token as Token;
     use Identity\Person as Person;
 
-    $token = new Token;
+    $token = new Token($pdo);
     
     //
     if(isset($_REQUEST['token'])) {
