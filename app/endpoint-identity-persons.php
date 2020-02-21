@@ -92,10 +92,10 @@
         // connect to the PostgreSQL database
 
         $data = NULL;
-        $code = 401;
+        $code = 401.2;
         $message = "Forbidden - Valid token required";
 
-        $results = array(
+        $results[] = array(
             'status' => $code,
             'message' => $message,
             'data' => $data,
