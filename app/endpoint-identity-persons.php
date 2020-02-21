@@ -69,6 +69,8 @@
 
         } else { 
 
+            $token = new Token;
+
             $data[] = NULL;
             $code = 401;
             $message = "Forbidden - Valid token required";
@@ -78,7 +80,8 @@
                 'message' => $message,
                 'data' => $data,
                 'log' => [
-                    'event' => $event_id = Token::event_id($process_id)
+                    'process' => $process_id = $token->process_id(),
+                    'event' => $event_id = $token->event_id($process_id)
                 ],
             ];
             
