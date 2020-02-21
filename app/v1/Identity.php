@@ -50,7 +50,8 @@
                 person_name_middle,
                 person_name_last,
                 person_email,
-                person_phone,
+                person_phone_primary,
+                person_phone_secondary,
                 person_entitlements,
                 app_id,
                 event_id,
@@ -83,8 +84,8 @@
             $statement->bindValue(':person_phone_secondary', $request['phone_secondary']);
             $statement->bindValue(':person_entitlements', $request['entitlements']);
             $statement->bindValue(':app_id', $request['app_id']);
-            $statement->bindValue(':event_id', $request['event_id']);
-            $statement->bindValue(':process_id', $request['process_id']);
+            $statement->bindValue(':event_id', event_id());
+            $statement->bindValue(':process_id', process_id());
             
             // execute the insert statement
             $statement->execute();
