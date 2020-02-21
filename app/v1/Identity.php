@@ -83,7 +83,7 @@
             $statement->bindValue(':person_phone_primary', $request['phone_primary']);
             $statement->bindValue(':person_phone_secondary', $request['phone_secondary']);
             $statement->bindValue(':person_entitlements', $request['entitlements']);
-            $statement->bindValue(':app_id', $request['app_id']);
+            $statement->bindValue(':app_id', $request['app']);
             $statement->bindValue(':event_id', event_id());
             $statement->bindValue(':process_id', process_id());
             
