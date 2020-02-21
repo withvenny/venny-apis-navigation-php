@@ -1,7 +1,7 @@
 <?php
 
 	//
-	function clean($string) {
+	function clean($string,$type='string') {
 
 		//return htmlentities($string);
 		return $string;

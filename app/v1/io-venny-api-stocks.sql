@@ -1225,4 +1225,7 @@ INSERT INTO persons (person_id,person_attributes,person_name_first,person_name_l
 ('banf5aczLEO','{}','Barbara','Leonard','BarbaraALeonard@armyspy.com','228-270-1204','{"experience":["MS","US","Visa","Blue"]}','event0220209298','process0220209298','app0220208301'),
 ('ranf0cazROB','{}','Raymond','Robinson','RaymondVRobinson@fleckens.hu','216-704-6179','{"experience":["OH","US","Visa","Blue"]}','event0220209299','process0220209299','app0220208301');
 
-select * from persons order BTY ;
+INSERT INTO persons ( person_id, person_attributes, person_name_first, person_name_middle, person_name_last, person_email, person_phone_primary, person_phone_secondary, person_entitlements, app_id, event_id, process_id ) VALUES ( 'person_8309', '{}', 'Jana', '', 'Boone', 'janaboone@gmail.com', '7185644281', '', '{"environment":["silver","lebronze"]}', 'app_83838383', 'event_0916', 'process_8302324' );
+
+select * from persons order by id desc;
+

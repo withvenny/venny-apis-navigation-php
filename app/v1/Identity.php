@@ -35,9 +35,7 @@
          */
         public function insertPerson($request) {
 
-            // prepare statement for insert
-            $sql = "INSERT INTO " . prefixed($request['domain']) . " (";
-            $sql.= "
+            $columns = "
                 person_id,
                 person_attributes,
                 person_name_first,
@@ -51,23 +49,28 @@
                 event_id,
                 process_id
             ";
-            $sql.= ") VALUES (";
-            $sql.= "
-                :person_id,
-                :person_attributes,
-                :person_name_first,
-                :person_name_middle,
-                :person_name_last,
-                :person_email,
-                :person_phone_primary,
-                :person_phone_secondary,
-                :person_entitlements,
-                :app_id,
-                :event_id,
-                :process_id
+
+            $values = "
+                person_id,
+                person_attributes,
+                person_name_first,
+                person_name_middle,
+                person_name_last,
+                person_email,
+                person_phone_primary,
+                person_phone_secondary,
+                person_entitlements,
+                app_id,
+                event_id,
+                process_id
             ";
+
+            // prepare statement for insert
+            $sql = "INSERT INTO {$request['domain']} (";
+            $sql.= $columns;
+            $sql.= ") VALUES (";
+            $sql.= $values;
             $sql.= ")";
-            echo $sql; exit;
     
             //
             $statement = $this->pdo->prepare($sql);
@@ -143,16 +146,6 @@
                 $conditions = "";
                 $domain = $request['domain'];
                 $prefix = prefixed($domain);
-
-                //
-                if(isset($request['id'])){$id=clean($request['id']);$conditions.="AND ".prefixed($domain)."_id LIKE '%".$id."%' ";}else{$conditions.="";}
-                if(isset($request['attributes'])){$attributes=clean($request['attributes']);$conditions.="AND ".prefixed($domain)."_attributes LIKE '%".$attributes."%' ";}else{$conditions.="";}
-                if(isset($request['name_first'])){$name_first=clean($request['name_first']);$conditions.="AND ".prefixed($domain)."_name_first LIKE '%".$name_first."%' ";}else{$conditions.="";}
-                if(isset($request['name_last'])){$name_last=clean($request['name_last']);$conditions.="AND ".prefixed($domain)."_name_last LIKE '%".$name_last."%' ";}else{$conditions.="";}
-                if(isset($request['email'])){$email=clean($request['email']);$conditions.="AND ".prefixed($domain)."_email LIKE '%".$email."%' ";}else{$conditions.="";}
-                if(isset($request['phone_primary'])){$phone_primary=clean($request['phone_primary']);$conditions.="AND ".prefixed($domain)."_phone_primary LIKE '%".$phone_primary."%' ";}else{$conditions.="";}
-                if(isset($request['phone_secondary'])){$phone_secondary=clean($request['phone_secondary']);$conditions.="AND ".prefixed($domain)."_phone_secondary LIKE '%".$phone_secondary."%' ";}else{$conditions.="";}
-                if(isset($request['entitlements'])){$entitlements=clean($request['entitlements']);$conditions.="AND ".prefixed($domain)."_entitlements LIKE '%".$entitlements."%' ";}else{$conditions.="";}
 
                 //
                 $columns = "
