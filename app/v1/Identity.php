@@ -66,7 +66,7 @@
                 :event_id,
                 :process_id
             ";
-            $sql. = ")";
+            $sql.= ")";
             echo $sql; exit;
     
             //
