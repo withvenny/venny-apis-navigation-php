@@ -72,7 +72,7 @@
             $code = 401;
             $message = "Forbidden - Valid App ID required";
 
-            $results = [
+            $results = array(
                 'status' => $code,
                 'message' => $message,
                 'data' => $data,
@@ -81,9 +81,11 @@
                     'process' => $process_id = Token::process_id(),
                     'event' => $event_id = Token::event_id($process_id)
                 ]*/
-            ];
+            );
             
-            echo json_encode($results);
+            $results = json_encode($results);
+        
+            echo $results;
         
         }
 
