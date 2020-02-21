@@ -67,17 +67,17 @@
         } else { 
 
             $data = NULL;
-            $code = 401.1;
+            $code = 401;
             $message = "Forbidden - Valid token required";
 
             $results = [
                 'status' => $code,
                 'message' => $message,
                 'data' => $data,
-                /*'log' => [
+                'log' => [
                     'process' => \Core\Token::process_id(),
-                    'event' => $event_id = \Core\Token::event_id($process_id)
-                ],*/
+                    //'event' => $event_id = \Core\Token::event_id($process_id)
+                ]
             ];
             
             echo json_encode($results);
