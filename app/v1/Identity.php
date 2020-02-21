@@ -25,13 +25,6 @@
             //
             $this->token = new \Core\Token($this->pdo);
 
-            //
-            $this->event_id = new \Core\Token($this->pdo);
-
-            //
-            $this->process_id = new \Core\Token($this->pdo);
-
-
         }
 
         /**
@@ -78,14 +71,15 @@
             $statement->bindValue(':person_id', $request['id']);
             $statement->bindValue(':person_attributes', $request['attributes']);
             $statement->bindValue(':person_name_first', $request['name_first']);
+            $statement->bindValue(':person_name_middle', $request['name_middle']);
             $statement->bindValue(':person_name_last', $request['name_last']);
             $statement->bindValue(':person_email', $request['email']);
             $statement->bindValue(':person_phone_primary', $request['phone_primary']);
             $statement->bindValue(':person_phone_secondary', $request['phone_secondary']);
             $statement->bindValue(':person_entitlements', $request['entitlements']);
             $statement->bindValue(':app_id', $request['app']);
-            $statement->bindValue(':event_id', $this->event_id());
-            $statement->bindValue(':process_id', $this->process_id());
+            $statement->bindValue(':event_id', $this->token->event_id());
+            $statement->bindValue(':process_id', $this->token->process_id());
             
             // execute the insert statement
             $statement->execute();
@@ -104,6 +98,7 @@
                         'id' => $row['person_id'],
                         'attributes' => $row['person_attributes'],
                         'name_first' => $row['person_name_first'],
+                        'name_middle' => $row['person_name_middle'],
                         'name_last' => $row['person_name_last'],
                         'email' => $row['person_email'],
                         'phone_primary' => $row['person_phone_primary'],
