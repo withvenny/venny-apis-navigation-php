@@ -70,7 +70,7 @@
 
             $data = NULL;
             $code = 401;
-            $message = "Forbidden - Valid token required";
+            $message = "Forbidden - Valid App ID required";
 
             $results = [
                 'status' => $code,
@@ -86,6 +86,27 @@
             echo json_encode($results);
         
         }
+
+    } else {
+
+        // connect to the PostgreSQL database
+
+        $data = NULL;
+        $code = 401;
+        $message = "Forbidden - Valid token required";
+
+        $results = [
+            'status' => $code,
+            'message' => $message,
+            'data' => $data,
+            /*
+            'log' => [
+                'process' => $process_id = Token::process_id(),
+                'event' => $event_id = Token::event_id($process_id)
+            ]*/
+        ];
+        
+        echo json_encode($results);
 
     }
 
