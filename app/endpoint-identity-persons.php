@@ -74,10 +74,12 @@
                 'status' => $code,
                 'message' => $message,
                 'data' => $data,
+                
                 'log' => [
-                    'process' => \Core\Token::process_id(),
-                    //'event' => $event_id = \Core\Token::event_id($process_id)
+                    'process' => process_id(),
+                    'event' => event_id($process_id)
                 ]
+                
             ];
             
             echo json_encode($results);
