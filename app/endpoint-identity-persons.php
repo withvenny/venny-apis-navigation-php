@@ -15,9 +15,6 @@
     if(isset($_REQUEST['app'])){$request['app'] = clean($_REQUEST['app']);}
     if(isset($_REQUEST['domain'])){$request['domain'] = clean($_REQUEST['domain']);}
     if(isset($_REQUEST['token'])){$request['token'] = clean($_REQUEST['token']);}
-    if(isset($_REQUEST['per'])){$request['per'] = clean($_REQUEST['per']);}
-    if(isset($_REQUEST['page'])){$request['page'] = clean($_REQUEST['page']);}
-    if(isset($_REQUEST['limit'])){$request['limit'] = clean($_REQUEST['limit']);}
 
     // data cleanse
     if(isset($_REQUEST['id'])){$request['id'] = clean($_REQUEST['id']);}
@@ -56,6 +53,11 @@
 
         //
         case 'GET':
+
+            //
+            if(isset($_REQUEST['per'])){$request['per'] = clean($_REQUEST['per']);}
+            if(isset($_REQUEST['page'])){$request['page'] = clean($_REQUEST['page']);}
+            if(isset($_REQUEST['limit'])){$request['limit'] = clean($_REQUEST['limit']);}        
 
             try {
 
