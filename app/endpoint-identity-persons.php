@@ -14,6 +14,7 @@
     // STEP 1. Receive passed variables / information
     if(isset($_REQUEST['app'])){$request['app'] = clean($_REQUEST['app']);}
     if(isset($_REQUEST['domain'])){$request['domain'] = clean($_REQUEST['domain']);}
+    if(isset($_REQUEST['token'])){$request['token'] = clean($_REQUEST['token']);}
 
     // data cleanse
     if(isset($_REQUEST['id'])){$request['id'] = clean($_REQUEST['id']);}
@@ -25,7 +26,7 @@
     if(isset($_REQUEST['phone_primary'])){$request['phone_primary'] = clean($_REQUEST['phone_primary']);}
     if(isset($_REQUEST['phone_secondary'])){$request['phone_secondary'] = clean($_REQUEST['phone_secondary']);}
     if(isset($_REQUEST['entitlements'])){$request['entitlements'] = clean($_REQUEST['entitlements']);}
-    
+
     //
     switch ($_SERVER['REQUEST_METHOD']) {
 
