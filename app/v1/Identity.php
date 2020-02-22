@@ -306,10 +306,12 @@
         public function updatePerson($request) {
 
             //
-            $prefix = prefixed($request['domain']);
+            $domain = $request['domain'];
+            $prefix = prefixed($domain);
             $id = $request['id'];
 
             //
+            $set = "";
             $set.= " person_email = :person_email ";
 
             //
