@@ -33,19 +33,42 @@
         //
         case 'POST':
 
-            try {
+            //
+            if(isset($id)) {
 
-                // 
-                $person = new Person($pdo);
-            
-                // insert a stock into the stocks table
-                $id = $person->insertPerson($request);
+                try {
 
-                echo 'The stock has been inserted with the id ' . $id . '<br>';
-            
-            } catch (\PDOException $e) {
+                    // 
+                    $person = new Person($pdo);
+                
+                    // insert a stock into the stocks table
+                    $id = $person->insertPerson($request);
 
-                echo $e->getMessage();
+                    echo 'The record ' . $id . 'has been inserted';
+                
+                } catch (\PDOException $e) {
+
+                    echo $e->getMessage();
+
+                }
+
+            } else {
+
+                try {
+
+                    // 
+                    $person = new Person($pdo);
+                
+                    // insert a stock into the stocks table
+                    $id = $person->updatePerson($request);
+
+                    echo 'The record ' . $id . 'has been updated';
+                
+                } catch (\PDOException $e) {
+
+                    echo $e->getMessage();
+
+                }
 
             }
 

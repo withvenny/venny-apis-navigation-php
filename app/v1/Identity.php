@@ -303,19 +303,47 @@
          * @param int $id
          * @return a stock object
          */
-        public function findByPK($id) {
-            // prepare SELECT statement
-            $statement = $this->pdo->prepare('SELECT id, symbol, company
-                                        FROM stocks
-                                        WHERE id = :id');
-            // bind value to the :id parameter
-            $stmt->bindValue(':id', $id);
-            
-            // execute the statement
-            $stmt->execute();
-    
-            // return the result set as an object
-            return $stmt->fetchObject();
+        public function updatePerson($request) {
+
+            //
+            $prefix = prefixed($request['domain']);
+            $id = $request['id'];
+
+            //
+            $set.= " person_email = :person_email ";
+
+            //
+            $condition = $prefix."_id = :id";
+
+            /**
+             * Update stock based on the specified id
+             * @param int $id
+             * @param string $symbol
+             * @param string $company
+             * @return int
+             */
+ 
+            // sql statement to update a row in the stock table
+            $sql = "UPDATE {$domain} SET ";
+            $sql.= $set;
+            $sql.= " WHERE ";
+            $sql.= $condition;
+
+            echo $sql; exit;
+
+            $statement = $this->pdo->prepare($sql);
+     
+            // bind values to the statement
+            $statement->bindValue(':person_email', $request['email']);
+            $statement->bindValue(':id', $id);
+            // update data in the database
+            $statement->execute();
+     
+            // return the number of row affected
+            //return $stmt->rowCount();
+            return $this->pdo->lastInsertId('persons_sequence');
+
+
         }
 
     }

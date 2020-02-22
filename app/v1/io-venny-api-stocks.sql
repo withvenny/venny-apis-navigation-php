@@ -1229,3 +1229,5 @@ INSERT INTO persons ( person_id, person_attributes, person_name_first, person_na
 
 select * from persons order by id desc;
 
+update persons set person_name_first = 'Juanita' where person_id = 'jen14afzGOS';
+select * from persons where person_id = 'jen14afzGOS';
