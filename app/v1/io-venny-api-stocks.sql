@@ -1233,3 +1233,5 @@ update persons set person_name_first = 'Juanita' where person_id = 'jen14afzGOS'
 select * from persons where person_id = 'jen14afzGOS';
 
 UPDATE persons SET  person_email = 'jenny@gmail.com'  WHERE person_id = 'jen14afzGOS';
+
+select * from persons where id = 9328;
