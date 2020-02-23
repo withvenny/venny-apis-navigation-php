@@ -376,7 +376,7 @@
             $id = $request['id'];
             $domain = $request['domain'];
             $column = prefixed($domain) . '_id';
-            $sql = 'DELETE FROM ' . $domain . ' WHERE :column = :id';
+            $sql = 'DELETE FROM ' . $domain . ' WHERE '.$column.' = :id';
             echo $id; //exit
             echo $column; //exit;
             echo $domain; //exit;
