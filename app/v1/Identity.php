@@ -342,8 +342,8 @@
             $statement->execute();
      
             // return the number of row affected
-            //return $stmt->rowCount();
-            return $this->pdo->lastInsertId('persons_sequence');
+            return $statememt->rowCount();
+            //return $this->pdo->lastInsertId('persons_sequence');
 
 
         }
