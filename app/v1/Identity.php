@@ -312,15 +312,15 @@
 
             //
             $set = "";
-            if(isset($request['id'])){$set.= " person_id = :person_id, ";
-            if(isset($request['attributes'])){$set.= " person_attributes = :person_attributes, ";
-            if(isset($request['name_first'])){$set.= " person_name_first = :person_name_first, ";
-            if(isset($request['name_middle'])){$set.= " person_name_middle = :person_name_middle, ";
-            if(isset($request['name_last'])){$set.= " person_name_last = :person_name_last, ";
-            if(isset($request['email'])){$set.= " person_email = :person_email, ";
-            if(isset($request['phone_primary'])){$set.= " person_phone_primary = :person_phone_primary, ";
-            if(isset($request['phone_secondary'])){$set.= " person_phone_secondary = :person_phone_secondary, ";
-            if(isset($request['entitlements'])){$set.= " person_entitlements = :person_entitlements, ";
+            if(isset($request['id'])){$set.= " person_id = :person_id, ";}
+            if(isset($request['attributes'])){$set.= " person_attributes = :person_attributes, ";}
+            if(isset($request['name_first'])){$set.= " person_name_first = :person_name_first, ";}
+            if(isset($request['name_middle'])){$set.= " person_name_middle = :person_name_middle, ";}
+            if(isset($request['name_last'])){$set.= " person_name_last = :person_name_last, ";}
+            if(isset($request['email'])){$set.= " person_email = :person_email, ";}
+            if(isset($request['phone_primary'])){$set.= " person_phone_primary = :person_phone_primary, ";}
+            if(isset($request['phone_secondary'])){$set.= " person_phone_secondary = :person_phone_secondary, ";}
+            if(isset($request['entitlements'])){$set.= " person_entitlements = :person_entitlements, ";}
                         
             //
             $condition = $prefix."_id = :id";
