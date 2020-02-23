@@ -342,7 +342,7 @@
             $statement->execute();
      
             // return the number of row affected
-            return $statememt->rowCount();
+            return $statement->rowCount();
             //return $this->pdo->lastInsertId('persons_sequence');
 
 
