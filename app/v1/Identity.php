@@ -325,6 +325,8 @@
             // GET table name
             $condition = $table."_id = :id";
 
+            echo json_encode($set); exit;
+
             /**
              * Update stock based on the specified id
              * @param int $id
