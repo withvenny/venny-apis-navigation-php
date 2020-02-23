@@ -377,7 +377,11 @@
             $domain = $request['domain'];
             $column = prefixed($domain) . '_id';
             $sql = 'DELETE FROM ' . $domain . ' WHERE :column = :id';
-            echo $sql; exit;
+            echo $id; //exit
+            echo $column; //exit;
+            echo $domain; //exit;
+            echo $sql; //exit
+
             $statement = $this->pdo->prepare($sql);
             $statement->bindParam(':column', $column);
             $statement->bindValue(':id', $id);
