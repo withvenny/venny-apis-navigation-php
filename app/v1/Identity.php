@@ -373,6 +373,7 @@
          */
         public function deletePerson($request) {
             
+            $id = $request['id'];
             $domain = $request['domain'];
             $column = prefixed($domain) . '_id';
             $sql = 'DELETE FROM ' . $domain . ' WHERE :column = :id';
