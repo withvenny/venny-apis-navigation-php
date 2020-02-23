@@ -44,7 +44,7 @@
                     // insert a stock into the stocks table
                     $id = $person->insertPerson($request);
 
-                    echo 'The record ' . $id . 'has been inserted';
+                    echo 'The record ' . $id . ' has been inserted';
                 
                 } catch (\PDOException $e) {
 
@@ -62,7 +62,7 @@
                     // insert a stock into the stocks table
                     $id = $person->updatePerson($request);
 
-                    echo 'The record ' . $id . 'has been updated';
+                    echo 'The record ' . $id . ' has been updated';
                 
                 } catch (\PDOException $e) {
 
