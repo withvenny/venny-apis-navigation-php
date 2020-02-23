@@ -307,7 +307,7 @@
 
             //
             $domain = $request['domain'];
-            $prefix = prefixed($domain);
+            $table = prefixed($domain);
             $id = $request['id'];
 
             //
@@ -322,8 +322,8 @@
             if(isset($request['phone_secondary'])){$set.= " person_phone_secondary = :person_phone_secondary, ";}
             if(isset($request['entitlements'])){$set.= " person_entitlements = :person_entitlements ";}
                         
-            //
-            $condition = $prefix."_id = :id";
+            // GET table name
+            $condition = $table."_id = :id";
 
             /**
              * Update stock based on the specified id
@@ -339,7 +339,7 @@
             $sql.= " WHERE ";
             $sql.= $condition;
 
-            //echo $sql; exit;
+            echo $sql; exit;
 
             $statement = $this->pdo->prepare($sql);
     
