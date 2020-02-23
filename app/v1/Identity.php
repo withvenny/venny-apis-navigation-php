@@ -312,7 +312,7 @@
 
             //
             $set = "";
-            if(isset($request['id'])){$set.= " person_id = :person_id, ";}
+            //if(isset($request['id'])){$set.= " person_id = :person_id, ";}
             if(isset($request['attributes'])){$set.= " person_attributes = :person_attributes, ";}
             if(isset($request['name_first'])){$set.= " person_name_first = :person_name_first, ";}
             if(isset($request['name_middle'])){$set.= " person_name_middle = :person_name_middle, ";}
@@ -320,7 +320,7 @@
             if(isset($request['email'])){$set.= " person_email = :person_email, ";}
             if(isset($request['phone_primary'])){$set.= " person_phone_primary = :person_phone_primary, ";}
             if(isset($request['phone_secondary'])){$set.= " person_phone_secondary = :person_phone_secondary, ";}
-            if(isset($request['entitlements'])){$set.= " person_entitlements = :person_entitlements, ";}
+            if(isset($request['entitlements'])){$set.= " person_entitlements = :person_entitlements ";}
                         
             //
             $condition = $prefix."_id = :id";
@@ -332,7 +332,7 @@
              * @param string $company
              * @return int
              */
- 
+
             // sql statement to update a row in the stock table
             $sql = "UPDATE {$domain} SET ";
             $sql.= $set;
@@ -342,7 +342,7 @@
             echo $sql; exit;
 
             $statement = $this->pdo->prepare($sql);
-     
+    
             // bind values to the statement
             if(isset($request['id'])){$statement->bindValue(':person_id', $request['id']);}
             if(isset($request['attributes'])){$statement->bindValue(':person_attributes', $request['attributes']);}
@@ -359,11 +359,28 @@
 
             // update data in the database
             $statement->execute();
-     
+    
             // return the number of row affected
             return $statement->rowCount();
             //return $this->pdo->lastInsertId('persons_sequence');
+        
+        }
 
+        /**
+         * Delete a row in the stocks table specified by id
+         * @param int $id
+         * @return the number row deleted
+         */
+        public function deletePerson($request) {
+            
+            $domain = $request['domain'];
+            $column = prefixed($domain) . '_id';
+            $sql = 'DELETE FROM ' . $domain . ' WHERE :column = :id';
+            $statement = $this->pdo->prepare($sql);
+            $statement->bindValue(':column', $column);
+            $statement->bindValue(':id', $id);
+            $statement->execute();
+            return $statement->rowCount();
 
         }
 

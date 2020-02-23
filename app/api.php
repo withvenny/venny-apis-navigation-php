@@ -12,6 +12,8 @@
 
         //
         if(isset($_REQUEST['app'])) {
+
+            $request['app'] = $_REQUEST['app'];
     
             //
             switch ($_REQUEST['domain']) {

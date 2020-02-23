@@ -33,42 +33,19 @@
         //
         case 'POST':
 
-            //
-            if(isset($id)) {
+            try {
 
-                try {
+                // 
+                $person = new Person($pdo);
+            
+                // insert a stock into the stocks table
+                $id = $person->insertPerson($request);
 
-                    // 
-                    $person = new Person($pdo);
-                
-                    // insert a stock into the stocks table
-                    $id = $person->insertPerson($request);
+                echo 'The record ' . $id . ' has been inserted';
+            
+            } catch (\PDOException $e) {
 
-                    echo 'The record ' . $id . ' has been inserted';
-                
-                } catch (\PDOException $e) {
-
-                    echo $e->getMessage();
-
-                }
-
-            } else {
-
-                try {
-
-                    // 
-                    $person = new Person($pdo);
-                
-                    // insert a stock into the stocks table
-                    $id = $person->updatePerson($request);
-
-                    echo 'The record ' . $id . ' has been updated';
-                
-                } catch (\PDOException $e) {
-
-                    echo $e->getMessage();
-
-                }
+                echo $e->getMessage();
 
             }
 
@@ -102,8 +79,48 @@
 
         break;
 
+        //
+        case 'PUT':
+
+            try {
+
+                // 
+                $person = new Person($pdo);
+            
+                // insert a stock into the stocks table
+                $id = $person->updatePerson($request);
+
+                echo 'The record ' . $id . ' has been updated';
+            
+            } catch (\PDOException $e) {
+
+                echo $e->getMessage();
+
+            }
+
+        break;
+
+        //
+        case 'DELETE':
+
+            try {
+
+                // 
+                $person = new Person($pdo);
+            
+                // insert a stock into the stocks table
+                $id = $person->deletePerson($request);
+
+                echo 'The record ' . $id . ' has been deleted';
+            
+            } catch (\PDOException $e) {
+
+                echo $e->getMessage();
+
+            }
+
+        break;
+
     }
-
-
 
 ?>
