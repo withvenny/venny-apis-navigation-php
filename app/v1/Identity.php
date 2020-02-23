@@ -383,7 +383,7 @@
             echo $sql; //exit
 
             $statement = $this->pdo->prepare($sql);
-            $statement->bindParam(':column', $column);
+            //$statement->bindParam(':column', $column);
             $statement->bindValue(':id', $id);
             $statement->execute();
             return $statement->rowCount();
