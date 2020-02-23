@@ -312,7 +312,7 @@
 
             //
             $set = "";
-            if(isset($request['id'])){$set.= " person_id = :person_id, ";}
+            //if(isset($request['id'])){$set.= " person_id = :person_id, ";}
             if(isset($request['attributes'])){$set.= " person_attributes = :person_attributes, ";}
             if(isset($request['name_first'])){$set.= " person_name_first = :person_name_first, ";}
             if(isset($request['name_middle'])){$set.= " person_name_middle = :person_name_middle, ";}
