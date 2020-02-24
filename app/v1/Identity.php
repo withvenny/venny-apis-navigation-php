@@ -35,35 +35,33 @@
          */
         public function insertPerson($request) {
 
-            $columns = "
-                person_id,
-                person_attributes,
-                person_name_first,
-                person_name_middle,
-                person_name_last,
-                person_email,
-                person_phone_primary,
-                person_phone_secondary,
-                person_entitlements,
-                app_id,
-                event_id,
-                process_id
-            ";
+            $columns = "";
+            $columns.= "person_id,";
+            $columns.= "person_attributes,";
+            $columns.= "person_name_first,";
+            $columns.= "person_name_middle,";
+            $columns.= "person_name_last,";
+            $columns.= "person_email,";
+            $columns.= "person_phone_primary,";
+            $columns.= "person_phone_secondary,";
+            $columns.= "person_entitlements,";
+            $columns.= "app_id,";
+            $columns.= "event_id,";
+            $columns.= "process_id";
 
-            $values = "
-                :person_id,
-                :person_attributes,
-                :person_name_first,
-                :person_name_middle,
-                :person_name_last,
-                :person_email,
-                :person_phone_primary,
-                :person_phone_secondary,
-                :person_entitlements,
-                :app_id,
-                :event_id,
-                :process_id
-            ";
+            $values = "";
+            $values.= ":id,";
+            $values.= ":attributes,";
+            $values.= ":name_first,";
+            $values.= ":name_middle,";
+            $values.= ":name_last,";
+            $values.= ":email,";
+            $values.= ":phone_primary,";
+            $values.= ":phone_secondary,";
+            $values.= ":entitlements,";
+            $values.= ":app_id,";
+            $values.= ":event_id,";
+            $values.= ":process_id";
 
             // prepare statement for insert
             $sql = "INSERT INTO {$request['domain']} (";
@@ -322,8 +320,9 @@
             if(isset($request['phone_secondary'])){$set.= " person_phone_secondary = :person_phone_secondary ";}
             if(isset($request['entitlements'])){$set.= " person_entitlements = :person_entitlements ";}
 
+            //
             $set = str_replace('  ',',',$set);
-            
+
             // GET table name
             $condition = $table."_id = :id";
 
@@ -365,11 +364,11 @@
 
             // update data in the database
             $statement->execute();
-    
+
             // return the number of row affected
             return $statement->rowCount();
             //return $this->pdo->lastInsertId('persons_sequence');
-        
+
         }
 
         /**
@@ -378,7 +377,7 @@
          * @return the number row deleted
          */
         public function deletePerson($request) {
-            
+
             $id = $request['id'];
             $domain = $request['domain'];
             $column = prefixed($domain) . '_id';

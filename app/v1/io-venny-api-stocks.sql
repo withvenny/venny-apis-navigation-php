@@ -1230,8 +1230,13 @@ INSERT INTO persons ( person_id, person_attributes, person_name_first, person_na
 select * from persons order by id desc;
 
 update persons set person_name_first = 'Juanita' where person_id = 'jen14afzGOS';
-select * from persons where person_id = 'jen14afzGOS';
+select * from persons where person_id = '8301_02132020_0430';
+
+UPDATE persons SET  person_name_first = 'roddy'  person_name_last = 'piper'  person_email = 'rowdyrod@gmail.com'  WHERE person_id = '8301_022320_1428';
 
 UPDATE persons SET  person_email = 'jenny@gmail.com'  WHERE person_id = 'jen14afzGOS';
 
-select * from persons where id = 9328;
+select * from persons where person_id = '8301_024320_1125';
+
+COMMENT ON TABLE persons IS 'Persons records are used as the bedrock for all user data and communications.';
+COMMENT ON COLUMN persons.person_entitlements IS 'Person entitlements in JSON data format (guest,user,profile,partner)';
