@@ -343,7 +343,7 @@
             $sql.= " WHERE ";
             $sql.= $condition;
 
-            echo $sql; exit;
+            //echo $sql; exit;
 
             $statement = $this->pdo->prepare($sql);
     
@@ -369,7 +369,7 @@
             //return $this->pdo->lastInsertId('persons_sequence');
         
         }
-
+        
         /**
          * Delete a row in the stocks table specified by id
          * @param int $id
