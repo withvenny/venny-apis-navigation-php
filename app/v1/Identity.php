@@ -327,7 +327,7 @@
             // GET table name
             $condition = $table."_id = :id";
 
-            echo json_encode($set); exit;
+            //echo json_encode($set); exit;
 
             /**
              * Update stock based on the specified id
@@ -369,7 +369,7 @@
             //return $this->pdo->lastInsertId('persons_sequence');
         
         }
-        
+
         /**
          * Delete a row in the stocks table specified by id
          * @param int $id
