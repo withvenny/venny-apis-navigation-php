@@ -74,15 +74,15 @@
             $statement = $this->pdo->prepare($sql);
             
             // pass values to the statement
-            $statement->bindValue(':person_id', $request['id']);
-            $statement->bindValue(':person_attributes', $request['attributes']);
-            $statement->bindValue(':person_name_first', $request['name_first']);
-            $statement->bindValue(':person_name_middle', $request['name_middle']);
-            $statement->bindValue(':person_name_last', $request['name_last']);
-            $statement->bindValue(':person_email', $request['email']);
-            $statement->bindValue(':person_phone_primary', $request['phone_primary']);
-            $statement->bindValue(':person_phone_secondary', $request['phone_secondary']);
-            $statement->bindValue(':person_entitlements', $request['entitlements']);
+            $statement->bindValue(':id', $request['id']);
+            $statement->bindValue(':attributes', $request['attributes']);
+            $statement->bindValue(':name_first', $request['name_first']);
+            $statement->bindValue(':name_middle', $request['name_middle']);
+            $statement->bindValue(':name_last', $request['name_last']);
+            $statement->bindValue(':email', $request['email']);
+            $statement->bindValue(':phone_primary', $request['phone_primary']);
+            $statement->bindValue(':phone_secondary', $request['phone_secondary']);
+            $statement->bindValue(':entitlements', $request['entitlements']);
             $statement->bindValue(':app_id', $request['app']);
             $statement->bindValue(':event_id', $this->token->event_id());
             $statement->bindValue(':process_id', $this->token->process_id());
