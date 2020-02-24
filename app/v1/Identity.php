@@ -94,12 +94,12 @@
             if($statement->rowCount() > 0) {
 
                 //
-                $data = $statement->fetchObject(\PDO::FETCH_ASSOC));
+                $data = $statement->fetchObject(\PDO::FETCH_ASSOC);
                 
                 return $data;
         
             }
-            
+
         }
 
         /**
