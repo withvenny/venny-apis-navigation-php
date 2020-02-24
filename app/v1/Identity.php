@@ -93,7 +93,7 @@
             //
             if($statement->rowCount() > 0) {
                 
-                $data = $statement->fetchObject($pdo);
+                $data = $statement->fetchObject($this->pdo);
 
                 return $data;
 
