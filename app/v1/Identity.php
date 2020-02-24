@@ -98,6 +98,10 @@
                 
                 return $data;
         
+            } else {
+            
+                return 'NO DATA';
+        
             }
 
         }
