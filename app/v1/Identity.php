@@ -322,7 +322,7 @@
             if(isset($request['phone_secondary'])){$set.= " person_phone_secondary = :person_phone_secondary ";}
             if(isset($request['entitlements'])){$set.= " person_entitlements = :person_entitlements ";}
 
-            str_replace('  ',',',$set);
+            str_replace(',','  ',$set);
             
             // GET table name
             $condition = $table."_id = :id";
