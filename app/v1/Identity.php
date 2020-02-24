@@ -69,8 +69,6 @@
             $sql.= ") VALUES (";
             $sql.= $values;
             $sql.= ")";
-
-            echo $sql;
     
             //
             $statement = $this->pdo->prepare($sql);
@@ -112,6 +110,7 @@
                         'phone_primary' => $row['person_phone_primary'],
                         'phone_secondary' => $row['person_phone_secondary'],
                         'entitlements' => $row['person_entitlements']
+
                     ];
 
                 }
@@ -124,8 +123,8 @@
             }
 
             // return generated id
-            return $this->pdo->lastInsertId('persons_sequence');
-            //return $this->pdo->selectPersons('persons_sequence');
+            //return $this->pdo->lastInsertId('persons_sequence');
+            return $data;
         }
 
         /**
