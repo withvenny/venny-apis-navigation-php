@@ -361,7 +361,7 @@
             if(isset($request['entitlements'])){$statement->bindValue(':person_entitlements', $request['entitlements']);}
 
             //if(isset($request['id'])){$statement->bindValue(':person_entitlements', $request['entitlements']);}
-            $statement->bindValue(':person_id', $id);
+            $statement->bindValue(':id', $id);
 
             // update data in the database
             $statement->execute();
