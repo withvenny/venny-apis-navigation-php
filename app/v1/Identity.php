@@ -348,7 +348,7 @@
             $statement = $this->pdo->prepare($sql);
     
             // bind values to the statement
-            if(isset($request['id'])){$statement->bindValue(':person_id', $request['id']);}
+            //if(isset($request['id'])){$statement->bindValue(':person_id', $request['id']);}
             if(isset($request['attributes'])){$statement->bindValue(':person_attributes', $request['attributes']);}
             if(isset($request['name_first'])){$statement->bindValue(':person_name_first', $request['name_first']);}
             if(isset($request['name_middle'])){$statement->bindValue(':person_name_middle', $request['name_middle']);}
@@ -359,7 +359,7 @@
             if(isset($request['entitlements'])){$statement->bindValue(':person_entitlements', $request['entitlements']);}
 
             //if(isset($request['id'])){$statement->bindValue(':person_entitlements', $request['entitlements']);}
-            $statement->bindValue(':person_id', $id);
+            //$statement->bindValue(':person_id', $id);
 
             // update data in the database
             $statement->execute();
