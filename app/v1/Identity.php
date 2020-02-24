@@ -92,18 +92,22 @@
 
             //
             if($statement->rowCount() > 0) {
+                
+                $data = $statement->fetchObject(\PDO::FETCH_ASSOC);
+
+                return $data;
+
+            } else {
 
                 //
-                $data = $statement->fetchObject();
-                
-                return $data;
-        
-            } else {
-            
-                return 'NO DATA';
-        
+                echo 'No data in your DATABASE...';
+
             }
 
+            // return generated id
+            //return $this->pdo->lastInsertId('persons_sequence');
+            //return $this->pdo->selectPersons('persons_sequence');
+        
         }
 
         /**
