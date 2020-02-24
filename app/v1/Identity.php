@@ -322,12 +322,14 @@
             if(isset($request['phone_secondary'])){$set.= " person_phone_secondary = :person_phone_secondary ";}
             if(isset($request['entitlements'])){$set.= " person_entitlements = :person_entitlements ";}
 
-            $set=str_replace('  ',',',$set);
+            $set = str_replace('  ',',',$set);
             
             // GET table name
             $condition = $table."_id = :id";
 
-            //echo json_encode($set); exit;
+            echo json_encode($set);
+            echo json_encode($condition);
+            exit;
 
             /**
              * Update stock based on the specified id
@@ -359,7 +361,7 @@
             if(isset($request['entitlements'])){$statement->bindValue(':person_entitlements', $request['entitlements']);}
 
             //if(isset($request['id'])){$statement->bindValue(':person_entitlements', $request['entitlements']);}
-            //$statement->bindValue(':person_id', $id);
+            $statement->bindValue(':person_id', $id);
 
             // update data in the database
             $statement->execute();
