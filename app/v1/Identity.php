@@ -92,6 +92,8 @@
 
             //
             if($statement->rowCount() > 0) {
+
+                echo var_dump($this->pdo); exit;
                 
                 $data = $statement->fetchObject($this->pdo);
 
