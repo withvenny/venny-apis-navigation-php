@@ -92,39 +92,14 @@
 
             //
             if($statement->rowCount() > 0) {
-                //
-                $data = [];
-            
-                //
-                while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
-    
-                    //
-                    $data[] = [
-
-                        'id' => $row['person_id'],
-                        'attributes' => $row['person_attributes'],
-                        'name_first' => $row['person_name_first'],
-                        'name_middle' => $row['person_name_middle'],
-                        'name_last' => $row['person_name_last'],
-                        'email' => $row['person_email'],
-                        'phone_primary' => $row['person_phone_primary'],
-                        'phone_secondary' => $row['person_phone_secondary'],
-                        'entitlements' => $row['person_entitlements']
-
-                    ];
-
-                }
-
-            } else {
 
                 //
-                echo 'No data in your DATABASE...';
-
+                $data = $statement->fetchObject(\PDO::FETCH_ASSOC));
+                
+                return $data;
+        
             }
-
-            // return generated id
-            //return $this->pdo->lastInsertId('persons_sequence');
-            return $data;
+            
         }
 
         /**
