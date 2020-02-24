@@ -1236,7 +1236,7 @@ UPDATE persons SET  person_name_first = 'roddy'  person_name_last = 'piper'  per
 
 UPDATE persons SET  person_email = 'jenny@gmail.com'  WHERE person_id = 'jen14afzGOS';
 
-select * from persons where person_id = '8301_024320_1125';
+select * from persons where person_id = '8301_024320_1300';
 
 COMMENT ON TABLE persons IS 'Persons records are used as the bedrock for all user data and communications.';
 COMMENT ON COLUMN persons.person_entitlements IS 'Person entitlements in JSON data format (guest,user,profile,partner)';

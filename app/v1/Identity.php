@@ -36,29 +36,29 @@
         public function insertPerson($request) {
 
             $columns = "";
-            $columns.= "person_id,";
-            $columns.= "person_attributes,";
-            $columns.= "person_name_first,";
-            $columns.= "person_name_middle,";
-            $columns.= "person_name_last,";
-            $columns.= "person_email,";
-            $columns.= "person_phone_primary,";
-            $columns.= "person_phone_secondary,";
-            $columns.= "person_entitlements,";
+            if(isset($request['id'])){$columns.="person_id,";}
+            if(isset($request['attributes'])){$columns.="person_attributes,";}
+            if(isset($request['name_first'])){$columns.="person_name_first,";}
+            if(isset($request['name_middle'])){$columns.="person_name_middle,";}
+            if(isset($request['name_last'])){$columns.="person_name_last,";}
+            if(isset($request['email'])){$columns.="person_email,";}
+            if(isset($request['phone_primary'])){$columns.="person_phone_primary,";}
+            if(isset($request['phone_secondary'])){$columns.="person_phone_secondary,";}
+            if(isset($request['entitlements'])){$columns.="person_entitlements,";}
             $columns.= "app_id,";
             $columns.= "event_id,";
             $columns.= "process_id";
 
             $values = "";
-            $values.= ":id,";
-            $values.= ":attributes,";
-            $values.= ":name_first,";
-            $values.= ":name_middle,";
-            $values.= ":name_last,";
-            $values.= ":email,";
-            $values.= ":phone_primary,";
-            $values.= ":phone_secondary,";
-            $values.= ":entitlements,";
+            if(isset($request['id'])){$values.="person_id,";}
+            if(isset($request['attributes'])){$values.="person_attributes,";}
+            if(isset($request['name_first'])){$values.="person_name_first,";}
+            if(isset($request['name_middle'])){$values.="person_name_middle,";}
+            if(isset($request['name_last'])){$values.="person_name_last,";}
+            if(isset($request['email'])){$values.="person_email,";}
+            if(isset($request['phone_primary'])){$values.="person_phone_primary,";}
+            if(isset($request['phone_secondary'])){$values.="person_phone_secondary,";}
+            if(isset($request['entitlements'])){$values.="person_entitlements,";}
             $values.= ":app_id,";
             $values.= ":event_id,";
             $values.= ":process_id";
