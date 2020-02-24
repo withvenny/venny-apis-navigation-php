@@ -50,15 +50,15 @@
             $columns.= "process_id";
 
             $values = "";
-            if(isset($request['id'])){$values.="person_id,";}
-            if(isset($request['attributes'])){$values.="person_attributes,";}
-            if(isset($request['name_first'])){$values.="person_name_first,";}
-            if(isset($request['name_middle'])){$values.="person_name_middle,";}
-            if(isset($request['name_last'])){$values.="person_name_last,";}
-            if(isset($request['email'])){$values.="person_email,";}
-            if(isset($request['phone_primary'])){$values.="person_phone_primary,";}
-            if(isset($request['phone_secondary'])){$values.="person_phone_secondary,";}
-            if(isset($request['entitlements'])){$values.="person_entitlements,";}
+            if(isset($request['id'])){$values.=":person_id,";}
+            if(isset($request['attributes'])){$values.=":person_attributes,";}
+            if(isset($request['name_first'])){$values.=":person_name_first,";}
+            if(isset($request['name_middle'])){$values.=":person_name_middle,";}
+            if(isset($request['name_last'])){$values.=":person_name_last,";}
+            if(isset($request['email'])){$values.=":person_email,";}
+            if(isset($request['phone_primary'])){$values.=":person_phone_primary,";}
+            if(isset($request['phone_secondary'])){$values.=":person_phone_secondary,";}
+            if(isset($request['entitlements'])){$values.=":person_entitlements,";}
             $values.= ":app_id,";
             $values.= ":event_id,";
             $values.= ":process_id";
@@ -69,20 +69,22 @@
             $sql.= ") VALUES (";
             $sql.= $values;
             $sql.= ")";
+
+            echo $sql;
     
             //
             $statement = $this->pdo->prepare($sql);
             
             // pass values to the statement
-            $statement->bindValue(':id', $request['id']);
-            $statement->bindValue(':attributes', $request['attributes']);
-            $statement->bindValue(':name_first', $request['name_first']);
-            $statement->bindValue(':name_middle', $request['name_middle']);
-            $statement->bindValue(':name_last', $request['name_last']);
-            $statement->bindValue(':email', $request['email']);
-            $statement->bindValue(':phone_primary', $request['phone_primary']);
-            $statement->bindValue(':phone_secondary', $request['phone_secondary']);
-            $statement->bindValue(':entitlements', $request['entitlements']);
+            if(isset($request['id'])){$statement->bindValue('person_id',$request['id']);}
+            if(isset($request['attributes'])){$statement->bindValue('person_attributes',$request['attributes']);}
+            if(isset($request['name_first'])){$statement->bindValue('person_name_first',$request['name_first']);}
+            if(isset($request['name_middle'])){$statement->bindValue('person_name_middle',$request['name_middle']);}
+            if(isset($request['name_last'])){$statement->bindValue('person_name_last',$request['name_last']);}
+            if(isset($request['email'])){$statement->bindValue('person_email',$request['email']);}
+            if(isset($request['phone_primary'])){$statement->bindValue('person_phone_primary',$request['phone_primary']);}
+            if(isset($request['phone_secondary'])){$statement->bindValue('person_phone_secondary',$request['phone_secondary']);}
+            if(isset($request['entitlements'])){$statement->bindValue('person_entitlements',$request['entitlements']);}
             $statement->bindValue(':app_id', $request['app']);
             $statement->bindValue(':event_id', $this->token->event_id());
             $statement->bindValue(':process_id', $this->token->process_id());
