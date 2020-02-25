@@ -174,9 +174,9 @@
                     $sql.= $conditions;
                     $sql.= $subset;
                     
-                    echo json_encode($request['id']);
-                    echo '<br/>';
-                    echo $sql; exit;
+                    //echo json_encode($request['id']);
+                    //echo '<br/>';
+                    //echo $sql; exit;
 
                     //
                     $statement = $this->pdo->prepare($sql);
@@ -355,7 +355,7 @@
 
             $data = $statement->fetchAll();
             
-            //$data = $data[0]['person_id'];
+            $data = $data[0]['person_id'];
 
             // return generated id
             return $data;
