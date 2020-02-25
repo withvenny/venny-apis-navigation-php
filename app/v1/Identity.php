@@ -113,6 +113,8 @@
         */
         public function selectPersons($request) {
 
+            echo json_encode($request); exit;
+
             //$token = new \Core\Token($this->pdo);
             $token = $this->token->validatedToken($request['token']);
 
