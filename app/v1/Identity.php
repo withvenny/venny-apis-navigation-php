@@ -69,6 +69,7 @@
             $sql.= ") VALUES (";
             $sql.= $values;
             $sql.= ")";
+            $sql.= " RETURNING id";
     
             //
             $statement = $this->pdo->prepare($sql);
