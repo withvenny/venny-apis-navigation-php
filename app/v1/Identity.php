@@ -90,22 +90,11 @@
             // execute the insert statement
             $statement->execute();
 
-            //
-            if($statement->rowCount() > 0) {
-                
-                //$data = $statement->fetchObject(\PDO::FETCH_ASSOC);
-                $data = $statement->fetchAll();
-                
-                echo var_dump($data);
+            $data = $statement->fetchAll();
+            
+            echo var_dump($data);
 
-                return $data;
-
-            } else {
-
-                //
-                echo 'No data in your DATABASE...';
-
-            }
+            return $data;
 
             // return generated id
             //return $this->pdo->lastInsertId('persons_sequence');
