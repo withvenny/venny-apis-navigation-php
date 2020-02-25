@@ -1247,9 +1247,28 @@ returning
 UPDATE persons SET person_name_first = 'art',person_name_last = 'J.'  WHERE person_id = 'arnb2fbzJET' RETURNING person_id;
 
 select * from persons where person_id = '8301_022520_1118';
-select * from persons where person_id = 'line1bczHOL';
+select * from persons where person_id = '8301_022520_1420';
 
 SELECT person_id, person_attributes, person_name_first, person_name_middle, person_name_last, person_email, person_phone_primary, person_phone_secondary, person_entitlements FROM persons WHERE person_id = 'line1bczHOL' AND active = 1 ORDER BY time_finished DESC LIMIT 1;
 
 COMMENT ON TABLE persons IS 'Persons records are used as the bedrock for all user data and communications.';
 COMMENT ON COLUMN persons.person_entitlements IS 'Person entitlements in JSON data format (guest,user,profile,partner)';
+
+select
+	person_id, person_attributes, person_name_first, person_name_middle, person_name_last, person_email, person_phone_primary, person_phone_secondary, person_entitlements
+from
+	persons
+where
+	person_name_first 
+	active = 1
+ORDER by
+	time_finished desc
+limit
+	1;
+
+
+
+
+
+
+

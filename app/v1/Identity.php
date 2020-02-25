@@ -161,7 +161,7 @@
                 //
                 if(!empty($request['id'])) {
 
-                    $conditions = " WHERE";
+                    $conditions.= " WHERE";
                     $conditions.= " " . $prefix . "_id = :id ";
                     $conditions.= " AND active = 1 ";
                     $conditions.= " ORDER BY time_finished DESC ";
@@ -188,11 +188,14 @@
 
                 } else {
 
-                    $conditions = " WHERE ";
-                    $conditions.= " active = 1 ";
+                    $refinements = "";
+                    if(isset($request['name_first'])){$refinements.= "person_name_first "."ILIKE"."%".$request['name_first']."%"." AND ";
+                    
+                    $conditions.= " WHERE ";
+                    $conditions.= $refinements;
+                    $conditions.= " AND active = 1 ";
                     $conditions.= " ORDER BY time_finished DESC ";
                     $subset = " OFFSET {$start}" . " LIMIT {$request['per']}";
-
                     $sql = "SELECT ";
                     $sql.= $columns;
                     $sql.= "FROM " . $table;
