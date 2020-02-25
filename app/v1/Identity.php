@@ -97,7 +97,7 @@
             //echo json_encode($data);
             //echo json_encode($data[0]);
             //echo json_encode($data[0]['person_id']);
-            $data = json_encode($data[0]['person_id']);
+            $data = $data[0]['person_id'];
 
             return $data;
 
@@ -113,7 +113,7 @@
         */
         public function selectPersons($request) {
 
-            echo json_encode($request); exit;
+            //echo json_encode($request); exit;
 
             //$token = new \Core\Token($this->pdo);
             $token = $this->token->validatedToken($request['token']);
