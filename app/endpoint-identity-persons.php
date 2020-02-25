@@ -39,11 +39,10 @@
                 $person = new Person($pdo);
             
                 // insert a stock into the stocks table
-                //$id = $person->insertPerson($request);
-                $data = $person->insertPerson($request);
-                $data = json_encode($data);
-                echo $data;
-                //echo $data'The record ' . $id . ' has been inserted';
+                $id = $person->insertPerson($request);
+                
+                //
+                echo $data 'The record ' . $id . ' has been inserted';
             
             } catch (\PDOException $e) {
 

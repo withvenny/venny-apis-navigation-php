@@ -93,8 +93,9 @@
             //
             if($statement->rowCount() > 0) {
                 
-                $data = $statement->fetchObject(__CLASS__);
-
+                //$data = $statement->fetchObject(\PDO::FETCH_ASSOC);
+                $data = $statement->fetchAll();
+                
                 echo var_dump($data);
 
                 return $data;
