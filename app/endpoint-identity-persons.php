@@ -42,7 +42,7 @@
                 $id = $person->insertPerson($request);
                 
                 //
-                echo 'The record ' . $id . ' has been inserted';
+                echo 'The record ' . json_encode($id) . ' has been inserted';
             
             } catch (\PDOException $e) {
 
