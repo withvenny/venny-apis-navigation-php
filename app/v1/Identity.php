@@ -120,7 +120,9 @@
             if($token) {
                 
                 // domain, app always present
-
+                if(!isset($request['per'])){$request['per']=20;}
+                if(!isset($request['page'])){$request['page']=1;}
+                if(!isset($request['limit'])){$request['limit']=100;}
                 //
                 $conditions = "";
                 $domain = $request['domain'];
