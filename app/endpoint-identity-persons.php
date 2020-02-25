@@ -101,7 +101,7 @@
 
                 $results = json_encode($results);
 
-                echo 'The record ' . $id . ' has been updated';
+                echo $results;
             
             } catch (\PDOException $e) {
 

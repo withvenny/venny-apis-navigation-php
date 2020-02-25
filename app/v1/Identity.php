@@ -310,7 +310,7 @@
 
             // GET table name
             $condition = $table."_id = :id";
-            $condition.= " RETURNING " . prefixed($request['domain']) . "_id";
+            $condition.= " RETURNING " . $table . "_id";
 
             //echo json_encode($set);
             //echo json_encode($condition);
@@ -330,7 +330,7 @@
             $sql.= " WHERE ";
             $sql.= $condition;
 
-            echo $sql; exit;
+            //echo $sql; exit;
 
             $statement = $this->pdo->prepare($sql);
     
