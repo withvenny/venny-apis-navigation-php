@@ -174,6 +174,8 @@
                     $sql.= $conditions;
                     $sql.= $subset;
                     
+                    echo $request['id'];
+                    echo '<br/>';
                     echo $sql; exit;
 
                     //
