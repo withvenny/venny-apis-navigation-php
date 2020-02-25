@@ -93,7 +93,8 @@
 
             $data = $statement->fetchAll();
             
-            echo var_dump($data);
+            echo json_encode($data);
+            echo json_encode($data[0]);
 
             return $data;
 
