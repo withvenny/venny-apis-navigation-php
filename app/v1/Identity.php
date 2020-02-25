@@ -226,7 +226,7 @@
                         $data[] = [
 
                             'id' => $row['person_id'],
-                            'attributes' => $row['person_attributes'],
+                            'attributes' => json_decode($row['person_attributes']),
                             'name_first' => $row['person_name_first'],
                             'name_middle' => $row['person_name_middle'],
                             'name_last' => $row['person_name_last'],
