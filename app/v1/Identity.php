@@ -93,8 +93,8 @@
 
             $data = $statement->fetchAll();
             
-            echo json_encode($data);
-            echo json_encode($data['0']);
+            //echo json_encode($data);
+            echo json_encode($data['person_id']);
 
             return $data;
 
