@@ -69,7 +69,7 @@
             $sql.= ") VALUES (";
             $sql.= $values;
             $sql.= ")";
-            $sql.= " RETURNING " . prefixed($request['domain']);
+            $sql.= " RETURNING " . prefixed($request['domain']) . "_id";
     
             //
             $statement = $this->pdo->prepare($sql);
