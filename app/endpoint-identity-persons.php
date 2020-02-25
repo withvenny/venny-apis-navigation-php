@@ -44,6 +44,8 @@
                 $request['id'] = $id;
 
                 $results = $person->selectPersons($request);
+
+                $results = json_encode($results);
                 
                 //
                 echo $results;
