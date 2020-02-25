@@ -43,7 +43,7 @@
 
                 $request['id'] = $id;
 
-                $results = $person->selectPerson($request);
+                $results = $person->selectPersons($request);
                 
                 //
                 echo $results;
