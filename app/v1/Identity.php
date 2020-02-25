@@ -310,6 +310,7 @@
 
             // GET table name
             $condition = $table."_id = :id";
+            $condition.= " RETURNING " . prefixed($request['domain']) . "_id";
 
             //echo json_encode($set);
             //echo json_encode($condition);
@@ -329,7 +330,7 @@
             $sql.= " WHERE ";
             $sql.= $condition;
 
-            //echo $sql; exit;
+            echo $sql; exit;
 
             $statement = $this->pdo->prepare($sql);
     
@@ -352,21 +353,13 @@
 
             $data = $statement->fetchAll();
             
-            //echo json_encode($data);
-            //echo json_encode($data);
-            //echo json_encode($data[0]);
-            //echo json_encode($data[0]['person_id']);
-            $data = $data[0]['person_id'];
-
-            return $data;
+            //$data = $data[0]['person_id'];
 
             // return generated id
-            //return $this->pdo->lastInsertId('persons_sequence');
-            //return $this->pdo->selectPersons('persons_sequence');
+            return $data;
 
             // return the number of row affected
             //return $statement->rowCount();
-            //return $this->pdo->lastInsertId('persons_sequence');
 
         }
 
