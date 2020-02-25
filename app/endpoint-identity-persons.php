@@ -40,9 +40,13 @@
             
                 // insert a stock into the stocks table
                 $id = $person->insertPerson($request);
+
+                $request['id'] = $id;
+
+                $results = $person->selectPerson($request);
                 
                 //
-                echo 'The record ' . json_encode($id) . ' has been inserted';
+                echo $results;
             
             } catch (\PDOException $e) {
 
@@ -67,8 +71,6 @@
 
                 // get all stocks data
                 $persons = $person->selectPersons($request);
-
-                $persons = json_encode($persons);
 
                 echo $persons;
 

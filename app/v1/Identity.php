@@ -94,9 +94,10 @@
             $data = $statement->fetchAll();
             
             //echo json_encode($data);
-            echo json_encode($data);
-            echo json_encode($data[0]);
-            echo json_encode($data[0]['person_id']);
+            //echo json_encode($data);
+            //echo json_encode($data[0]);
+            //echo json_encode($data[0]['person_id']);
+            $data = json_encode($data[0]['person_id']);
 
             return $data;
 
