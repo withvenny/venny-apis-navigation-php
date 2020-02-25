@@ -189,7 +189,15 @@
                 } else {
 
                     $refinements = "";
-                    if(isset($request['name_first'])){$refinements.= "person_name_first "."ILIKE"."%".$request['name_first']."%"." AND ";
+                    if(isset($request['name_first'])) {
+                        $refinements.=
+                            "person_name_first ".
+                            "ILIKE".
+                            "%".
+                            $request['name_first'].
+                            "%".
+                            " AND ";
+                    }
                     
                     $conditions.= " WHERE ";
                     $conditions.= $refinements;
