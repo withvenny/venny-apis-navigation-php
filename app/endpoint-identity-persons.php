@@ -42,7 +42,7 @@
                 $id = $person->insertPerson($request);
                 
                 //
-                echo $data 'The record ' . $id . ' has been inserted';
+                echo $data . 'The record ' . $id . ' has been inserted';
             
             } catch (\PDOException $e) {
 
