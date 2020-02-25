@@ -232,7 +232,7 @@
                             'name_last' => $row['person_name_last'],
                             'email' => $row['person_email'],
                             'phone_primary' => $row['person_phone_primary'],
-                            'entitlements' => $row['person_entitlements']
+                            'entitlements' => json_decode($row['person_entitlements'])
 
                         ];
 
