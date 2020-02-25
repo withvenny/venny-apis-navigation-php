@@ -193,10 +193,9 @@
                         $refinements.=
                             "person_name_first ".
                             "ILIKE".
-                            "%".
+                            "'%".
                             $request['name_first'].
-                            "%".
-                            " AND ";
+                            "%'";
                     }
                     
                     $conditions.= " WHERE ";
