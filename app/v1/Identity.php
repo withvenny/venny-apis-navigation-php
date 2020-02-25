@@ -195,12 +195,13 @@
                             "ILIKE".
                             "'%".
                             $request['name_first'].
-                            "%'";
+                            "%'".
+                            " AND ";
                     }
                     
                     $conditions.= " WHERE ";
                     $conditions.= $refinements;
-                    $conditions.= " AND active = 1 ";
+                    $conditions.= " active = 1 ";
                     $conditions.= " ORDER BY time_finished DESC ";
                     $subset = " OFFSET {$start}" . " LIMIT {$request['per']}";
                     $sql = "SELECT ";
@@ -208,6 +209,8 @@
                     $sql.= "FROM " . $table;
                     $sql.= $conditions;
                     $sql.= $subset;
+
+                    echo $sql; exit;
                     
                     //
                     $statement = $this->pdo->prepare($sql);
