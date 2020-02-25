@@ -1225,7 +1225,7 @@ INSERT INTO persons (person_id,person_attributes,person_name_first,person_name_l
 ('banf5aczLEO','{}','Barbara','Leonard','BarbaraALeonard@armyspy.com','228-270-1204','{"experience":["MS","US","Visa","Blue"]}','event0220209298','process0220209298','app0220208301'),
 ('ranf0cazROB','{}','Raymond','Robinson','RaymondVRobinson@fleckens.hu','216-704-6179','{"experience":["OH","US","Visa","Blue"]}','event0220209299','process0220209299','app0220208301');
 
-INSERT INTO persons ( person_id, person_attributes, person_name_first, person_name_middle, person_name_last, person_email, person_phone_primary, person_phone_secondary, person_entitlements, app_id, event_id, process_id ) VALUES ( 'person_8309', '{}', 'Jana', '', 'Boone', 'janaboone@gmail.com', '7185644281', '', '{"environment":["silver","lebronze"]}', 'app_83838383', 'event_0916', 'process_8302324' );
+INSERT INTO persons ( person_id, person_attributes, person_name_first, person_name_middle, person_name_last, person_email, person_phone_primary, person_phone_secondary, person_entitlements, app_id, event_id, process_id ) VALUES ( 'person_8309_hanna', '{}', 'Hana', '', 'Boones', 'Hanaboones@gmail.com', '7185644281', '', '{"environment":["silver","lebronze"]}', 'app_83838383', 'event_0916', 'process_8302324' ) RETURNING person_id;
 
 select * from persons order by id desc;
 
@@ -1234,9 +1234,22 @@ select * from persons where person_id = '8301_02132020_0430';
 
 UPDATE persons SET  person_name_first = 'roddy'  person_name_last = 'piper'  person_email = 'rowdyrod@gmail.com'  WHERE person_id = '8301_022320_1428';
 
-UPDATE persons SET  person_email = 'jenny@gmail.com'  WHERE person_id = 'jen14afzGOS';
+/* UPDATE WITH RETURNING */
+update persons
+set
+	person_email = 'line1bczHOL@gmail.com'
+where
+	person_id = 'line1bczHOL'
+returning
+	person_id;
+/* */
 
-select * from persons where person_id = '8301_024320_1300';
+UPDATE persons SET person_name_first = 'art',person_name_last = 'J.'  WHERE person_id = 'arnb2fbzJET' RETURNING person_id;
+
+select * from persons where person_id = '8301_022520_1118';
+select * from persons where person_id = 'line1bczHOL';
+
+SELECT person_id, person_attributes, person_name_first, person_name_middle, person_name_last, person_email, person_phone_primary, person_phone_secondary, person_entitlements FROM persons WHERE person_id = 'line1bczHOL' AND active = 1 ORDER BY time_finished DESC LIMIT 1;
 
 COMMENT ON TABLE persons IS 'Persons records are used as the bedrock for all user data and communications.';
 COMMENT ON COLUMN persons.person_entitlements IS 'Person entitlements in JSON data format (guest,user,profile,partner)';

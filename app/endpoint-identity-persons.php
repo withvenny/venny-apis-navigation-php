@@ -72,7 +72,9 @@
                 $person = new Person($pdo);
 
                 // get all stocks data
-                $persons = $person->selectPersons($request);
+                $results = $person->selectPersons($request);
+
+                $results = json_encode($results);
 
                 echo $persons;
 
