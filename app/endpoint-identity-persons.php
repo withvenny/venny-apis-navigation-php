@@ -95,6 +95,12 @@
                 // insert a stock into the stocks table
                 $id = $person->updatePerson($request);
 
+                $request['id'] = $id;
+
+                $results = $person->selectPersons($request);
+
+                $results = json_encode($results);
+
                 echo 'The record ' . $id . ' has been updated';
             
             } catch (\PDOException $e) {

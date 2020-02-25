@@ -350,8 +350,22 @@
             // update data in the database
             $statement->execute();
 
+            $data = $statement->fetchAll();
+            
+            //echo json_encode($data);
+            //echo json_encode($data);
+            //echo json_encode($data[0]);
+            //echo json_encode($data[0]['person_id']);
+            $data = $data[0]['person_id'];
+
+            return $data;
+
+            // return generated id
+            //return $this->pdo->lastInsertId('persons_sequence');
+            //return $this->pdo->selectPersons('persons_sequence');
+
             // return the number of row affected
-            return $statement->rowCount();
+            //return $statement->rowCount();
             //return $this->pdo->lastInsertId('persons_sequence');
 
         }
