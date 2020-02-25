@@ -76,7 +76,7 @@
 
                 $results = json_encode($results);
 
-                echo $persons;
+                echo $results;
 
             } catch (\PDOException $e) {
 
