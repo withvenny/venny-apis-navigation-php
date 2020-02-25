@@ -174,7 +174,7 @@
                     $sql.= $conditions;
                     $sql.= $subset;
                     
-                    echo $request['id'];
+                    echo json_encode($request['id']);
                     echo '<br/>';
                     echo $sql; exit;
 
