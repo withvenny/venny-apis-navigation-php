@@ -862,7 +862,7 @@
             if(isset($request['bio'])){$values.=":profile_bio,";}
             if(isset($request['headline'])){$values.=":profile_headline,";}
             if(isset($request['access'])){$values.=":profile_access,";}
-            if(isset($request['status'])){$values.=":,";}
+            if(isset($request['status'])){$values.=":profile_status,";}
             if(isset($request['user'])){$values.=":user_id,";}
             $values.= ":app_id,";
             $values.= ":event_id,";
