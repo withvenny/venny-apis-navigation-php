@@ -1259,15 +1259,25 @@ select
 from
 	persons
 where
-	person_name_first 
+	person_name_first ILIKE '%ad%' or
+	person_name_last ILIKE '%ad%' and 
 	active = 1
 ORDER by
 	time_finished desc
+;
+
+select
+	person_id, person_attributes, person_name_first, person_name_middle, person_name_last, person_email, person_phone_primary, person_phone_secondary, person_entitlements
+from
+	persons
+where
+	active = 1
+ORDER by
+	time_finished desc
+OFFSET 
+	0
 limit
-	1;
-
-
-
+	2000;
 
 
 

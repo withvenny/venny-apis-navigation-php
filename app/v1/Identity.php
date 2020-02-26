@@ -189,16 +189,15 @@
                 } else {
 
                     $refinements = "";
-                    if(isset($request['name_first'])) {
-                        $refinements.=
-                            "person_name_first ".
-                            "ILIKE".
-                            "'%".
-                            $request['name_first'].
-                            "%'".
-                            " AND ";
-                    }
-                    
+                    if(isset($request['id'])){$refinements.="person_id"." ILIKE "."'%".$request['id']."%' AND ";}
+                    if(isset($request['attributes'])){$refinements.="person_attributes"." ILIKE "."'%".$request['attributes']."%' AND ";}
+                    if(isset($request['name_first'])){$refinements.="person_name_first"." ILIKE "."'%".$request['name_first']."%' AND ";}
+                    if(isset($request['name_middle'])){$refinements.="person_name_middle"." ILIKE "."'%".$request['name_middle']."%' AND ";}
+                    if(isset($request['name_last'])){$refinements.="person_name_last"." ILIKE "."'%".$request['name_last']."%' AND ";}
+                    if(isset($request['email'])){$refinements.="person_email"." ILIKE "."'%".$request['email']."%' AND ";}
+                    if(isset($request['phone_primary'])){$refinements.="person_phone_primary"." ILIKE "."'%".$request['phone_primary']."%' AND ";}
+                    if(isset($request['phone_secondary'])){$refinements.="person_phone_secondary"." ILIKE "."'%".$request['phone_secondary']."%' AND ";}
+                    if(isset($request['entitlements'])){$refinements.="person_entitlements"." ILIKE "."'%".$request['entitlements']."%' AND ";}
                     $conditions.= " WHERE ";
                     $conditions.= $refinements;
                     $conditions.= " active = 1 ";
