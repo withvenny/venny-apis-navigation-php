@@ -188,6 +188,7 @@
 
                 } else {
 
+                    $conditions = "";
                     $refinements = "";
                     if(isset($request['id'])){$refinements.="person_id"." ILIKE "."'%".$request['id']."%' AND ";}
                     if(isset($request['attributes'])){$refinements.="person_attributes"." ILIKE "."'%".$request['attributes']."%' AND ";}
@@ -199,7 +200,8 @@
                     if(isset($request['phone_secondary'])){$refinements.="person_phone_secondary"." ILIKE "."'%".$request['phone_secondary']."%' AND ";}
                     if(isset($request['entitlements'])){$refinements.="person_entitlements"." ILIKE "."'%".$request['entitlements']."%' AND ";}
                     
-                    echo $refinements; exit;
+                    echo $conditions . 'conditions1<br/>';
+                    echo $refinements . 'refinements1<br/>';
                     
                     $conditions.= " WHERE ";
                     $conditions.= $refinements;
@@ -211,6 +213,9 @@
                     $sql.= "FROM " . $table;
                     $sql.= $conditions;
                     $sql.= $subset;
+
+                    echo $conditions . 'conditions2<br/>';
+                    echo $refinements . 'refinements2<br/>';
 
                     echo $sql; exit;
                     
