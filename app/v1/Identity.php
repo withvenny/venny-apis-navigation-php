@@ -358,16 +358,17 @@
             $statement = $this->pdo->prepare($sql);
     
             // bind values to the statement
-            if(isset($request['id'])){$statement->bindValue(':person_id', $request['person_id']);}
-            if(isset($request['attributes'])){$statement->bindValue(':person_attributes', $request['person_attributes']);}
-            if(isset($request['name_first'])){$statement->bindValue(':person_name_first', $request['person_name_first']);}
-            if(isset($request['name_middle'])){$statement->bindValue(':person_name_middle', $request['person_name_middle']);}
-            if(isset($request['name_last'])){$statement->bindValue(':person_name_last', $request['person_name_last']);}
-            if(isset($request['email'])){$statement->bindValue(':person_email', $request['person_email']);}
-            if(isset($request['phone_primary'])){$statement->bindValue(':person_phone_primary', $request['person_phone_primary']);}
-            if(isset($request['phone_secondary'])){$statement->bindValue(':person_phone_secondary', $request['person_phone_secondary']);}
-            if(isset($request['entitlements'])){$statement->bindValue(':person_entitlements', $request['person_entitlements']);}
-            $statement->bindValue(':id', $id);
+            //if(isset($request['id'])){$statement->bindValue(':person_id', $request['person_id']);}
+            if(isset($request['id'])){$statement->bindValue(':person_id', $request['id']);}
+if(isset($request['attributes'])){$statement->bindValue(':person_attributes', $request['attributes']);}
+if(isset($request['name_first'])){$statement->bindValue(':person_name_first', $request['name_first']);}
+if(isset($request['name_middle'])){$statement->bindValue(':person_name_middle', $request['name_middle']);}
+if(isset($request['name_last'])){$statement->bindValue(':person_name_last', $request['name_last']);}
+if(isset($request['email'])){$statement->bindValue(':person_email', $request['email']);}
+if(isset($request['phone_primary'])){$statement->bindValue(':person_phone_primary', $request['phone_primary']);}
+if(isset($request['phone_secondary'])){$statement->bindValue(':person_phone_secondary', $request['phone_secondary']);}
+if(isset($request['entitlements'])){$statement->bindValue(':person_entitlements', $request['entitlements']);}
+$statement->bindValue(':id', $id);
 
             // update data in the database
             $statement->execute();
