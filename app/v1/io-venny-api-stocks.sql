@@ -1300,17 +1300,18 @@ time_started	TIMESTAMP	NOT NULL DEFAULT NOW(),
 time_updated	TIMESTAMP	NOT NULL DEFAULT NOW(),
 time_finished	TIMESTAMP	NOT NULL DEFAULT NOW(),
 active	INT	NOT NULL DEFAULT 1
-);		
+);
 CREATE SEQUENCE users_sequence;		
 ALTER SEQUENCE users_sequence RESTART WITH 8301;		
 ALTER TABLE users ALTER COLUMN ID SET DEFAULT nextval('users_sequence');		
 ALTER TABLE users ADD FOREIGN KEY (person_id) REFERENCES persons(person_id);		
 ALTER TABLE users ADD FOREIGN KEY (app_id) REFERENCES apps(app_id);		
-SELECT * FROM users;	
+SELECT * FROM users;
 DROP TABLE users;
 INSERT INTO users (user_ID,user_attributes,user_alias,user_password,user_lastlogin,user_status,user_validation,user_salt,user_welcome,person_id,app_id,event_ID,process_ID)		
  VALUES ('30 characters','{}','255 characters','255 characters','255 characters','30 characters','255 characters',E'\xDE\xAD\xBE\xEF','{}','30 characters','30 characters','30 characters','30 characters');
 SELECT * FROM users;
+select * from persons where person_name_first ilike '%adolphus%';
 
 CREATE TABLE IF NOT EXISTS	bytea	(
 user_alias	VARCHAR(255)	NULL,
@@ -1352,3 +1353,53 @@ SELECT id
  WHERE email = 'johndoe@mail.com' 
    AND password = crypt('wrongpassword', password);
 
+
+  
+/* USERS */
+ SELECT user_id
+  FROM users
+ WHERE user_alias = 'sonofadolphus' 
+   AND user_access = crypt('B1@thering!', user_access);
+
+drop table users;
+CREATE TABLE IF NOT EXISTS	users	(
+ID	SERIAL	,
+user_ID	VARCHAR(30)	NOT NULL UNIQUE,
+user_attributes	JSON	NULL,
+user_alias	VARCHAR(255)	NOT NULL UNIQUE,
+user_access	TEXT	NOT NULL,
+user_lastlogin	TIMESTAMP	NULL,
+user_status	INT	NULL,
+user_validation	VARCHAR(255)	NULL,
+user_welcome	JSON	NULL,
+person_id	VARCHAR(30)	NOT NULL,
+app_id	VARCHAR(30)	NOT NULL,
+event_id	VARCHAR(30)	NOT NULL,
+process_id	VARCHAR(30)	NOT NULL,
+time_started	TIMESTAMP	NOT NULL DEFAULT NOW(),
+time_updated	TIMESTAMP	NOT NULL DEFAULT NOW(),
+time_finished	TIMESTAMP	NOT NULL DEFAULT NOW(),
+active	INT	NOT NULL DEFAULT 1
+);
+CREATE SEQUENCE users_sequence;	
+ALTER SEQUENCE users_sequence RESTART WITH 8301;		
+ALTER TABLE users ALTER COLUMN ID SET DEFAULT nextval('users_sequence');		
+ALTER TABLE users ADD FOREIGN KEY (person_id) REFERENCES persons(person_id);
+
+/* https://x-team.com/blog/storing-secure-passwords-with-postgresql/ */
+
+CREATE EXTENSION pgcrypto;
+
+INSERT INTO folks (email, password) VALUES (
+  'johndoe@mail.com',
+  crypt('johnspassword', gen_salt('bf'))
+);
+
+/* USERS */
+ SELECT user_id
+  FROM users
+ WHERE user_alias = 'sonofadolphus' 
+   AND user_access = crypt('B1@thering!', user_access);
+   
+  
+  

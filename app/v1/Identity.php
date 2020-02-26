@@ -542,11 +542,10 @@
                 user_ID,		
                 user_attributes,		
                 user_alias,		
-                user_password,		
+                user_access,		
                 user_lastlogin,		
                 user_status,		
                 user_validation,		
-                user_salt,		
                 user_welcome	
 
                 ";
@@ -599,7 +598,7 @@
                     if(isset($request['id'])){$refinements.="user_id"." ILIKE "."'%".$request['id']."%' AND ";}		
                     if(isset($request['attributes'])){$refinements.="user_attributes"." ILIKE "."'%".$request['attributes']."%' AND ";}		
                     if(isset($request['alias'])){$refinements.="user_alias"." ILIKE "."'%".$request['alias']."%' AND ";}		
-                    if(isset($request['password'])){$refinements.="user_password"." ILIKE "."'%".$request['password']."%' AND ";}		
+                    if(isset($request['access'])){$refinements.="user_access"." ILIKE "."'%".$request['access']."%' AND ";}		
                     if(isset($request['lastlogin'])){$refinements.="user_lastlogin"." ILIKE "."'%".$request['lastlogin']."%' AND ";}		
                     if(isset($request['status'])){$refinements.="user_status"." ILIKE "."'%".$request['status']."%' AND ";}		
                     if(isset($request['validation'])){$refinements.="user_validation"." ILIKE "."'%".$request['validation']."%' AND ";}		
@@ -655,7 +654,7 @@
                             'id' => $row['user_id'],
                             'attributes' => json_encode($row['user_attributes']),
                             'alias' => $row['user_alias'],
-                            'password' => $row['user_password'],
+                            'access' => $row['user_access'],
                             'lastlogin' => $row['user_lastlogin'],
                             'status' => $row['user_status'],
                             'validation' => $row['user_validation'],
@@ -726,11 +725,10 @@
             if(isset($request['id'])){$set.= " user_id = :user_id ";}		
             if(isset($request['attributes'])){$set.= " user_attributes = :user_attributes ";}		
             if(isset($request['alias'])){$set.= " user_alias = :user_alias ";}		
-            if(isset($request['password'])){$set.= " user_password = :user_password ";}		
+            if(isset($request['access'])){$set.= " user_access = :user_access ";}		
             if(isset($request['lastlogin'])){$set.= " user_lastlogin = :user_lastlogin ";}		
             if(isset($request['status'])){$set.= " user_status = :user_status ";}		
             if(isset($request['validation'])){$set.= " user_validation = :user_validation ";}		
-            if(isset($request['salt'])){$set.= " user_salt = :user_salt ";}		
             if(isset($request['welcome'])){$set.= " user_welcome = :user_welcome ";}
             //
             $set = str_replace('  ',',',$set);
@@ -765,11 +763,10 @@
             if(isset($request['id'])){$statement->bindValue(':user_id', $request['id']);}
             if(isset($request['attributes'])){$statement->bindValue(':user_attributes', $request['attributes']);}
             if(isset($request['alias'])){$statement->bindValue(':user_alias', $request['alias']);}
-            if(isset($request['password'])){$statement->bindValue(':user_password', $request['password']);}
+            if(isset($request['access'])){$statement->bindValue(':user_access', $request['access']);}
             if(isset($request['lastlogin'])){$statement->bindValue(':user_lastlogin', $request['lastlogin']);}
             if(isset($request['status'])){$statement->bindValue(':user_status', $request['status']);}
             if(isset($request['validation'])){$statement->bindValue(':user_validation', $request['validation']);}
-            if(isset($request['salt'])){$statement->bindValue(':user_salt', $request['salt']);}
             if(isset($request['welcome'])){$statement->bindValue(':user_welcome', $request['welcome']);}
             $statement->bindValue(':id', $id);
 
