@@ -1413,7 +1413,8 @@ profile_attributes	JSON	NULL,
 profile_images	JSON	NULL,
 profile_bio	VARCHAR(255)	NULL,
 profile_headline	VARCHAR(255)	NULL,
-profile_access	INT	NOT NULL,
+profile_access	VARCHAR(30)	NOT NULL,
+profile_status	VARCHAR(30)	NOT NULL,
 user_id	VARCHAR(30)	NOT NULL,
 app_id	VARCHAR(30)	NOT NULL,
 event_id	VARCHAR(30)	NOT NULL,
@@ -1429,7 +1430,7 @@ ALTER TABLE profiles ALTER COLUMN ID SET DEFAULT nextval('profiles_sequence');
 ALTER TABLE profiles ADD FOREIGN KEY (user_id) REFERENCES users(user_id);		
 ALTER TABLE profiles ADD FOREIGN KEY (app_id) REFERENCES apps(app_id);		
 SELECT * FROM profiles;
-DROP TABLE profiles;	
+DROP TABLE profiles;
 INSERT INTO profiles (profile_ID,profile_attributes,profile_images,profile_bio,profile_headline,profile_access,user_id,app_id,event_ID,process_ID)		
  VALUES ('30 characters','{}','{}','255 characters','255 characters','1','30 characters','30 characters','30 characters','30 characters');		
 SELECT * FROM profiles;		  

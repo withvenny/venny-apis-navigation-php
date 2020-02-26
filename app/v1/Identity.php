@@ -937,7 +937,8 @@
                 profile_images,
                 profile_bio,
                 profile_headline,
-                profile_access
+                profile_access,
+                profile_status
 
                 ";
 
