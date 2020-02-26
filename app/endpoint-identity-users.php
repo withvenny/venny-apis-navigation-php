@@ -72,7 +72,7 @@
                 $user = new User($pdo);
 
                 // get all stocks data
-                $results = $user->selecUsers($request);
+                $results = $user->selectUsers($request);
 
                 $results = json_encode($results);
 
@@ -122,7 +122,7 @@
                 $user = new User($pdo);
             
                 // insert a stock into the stocks table
-                $id = $user->deletUser($request);
+                $id = $user->deleteUser($request);
 
                 echo 'The record ' . $id . ' has been deleted';
             
