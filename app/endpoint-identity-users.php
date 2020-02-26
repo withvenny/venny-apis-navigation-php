@@ -99,7 +99,7 @@
 
                 $request['id'] = $id;
 
-                $results = $user->selecUsers($request);
+                $results = $user->selectUsers($request);
 
                 $results = json_encode($results);
 
