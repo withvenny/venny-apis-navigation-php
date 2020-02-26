@@ -444,28 +444,28 @@
         public function insertUser($request) {
 
             $columns = "";
+            if(isset($request['access'])){$columns.="user_access,";}
+
             if(isset($request['id'])){$columns.="user_id,";}		
             if(isset($request['attributes'])){$columns.="user_attributes,";}		
             if(isset($request['alias'])){$columns.="user_alias,";}		
-            if(isset($request['password'])){$columns.="user_password,";}		
             if(isset($request['lastlogin'])){$columns.="user_lastlogin,";}		
             if(isset($request['status'])){$columns.="user_status,";}		
             if(isset($request['validation'])){$columns.="user_validation,";}		
-            if(isset($request['salt'])){$columns.="user_salt,";}		
             if(isset($request['welcome'])){$columns.="user_welcome,";}		
             $columns.= "app_id,";
             $columns.= "event_id,";
             $columns.= "process_id";
 
             $values = "";
+            //if(isset($request['access'])){$values.=":user_access,";}		
+
             if(isset($request['id'])){$values.=":user_id,";}		
             if(isset($request['attributes'])){$values.=":user_attributes,";}		
             if(isset($request['alias'])){$values.=":user_alias,";}		
-            if(isset($request['password'])){$values.=":user_password,";}		
             if(isset($request['lastlogin'])){$values.=":user_lastlogin,";}		
             if(isset($request['status'])){$values.=":user_status,";}		
             if(isset($request['validation'])){$values.=":user_validation,";}		
-            if(isset($request['salt'])){$values.=":user_salt,";}		
             if(isset($request['welcome'])){$values.=":user_welcome,";}		
             $values.= ":app_id,";
             $values.= ":event_id,";
@@ -475,9 +475,12 @@
             $sql = "INSERT INTO {$request['domain']} (";
             $sql.= $columns;
             $sql.= ") VALUES (";
+            $sql.= "crypt('".$request['access']."', gen_salt('bf'))";
             $sql.= $values;
             $sql.= ")";
             $sql.= " RETURNING " . prefixed($request['domain']) . "_id";
+
+            echo $sql;exit;
     
             //
             $statement = $this->pdo->prepare($sql);
@@ -486,11 +489,10 @@
             if(isset($request['id'])){$statement->bindValue('user_id',$request['id']);}		
             if(isset($request['attributes'])){$statement->bindValue('user_attributes',$request['attributes']);}		
             if(isset($request['alias'])){$statement->bindValue('user_alias',$request['alias']);}		
-            if(isset($request['password'])){$statement->bindValue('user_password',$request['password']);}		
+            if(isset($request['access'])){$statement->bindValue('user_access',$request['access']);}		
             if(isset($request['lastlogin'])){$statement->bindValue('user_lastlogin',$request['lastlogin']);}		
             if(isset($request['status'])){$statement->bindValue('user_status',$request['status']);}		
             if(isset($request['validation'])){$statement->bindValue('user_validation',$request['validation']);}		
-            if(isset($request['salt'])){$statement->bindValue('user_salt',$request['salt']);}		
             if(isset($request['welcome'])){$statement->bindValue('user_welcome',$request['welcome']);}		
             if(isset($request[''])){$statement->bindValue('',$request['']);}		
             if(isset($request[''])){$statement->bindValue('',$request['']);}		
