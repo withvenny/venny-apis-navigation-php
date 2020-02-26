@@ -20,6 +20,7 @@
 
                 //
                 case 'persons': require 'endpoint-identity-persons.php'; break;
+                case 'users': require 'endpoint-identity-users.php'; break;
 
                 //
                 default: header("Location: template-guest-hello.php");
