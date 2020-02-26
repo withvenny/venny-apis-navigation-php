@@ -1246,7 +1246,7 @@ returning
 
 UPDATE persons SET person_name_first = 'art',person_name_last = 'J.'  WHERE person_id = 'arnb2fbzJET' RETURNING person_id;
 
-select * from persons where person_id = '8301_022520_1118';
+select * from persons where person_id = 'jan9065zMUR';
 select * from persons where person_id = '8301_022520_1420';
 
 SELECT person_id, person_attributes, person_name_first, person_name_middle, person_name_last, person_email, person_phone_primary, person_phone_secondary, person_entitlements FROM persons WHERE person_id = 'line1bczHOL' AND active = 1 ORDER BY time_finished DESC LIMIT 1;
@@ -1279,6 +1279,8 @@ OFFSET
 limit
 	2000;
 
+SELECT person_id, person_attributes, person_name_first, person_name_middle, person_name_last, person_email, person_phone_primary, person_phone_secondary, person_entitlements FROM persons WHERE person_name_first ilike '%j%' AND active = 1 ORDER BY time_finished DESC OFFSET 0 LIMIT 1000;
+SELECT person_id, person_attributes, person_name_first, person_name_middle, person_name_last, person_email, person_phone_primary, person_phone_secondary, person_entitlements FROM persons WHERE person_name_first ILIKE '%a%' AND person_name_last ILIKE '%l%' AND person_email ILIKE '%@%' AND active = 1 ORDER BY time_finished DESC OFFSET 0 LIMIT 100;
 
 
 
