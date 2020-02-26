@@ -872,7 +872,6 @@
             $sql = "INSERT INTO {$request['domain']} (";
             $sql.= $columns;
             $sql.= ") VALUES (";
-            $sql.= "crypt('".$request['access']."', gen_salt('bf')),"; // custom case
             $sql.= $values;
             $sql.= ")";
             $sql.= " RETURNING " . prefixed($request['domain']) . "_id";
