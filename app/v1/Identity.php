@@ -652,14 +652,13 @@
                         $data[] = [
 
                             'id' => $row['user_id'],
-                            'attributes' => json_encode($row['user_attributes']),
+                            'attributes' => json_decode($row['user_attributes']),
                             'alias' => $row['user_alias'],
-                            'access' => $row['user_access'],
+                            //'access' => $row['user_access'], // do not display user_access dummy
                             'lastlogin' => $row['user_lastlogin'],
                             'status' => $row['user_status'],
                             'validation' => $row['user_validation'],
-                            'salt' => $row['user_salt'],
-                            'welcome' => json_encode($row['user_welcome'])
+                            'welcome' => json_decode($row['user_welcome'])
 
                         ];
 
