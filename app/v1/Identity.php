@@ -453,6 +453,7 @@
             if(isset($request['status'])){$columns.="user_status,";}		
             if(isset($request['validation'])){$columns.="user_validation,";}		
             if(isset($request['welcome'])){$columns.="user_welcome,";}		
+            if(isset($request['person'])){$columns.="person_id,";}		
             $columns.= "app_id,";
             $columns.= "event_id,";
             $columns.= "process_id";
@@ -467,6 +468,7 @@
             if(isset($request['status'])){$values.=":user_status,";}		
             if(isset($request['validation'])){$values.=":user_validation,";}		
             if(isset($request['welcome'])){$values.=":user_welcome,";}		
+            if(isset($request['person'])){$values.=":person_id,";}		
             $values.= ":app_id,";
             $values.= ":event_id,";
             $values.= ":process_id";
@@ -494,6 +496,7 @@
             if(isset($request['status'])){$statement->bindValue('user_status',$request['status']);}		
             if(isset($request['validation'])){$statement->bindValue('user_validation',$request['validation']);}		
             if(isset($request['welcome'])){$statement->bindValue('user_welcome',$request['welcome']);}		
+            if(isset($request['person'])){$statement->bindValue('person_id',$request['person']);}	
             $statement->bindValue(':app_id', $request['app']);
             $statement->bindValue(':event_id', $this->token->event_id());
             $statement->bindValue(':process_id', $this->token->process_id());
@@ -503,17 +506,10 @@
 
             $data = $statement->fetchAll();
             
-            //echo json_encode($data);
-            //echo json_encode($data);
-            //echo json_encode($data[0]);
-            //echo json_encode($data[0]['person_id']);
-            $data = $data[0]['user_id'];
-
-            return $data;
+            $data = $data[0]['0'];
 
             // return generated id
-            //return $this->pdo->lastInsertId('persons_sequence');
-            //return $this->pdo->selectPersons('persons_sequence');
+            return $data;
         
         }
 
