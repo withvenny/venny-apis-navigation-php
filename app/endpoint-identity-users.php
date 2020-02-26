@@ -20,11 +20,10 @@
     if(isset($_REQUEST['id'])){$request['id'] = clean($_REQUEST['id']);}		
     if(isset($_REQUEST['attributes'])){$request['attributes'] = clean($_REQUEST['attributes']);}		
     if(isset($_REQUEST['alias'])){$request['alias'] = clean($_REQUEST['alias']);}		
-    if(isset($_REQUEST['password'])){$request['password'] = clean($_REQUEST['password']);}		
+    if(isset($_REQUEST['access'])){$request['access'] = clean($_REQUEST['access']);}		
     if(isset($_REQUEST['lastlogin'])){$request['lastlogin'] = clean($_REQUEST['lastlogin']);}		
     if(isset($_REQUEST['status'])){$request['status'] = clean($_REQUEST['status']);}		
     if(isset($_REQUEST['validation'])){$request['validation'] = clean($_REQUEST['validation']);}		
-    if(isset($_REQUEST['salt'])){$request['salt'] = clean($_REQUEST['salt']);}		
     if(isset($_REQUEST['welcome'])){$request['welcome'] = clean($_REQUEST['welcome']);}		
 
     //
