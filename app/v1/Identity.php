@@ -35,6 +35,9 @@
          */
         public function insertPerson($request) {
 
+            //generate ID
+            if(!isset($request['id'])){$request['id'] = $this->token->generate_id();}
+
             $columns = "";
             if(isset($request['id'])){$columns.="person_id,";}
             if(isset($request['attributes'])){$columns.="person_attributes,";}
@@ -441,10 +444,14 @@
          * @param type $company
          * @return the id of the inserted row
          */
-        public function insertProfile($request) {
+        public function insertUser($request) {
+
+            //generate ID
+            if(!isset($request['id'])){$request['id'] = $this->token->generate_id();}
+
 
             $columns = "";
-            if(isset($request['access'])){$columns.="user_access,";}
+            if(isset($request['authorize'])){$columns.="user_authorize,";}
 
             if(isset($request['id'])){$columns.="user_id,";}		
             if(isset($request['attributes'])){$columns.="user_attributes,";}		
@@ -459,7 +466,7 @@
             $columns.= "process_id";
 
             $values = "";
-            //if(isset($request['access'])){$values.=":user_access,";}		
+            //if(isset($request['authorize'])){$values.=":user_authorize,";}		
 
             if(isset($request['id'])){$values.=":user_id,";}		
             if(isset($request['attributes'])){$values.=":user_attributes,";}		
@@ -477,7 +484,7 @@
             $sql = "INSERT INTO {$request['domain']} (";
             $sql.= $columns;
             $sql.= ") VALUES (";
-            $sql.= "crypt('".$request['access']."', gen_salt('bf')),"; // custom case
+            $sql.= "crypt('".$request['authorize']."', gen_salt('bf')),"; // custom case
             $sql.= $values;
             $sql.= ")";
             $sql.= " RETURNING " . prefixed($request['domain']) . "_id";
@@ -491,7 +498,7 @@
             if(isset($request['id'])){$statement->bindValue('user_id',$request['id']);}		
             if(isset($request['attributes'])){$statement->bindValue('user_attributes',$request['attributes']);}		
             if(isset($request['alias'])){$statement->bindValue('user_alias',$request['alias']);}		
-            //if(isset($request['access'])){$statement->bindValue('user_access',$request['access']);}		
+            //if(isset($request['authorize'])){$statement->bindValue('user_authorize',$request['authorize']);}		
             if(isset($request['lastlogin'])){$statement->bindValue('user_lastlogin',$request['lastlogin']);}		
             if(isset($request['status'])){$statement->bindValue('user_status',$request['status']);}		
             if(isset($request['validation'])){$statement->bindValue('user_validation',$request['validation']);}		
@@ -542,7 +549,7 @@
                 user_ID,		
                 user_attributes,		
                 user_alias,		
-                user_access,		
+                user_authorize,		
                 user_lastlogin,		
                 user_status,		
                 user_validation,		
@@ -598,7 +605,7 @@
                     if(isset($request['id'])){$refinements.="user_id"." ILIKE "."'%".$request['id']."%' AND ";}		
                     //if(isset($request['attributes'])){$refinements.="user_attributes"." ILIKE "."'%".$request['attributes']."%' AND ";}		
                     if(isset($request['alias'])){$refinements.="user_alias"." ILIKE "."'%".$request['alias']."%' AND ";}		
-                    //if(isset($request['access'])){$refinements.="user_access"." ILIKE "."'%".$request['access']."%' AND ";}		
+                    //if(isset($request['authorize'])){$refinements.="user_authorize"." ILIKE "."'%".$request['authorize']."%' AND ";}		
                     if(isset($request['lastlogin'])){$refinements.="user_lastlogin"." ILIKE "."'%".$request['lastlogin']."%' AND ";}		
                     if(isset($request['status'])){$refinements.="user_status"." ILIKE "."'%".$request['status']."%' AND ";}		
                     //if(isset($request['validation'])){$refinements.="user_validation"." ILIKE "."'%".$request['validation']."%' AND ";}		
@@ -653,7 +660,7 @@
                             'id' => $row['user_id'],
                             'attributes' => json_decode($row['user_attributes']),
                             'alias' => $row['user_alias'],
-                            //'access' => $row['user_access'], // do not display user_access dummy
+                            //'authorize' => $row['user_authorize'], // do not display user_authorize dummy
                             'lastlogin' => $row['user_lastlogin'],
                             'status' => $row['user_status'],
                             'validation' => $row['user_validation'],
@@ -723,7 +730,7 @@
             if(isset($request['id'])){$set.= " user_id = :user_id ";}		
             if(isset($request['attributes'])){$set.= " user_attributes = :user_attributes ";}		
             if(isset($request['alias'])){$set.= " user_alias = :user_alias ";}		
-            if(isset($request['access'])){$set.= " user_access = :user_access ";}		
+            if(isset($request['authorize'])){$set.= " user_authorize = :user_authorize ";}		
             if(isset($request['lastlogin'])){$set.= " user_lastlogin = :user_lastlogin ";}		
             if(isset($request['status'])){$set.= " user_status = :user_status ";}		
             if(isset($request['validation'])){$set.= " user_validation = :user_validation ";}		
@@ -761,7 +768,7 @@
             if(isset($request['id'])){$statement->bindValue(':user_id', $request['id']);}
             if(isset($request['attributes'])){$statement->bindValue(':user_attributes', $request['attributes']);}
             if(isset($request['alias'])){$statement->bindValue(':user_alias', $request['alias']);}
-            if(isset($request['access'])){$statement->bindValue(':user_access', $request['access']);}
+            if(isset($request['authorize'])){$statement->bindValue(':user_authorize', $request['authorize']);}
             if(isset($request['lastlogin'])){$statement->bindValue(':user_lastlogin', $request['lastlogin']);}
             if(isset($request['status'])){$statement->bindValue(':user_status', $request['status']);}
             if(isset($request['validation'])){$statement->bindValue(':user_validation', $request['validation']);}
@@ -841,6 +848,9 @@
          * @return the id of the inserted row
          */
         public function insertProfile($request) {
+
+            //generate ID
+            if(!isset($request['id'])){$request['id'] = $this->token->generate_id();}
 
             $columns = "";
             if(isset($request['id'])){$columns.="profile_id,";}

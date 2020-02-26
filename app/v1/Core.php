@@ -140,6 +140,19 @@
 
         }
 
+        //
+        public function generate_id() {
+
+            //
+            $id = substr(md5(uniqid(microtime(true),true)),0,13);
+    
+            //
+            return $id;
+            
+            //exit;
+
+        }
+
         /**
          * Find stock by id
          * @param int $id
