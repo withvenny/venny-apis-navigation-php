@@ -888,7 +888,7 @@
             if(isset($request['bio'])){$statement->bindValue('profile_bio',$request['bio']);}
             if(isset($request['headline'])){$statement->bindValue('profile_headline',$request['headline']);}
             if(isset($request['access'])){$statement->bindValue('profile_access',$request['access']);}
-            if(isset($request['status'])){$statement->bindValue('',$request['status']);}
+            if(isset($request['status'])){$statement->bindValue('profile_status',$request['status']);}
             if(isset($request['user'])){$statement->bindValue('user_id',$request['user']);}
             $statement->bindValue(':app_id', $request['app']);
             $statement->bindValue(':event_id', $this->token->event_id());
@@ -992,7 +992,7 @@
                     if(isset($request['bio'])){$refinements.="profile_bio"." ILIKE "."'%".$request['bio']."%' AND ";}
                     if(isset($request['headline'])){$refinements.="profile_headline"." ILIKE "."'%".$request['headline']."%' AND ";}
                     if(isset($request['access'])){$refinements.="profile_access"." ILIKE "."'%".$request['access']."%' AND ";}
-                    if(isset($request['status'])){$refinements.=""." ILIKE "."'%".$request['status']."%' AND ";}
+                    if(isset($request['status'])){$refinements.="profile_status"." ILIKE "."'%".$request['status']."%' AND ";}
                     //echo $conditions . 'conditions1<br/>';
                     //echo $refinements . 'refinements1<br/>';
                     
