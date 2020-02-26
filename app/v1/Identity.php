@@ -198,6 +198,9 @@
                     if(isset($request['phone_primary'])){$refinements.="person_phone_primary"." ILIKE "."'%".$request['phone_primary']."%' AND ";}
                     if(isset($request['phone_secondary'])){$refinements.="person_phone_secondary"." ILIKE "."'%".$request['phone_secondary']."%' AND ";}
                     if(isset($request['entitlements'])){$refinements.="person_entitlements"." ILIKE "."'%".$request['entitlements']."%' AND ";}
+                    
+                    echo $refinements; exit;
+                    
                     $conditions.= " WHERE ";
                     $conditions.= $refinements;
                     $conditions.= " active = 1 ";
