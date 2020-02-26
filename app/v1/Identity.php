@@ -475,7 +475,7 @@
             $sql = "INSERT INTO {$request['domain']} (";
             $sql.= $columns;
             $sql.= ") VALUES (";
-            $sql.= "crypt('".$request['access']."', gen_salt('bf'))";
+            $sql.= "crypt('".$request['access']."', gen_salt('bf'))"; // custom case
             $sql.= $values;
             $sql.= ")";
             $sql.= " RETURNING " . prefixed($request['domain']) . "_id";
@@ -489,14 +489,11 @@
             if(isset($request['id'])){$statement->bindValue('user_id',$request['id']);}		
             if(isset($request['attributes'])){$statement->bindValue('user_attributes',$request['attributes']);}		
             if(isset($request['alias'])){$statement->bindValue('user_alias',$request['alias']);}		
-            if(isset($request['access'])){$statement->bindValue('user_access',$request['access']);}		
+            //if(isset($request['access'])){$statement->bindValue('user_access',$request['access']);}		
             if(isset($request['lastlogin'])){$statement->bindValue('user_lastlogin',$request['lastlogin']);}		
             if(isset($request['status'])){$statement->bindValue('user_status',$request['status']);}		
             if(isset($request['validation'])){$statement->bindValue('user_validation',$request['validation']);}		
             if(isset($request['welcome'])){$statement->bindValue('user_welcome',$request['welcome']);}		
-            if(isset($request[''])){$statement->bindValue('',$request['']);}		
-            if(isset($request[''])){$statement->bindValue('',$request['']);}		
-            if(isset($request[''])){$statement->bindValue('',$request['']);}		
             $statement->bindValue(':app_id', $request['app']);
             $statement->bindValue(':event_id', $this->token->event_id());
             $statement->bindValue(':process_id', $this->token->process_id());
@@ -510,7 +507,7 @@
             //echo json_encode($data);
             //echo json_encode($data[0]);
             //echo json_encode($data[0]['person_id']);
-            $data = $data[0]['person_id'];
+            $data = $data[0]['user_id'];
 
             return $data;
 
