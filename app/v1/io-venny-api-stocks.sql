@@ -1384,8 +1384,10 @@ active	INT	NOT NULL DEFAULT 1
 CREATE SEQUENCE users_sequence;	
 ALTER SEQUENCE users_sequence RESTART WITH 8301;		
 ALTER TABLE users ALTER COLUMN ID SET DEFAULT nextval('users_sequence');		
+ALTER TABLE users MODIFY COLUMN user_status SET DEFAULT nextval('users_sequence');		
+ALTER TABLE users ALTER COLUMN user_status TYPE VARCHAR(30);
 ALTER TABLE users ADD FOREIGN KEY (person_id) REFERENCES persons(person_id);
-
+select * from users;
 /* https://x-team.com/blog/storing-secure-passwords-with-postgresql/ */
 
 CREATE EXTENSION pgcrypto;
@@ -1401,5 +1403,33 @@ INSERT INTO folks (email, password) VALUES (
  WHERE user_alias = 'sonofadolphus' 
    AND user_access = crypt('B1@thering!', user_access);
    
-  
-  
+ select * from users;
+
+/* PROFILES */
+CREATE TABLE IF NOT EXISTS	profiles	(
+ID	SERIAL	,
+profile_ID	VARCHAR(30)	NOT NULL UNIQUE,
+profile_attributes	JSON	NULL,
+profile_images	JSON	NULL,
+profile_bio	VARCHAR(255)	NULL,
+profile_headline	VARCHAR(255)	NULL,
+profile_access	INT	NOT NULL,
+user_id	VARCHAR(30)	NOT NULL,
+app_id	VARCHAR(30)	NOT NULL,
+event_id	VARCHAR(30)	NOT NULL,
+process_id	VARCHAR(30)	NOT NULL,
+time_started	TIMESTAMP	NOT NULL DEFAULT NOW(),
+time_updated	TIMESTAMP	NOT NULL DEFAULT NOW(),
+time_finished	TIMESTAMP	NOT NULL DEFAULT NOW(),
+active	INT	NOT NULL DEFAULT 1
+);		
+CREATE SEQUENCE profiles_sequence;		
+ALTER SEQUENCE profiles_sequence RESTART WITH 8301;		
+ALTER TABLE profiles ALTER COLUMN ID SET DEFAULT nextval('profiles_sequence');		
+ALTER TABLE profiles ADD FOREIGN KEY (user_id) REFERENCES users(user_id);		
+ALTER TABLE profiles ADD FOREIGN KEY (app_id) REFERENCES apps(app_id);		
+SELECT * FROM profiles;
+DROP TABLE profiles;	
+INSERT INTO profiles (profile_ID,profile_attributes,profile_images,profile_bio,profile_headline,profile_access,user_id,app_id,event_ID,process_ID)		
+ VALUES ('30 characters','{}','{}','255 characters','255 characters','1','30 characters','30 characters','30 characters','30 characters');		
+SELECT * FROM profiles;		  

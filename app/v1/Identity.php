@@ -441,7 +441,7 @@
          * @param type $company
          * @return the id of the inserted row
          */
-        public function insertUser($request) {
+        public function insertProfile($request) {
 
             $columns = "";
             if(isset($request['access'])){$columns.="user_access,";}
@@ -596,14 +596,13 @@
                     $conditions = "";
                     $refinements = "";
                     if(isset($request['id'])){$refinements.="user_id"." ILIKE "."'%".$request['id']."%' AND ";}		
-                    if(isset($request['attributes'])){$refinements.="user_attributes"." ILIKE "."'%".$request['attributes']."%' AND ";}		
+                    //if(isset($request['attributes'])){$refinements.="user_attributes"." ILIKE "."'%".$request['attributes']."%' AND ";}		
                     if(isset($request['alias'])){$refinements.="user_alias"." ILIKE "."'%".$request['alias']."%' AND ";}		
-                    if(isset($request['access'])){$refinements.="user_access"." ILIKE "."'%".$request['access']."%' AND ";}		
+                    //if(isset($request['access'])){$refinements.="user_access"." ILIKE "."'%".$request['access']."%' AND ";}		
                     if(isset($request['lastlogin'])){$refinements.="user_lastlogin"." ILIKE "."'%".$request['lastlogin']."%' AND ";}		
                     if(isset($request['status'])){$refinements.="user_status"." ILIKE "."'%".$request['status']."%' AND ";}		
-                    if(isset($request['validation'])){$refinements.="user_validation"." ILIKE "."'%".$request['validation']."%' AND ";}		
-                    if(isset($request['salt'])){$refinements.="user_salt"." ILIKE "."'%".$request['salt']."%' AND ";}		
-                    if(isset($request['welcome'])){$refinements.="user_welcome"." ILIKE "."'%".$request['welcome']."%' AND ";}                    
+                    //if(isset($request['validation'])){$refinements.="user_validation"." ILIKE "."'%".$request['validation']."%' AND ";}		
+                    //if(isset($request['welcome'])){$refinements.="user_welcome"." ILIKE "."'%".$request['welcome']."%' AND ";}                    
                     //echo $conditions . 'conditions1<br/>';
                     //echo $refinements . 'refinements1<br/>';
                     
@@ -790,6 +789,395 @@
          * @return the number row deleted
          */
         public function deleteUser($request) {
+
+            $id = $request['id'];
+            $domain = $request['domain'];
+            $column = prefixed($domain) . '_id';
+            $sql = 'DELETE FROM ' . $domain . ' WHERE '.$column.' = :id';
+            //echo $id; //exit
+            //echo $column; //exit;
+            //echo $domain; //exit;
+            //echo $sql; //exit
+
+            $statement = $this->pdo->prepare($sql);
+            //$statement->bindParam(':column', $column);
+            $statement->bindValue(':id', $id);
+            $statement->execute();
+            return $statement->rowCount();
+
+        }
+
+    }
+
+        /**
+     * Represent the table data insertion
+     */
+    class Profile {
+
+        /**
+         * PDO object
+         * @var \PDO
+         */
+        private $pdo;
+    
+        /**
+         * init the object with a \PDO object
+         * @param type $pdo
+         */
+        public function __construct($pdo) {
+
+            //
+            $this->pdo = $pdo;
+
+            //
+            $this->token = new \Core\Token($this->pdo);
+
+        }
+
+        /**
+         * insert a new row into the stocks table
+         * @param type $symbol
+         * @param type $company
+         * @return the id of the inserted row
+         */
+        public function insertProfile($request) {
+
+            $columns = "";
+            if(isset($request['id'])){$columns.="profile_id,";}
+            if(isset($request['attributes'])){$columns.="profile_attributes,";}
+            if(isset($request['images'])){$columns.="profile_images,";}
+            if(isset($request['bio'])){$columns.="profile_bio,";}
+            if(isset($request['headline'])){$columns.="profile_headline,";}
+            if(isset($request['access'])){$columns.="profile_access,";}
+            if(isset($request['status'])){$columns.="profile_status,";}
+            if(isset($request['user'])){$columns.="user_id,";}
+            $columns.= "app_id,";
+            $columns.= "event_id,";
+            $columns.= "process_id";
+
+            $values = "";
+            if(isset($request['id'])){$values.=":profile_id,";}
+            if(isset($request['attributes'])){$values.=":profile_attributes,";}
+            if(isset($request['images'])){$values.=":profile_images,";}
+            if(isset($request['bio'])){$values.=":profile_bio,";}
+            if(isset($request['headline'])){$values.=":profile_headline,";}
+            if(isset($request['access'])){$values.=":profile_access,";}
+            if(isset($request['status'])){$values.=":,";}
+            if(isset($request['user'])){$values.=":user_id,";}
+            $values.= ":app_id,";
+            $values.= ":event_id,";
+            $values.= ":process_id";
+
+            // prepare statement for insert
+            $sql = "INSERT INTO {$request['domain']} (";
+            $sql.= $columns;
+            $sql.= ") VALUES (";
+            $sql.= "crypt('".$request['access']."', gen_salt('bf')),"; // custom case
+            $sql.= $values;
+            $sql.= ")";
+            $sql.= " RETURNING " . prefixed($request['domain']) . "_id";
+
+            //echo $sql;exit;
+    
+            //
+            $statement = $this->pdo->prepare($sql);
+            
+            // pass values to the statement
+            if(isset($request['id'])){$statement->bindValue('profile_id',$request['id']);}
+            if(isset($request['attributes'])){$statement->bindValue('profile_attributes',$request['attributes']);}
+            if(isset($request['images'])){$statement->bindValue('profile_images',$request['images']);}
+            if(isset($request['bio'])){$statement->bindValue('profile_bio',$request['bio']);}
+            if(isset($request['headline'])){$statement->bindValue('profile_headline',$request['headline']);}
+            if(isset($request['access'])){$statement->bindValue('profile_access',$request['access']);}
+            if(isset($request['status'])){$statement->bindValue('',$request['status']);}
+            if(isset($request['user'])){$statement->bindValue('user_id',$request['user']);}
+            $statement->bindValue(':app_id', $request['app']);
+            $statement->bindValue(':event_id', $this->token->event_id());
+            $statement->bindValue(':process_id', $this->token->process_id());
+            
+            // execute the insert statement
+            $statement->execute();
+
+            $data = $statement->fetchAll();
+            
+            $data = $data[0]['0'];
+
+            // return generated id
+            return $data;
+        
+        }
+
+        /**
+        * Return all rows in the stocks table
+        * @return array
+        */
+        public function selectProfiles($request) {
+
+            //echo json_encode($request); exit;
+
+            //$token = new \Core\Token($this->pdo);
+            $token = $this->token->validatedToken($request['token']);
+
+            // Retrieve data ONLY if token  
+            if($token) {
+                
+                // domain, app always present
+                if(!isset($request['per'])){$request['per']=20;}
+                if(!isset($request['page'])){$request['page']=1;}
+                if(!isset($request['limit'])){$request['limit']=100;}
+                //
+                $conditions = "";
+                $domain = $request['domain'];
+                $prefix = prefixed($domain);
+
+                //
+                $columns = "
+
+                profile_ID,
+                profile_attributes,
+                profile_images,
+                profile_bio,
+                profile_headline,
+                profile_access
+
+                ";
+
+                $table = $domain;
+
+                //
+                $start = 0;
+
+                //
+                if(isset($request['page'])) {
+
+                    //
+                    $start = ($request['page'] - 1) * $request['per'];
+                
+                }
+
+                //
+                if(!empty($request['id'])) {
+
+                    $conditions.= " WHERE";
+                    $conditions.= " " . $prefix . "_id = :id ";
+                    $conditions.= " AND active = 1 ";
+                    $conditions.= " ORDER BY time_finished DESC ";
+                    
+                    $subset = " LIMIT 1";
+
+                    $sql = "SELECT ";
+                    $sql.= $columns;
+                    $sql.= " FROM " . $table;
+                    $sql.= $conditions;
+                    $sql.= $subset;
+                    
+                    //echo json_encode($request['id']);
+                    //echo '<br/>';
+                    //echo $sql; exit;
+
+                    //
+                    $statement = $this->pdo->prepare($sql);
+
+                    // bind value to the :id parameter
+                    $statement->bindValue(':id', $request['id']);
+
+                    //echo $sql; exit;
+
+                } else {
+
+                    $conditions = "";
+                    $refinements = "";
+                    if(isset($request['id'])){$refinements.="profile_id"." ILIKE "."'%".$request['id']."%' AND ";}
+                    if(isset($request['attributes'])){$refinements.="profile_attributes"." ILIKE "."'%".$request['attributes']."%' AND ";}
+                    if(isset($request['images'])){$refinements.="profile_images"." ILIKE "."'%".$request['images']."%' AND ";}
+                    if(isset($request['bio'])){$refinements.="profile_bio"." ILIKE "."'%".$request['bio']."%' AND ";}
+                    if(isset($request['headline'])){$refinements.="profile_headline"." ILIKE "."'%".$request['headline']."%' AND ";}
+                    if(isset($request['access'])){$refinements.="profile_access"." ILIKE "."'%".$request['access']."%' AND ";}
+                    if(isset($request['status'])){$refinements.=""." ILIKE "."'%".$request['status']."%' AND ";}
+                    //echo $conditions . 'conditions1<br/>';
+                    //echo $refinements . 'refinements1<br/>';
+                    
+                    $conditions.= " WHERE ";
+                    $conditions.= $refinements;
+                    $conditions.= " active = 1 ";
+                    $conditions.= " ORDER BY time_finished DESC ";
+                    $subset = " OFFSET {$start}" . " LIMIT {$request['per']}";
+                    $sql = "SELECT ";
+                    $sql.= $columns;
+                    $sql.= "FROM " . $table;
+                    $sql.= $conditions;
+                    $sql.= $subset;
+
+                    //echo $conditions . 'conditions2<br/>';
+                    //echo $refinements . 'refinements2<br/>';
+
+                    //echo $sql; exit;
+                    
+                    //
+                    $statement = $this->pdo->prepare($sql);
+
+                }
+                    
+                // execute the statement
+                $statement->execute();
+
+                //
+                $results = [];
+                $total = $statement->rowCount();
+                $pages = ceil($total/$request['per']); //
+                //$current = 1; // current page
+                //$limit = $result['limit'];
+                //$max = $result['max'];
+
+                //
+                if($statement->rowCount() > 0) {
+
+                    //
+                    $data = array();
+                
+                    //
+                    while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
+        
+                        //
+                        $data[] = [
+
+                            'id' => $row['profile_id'],
+                            'attributes' => json_decode($row['profile_attributes']),
+                            'images' => json_decode($row['profile_images']),
+                            'bio' => $row['profile_bio'],
+                            'headline' => $row['profile_headline'],
+                            'access' => $row['profile_access'],
+                            'status' => $row['profile_status']
+
+                        ];
+
+                    }
+
+                    $code = 200;
+                    $message = "OK";
+
+                } else {
+
+                    //
+                    $data = NULL;
+                    $code = 204;
+                    $message = "No Content";
+
+                }
+
+            } else {
+
+                //
+                $data[] = NULL;
+                $code = 401;
+                $message = "Forbidden - Valid token required";
+
+            }
+
+            $results = array(
+
+                'status' => $code,
+                'message' => $message,
+                'metadata' => [
+                    'page' => $request['page'],
+                    'pages' => $pages,
+                    'total' => $total
+                ],
+                'data' => $data,
+                'log' => [
+                    'process' => $process_id = $this->token->process_id(),
+                    'event' => $event_id = $this->token->event_id($process_id)
+                ]
+
+            );
+
+            //
+            return $results;
+
+        }
+
+        /**
+         * Find stock by id
+         * @param int $id
+         * @return a stock object
+         */
+        public function updateProfile($request) {
+
+            //
+            $domain = $request['domain'];
+            $table = prefixed($domain);
+            $id = $request['id'];
+
+            //
+            $set = "";
+            if(isset($request['id'])){$set.= " profile_id = :profile_id ";}
+            if(isset($request['attributes'])){$set.= " profile_attributes = :profile_attributes ";}
+            if(isset($request['images'])){$set.= " profile_images = :profile_images ";}
+            if(isset($request['bio'])){$set.= " profile_bio = :profile_bio ";}
+            if(isset($request['headline'])){$set.= " profile_headline = :profile_headline ";}
+            if(isset($request['access'])){$set.= " profile_access = :profile_access ";}
+            if(isset($request['status'])){$set.= " profile_status = :profile_status ";}
+
+            //
+            $set = str_replace('  ',',',$set);
+
+            // GET table name
+            $condition = $table."_id = :id";
+            $condition.= " RETURNING " . $table . "_id";
+
+            //echo json_encode($set);
+            //echo json_encode($condition);
+            //exit;
+
+            /**
+             * Update stock based on the specified id
+             * @param int $id
+             * @param string $symbol
+             * @param string $company
+             * @return int
+             */
+
+            // sql statement to update a row in the stock table
+            $sql = "UPDATE {$domain} SET ";
+            $sql.= $set;
+            $sql.= " WHERE ";
+            $sql.= $condition;
+
+            //echo $sql; exit;
+
+            $statement = $this->pdo->prepare($sql);
+    
+            // bind values to the statement
+            if(isset($request['id'])){$statement->bindValue(':profile_id', $request['id']);}
+            if(isset($request['attributes'])){$statement->bindValue(':profile_attributes', $request['attributes']);}
+            if(isset($request['images'])){$statement->bindValue(':profile_images', $request['images']);}
+            if(isset($request['bio'])){$statement->bindValue(':profile_bio', $request['bio']);}
+            if(isset($request['headline'])){$statement->bindValue(':profile_headline', $request['headline']);}
+            if(isset($request['access'])){$statement->bindValue(':profile_access', $request['access']);}
+            if(isset($request['status'])){$statement->bindValue(':profile_status', $request['status']);}
+            $statement->bindValue(':id', $id);
+
+            // update data in the database
+            $statement->execute();
+
+            $data = $statement->fetchAll();
+            
+            $data = $data[0]['0'];
+
+            // return generated id
+            return $data;
+
+            // return the number of row affected
+            //return $statement->rowCount();
+
+        }
+
+        /**
+         * Delete a row in the stocks table specified by id
+         * @param int $id
+         * @return the number row deleted
+         */
+        public function deleteProfile($request) {
 
             $id = $request['id'];
             $domain = $request['domain'];
