@@ -52,15 +52,21 @@
             $request['domain'] = 'persons';
             $person_id = $person->insertPerson($request);
 
+            echo json_encode($person_id) . '<br/>';
+
             // add new person ID to overall request
             $request['id'] = $person_id;
 
             // get person ID's details
             $person_details = $person->selectPersons($request);
 
+            echo json_encode($person_details) . '<br/>';
+
             // insert a user and get user ID
             $request['domain'] = 'users';
             $user_id = $user->insertUser($request);
+
+            echo json_encode($user_id) . '<br/>';
 
             // add new person ID to overall request
             $request['id'] = $user_id;
@@ -68,18 +74,22 @@
             // get person ID's details
             $user_details = $user->selectUsers($request);
 
-            echo var_dump($user_details);exit;
+            echo json_encode($user_details) . '<br/>';
 
             // insert a profile and get profile ID
             $request['domain'] = 'profiles';
             $profile_id = $profile->insertProfile($request);
+
+            echo json_encode($profile_id) . '<br/>';
+
 
             // add new person ID to overall request
             $request['id'] = $profile_id;
 
             // get person ID's details
             $profile_details = $profile->selectProfiles($request);
-            
+            echo json_encode($profile_details) . '<br/>';
+
             //
             echo $results;
         
