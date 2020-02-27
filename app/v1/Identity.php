@@ -664,8 +664,8 @@
                             'lastlogin' => $row['user_lastlogin'],
                             'status' => $row['user_status'],
                             'validation' => $row['user_validation'],
-                            'welcome' => json_decode($row['user_welcome'])
-
+                            'welcome' => json_decode($row['user_welcome']),
+                            'person' => $row['person_id']
                         ];
 
                     }
@@ -920,7 +920,7 @@
         * Return all rows in the stocks table
         * @return array
         */
-        
+
         public function selectProfiles($request) {
 
             //echo json_encode($request); exit;
@@ -1058,7 +1058,8 @@
                             'bio' => $row['profile_bio'],
                             'headline' => $row['profile_headline'],
                             'access' => $row['profile_access'],
-                            'status' => $row['profile_status']
+                            'status' => $row['profile_status'],
+                            'user' => $row['user_id']
 
                         ];
 
