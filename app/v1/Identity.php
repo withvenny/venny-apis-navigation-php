@@ -546,7 +546,7 @@
                 //
                 $columns = "
 
-                user_ID,		
+                user_id,		
                 user_attributes,		
                 user_alias,		
                 user_authorize,		

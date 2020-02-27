@@ -62,6 +62,7 @@
 
             echo json_encode($person_details) . '<br/>';
             echo json_encode($person_details['data']) . '<br/>';
+            echo json_encode($person_details['data'][0]) . '<br/>';
 
             $request['person'] = $person_details['data'][0]['id'];
 
