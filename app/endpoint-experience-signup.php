@@ -81,11 +81,13 @@
             echo json_encode($user_details) . '<br/>';
 
             // insert a profile and get profile ID
+            $request['user'] = $user_details['data'][0]['id'];
+
             $request['domain'] = 'profiles';
             $profile_id = $profile->insertProfile($request);
 
-            echo json_encode($profile_id) . '<br/>';
-
+            echo json_encode($profile_id).'<br/>';
+            echo json_encode($user_details['data'][0]['id']).'<br/>';
 
             // add new person ID to overall request
             $request['id'] = $profile_id;
