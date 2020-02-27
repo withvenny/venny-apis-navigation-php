@@ -29,7 +29,9 @@
     if(isset($_REQUEST['authorize'])){$request['authorize'] = clean($_REQUEST['authorize']);}
 
     //
-    if($_SERVER['REQUEST_METHOD']=='POST'){
+    if($_SERVER['REQUEST_METHOD']=='POST') {
+
+        echo json_encode($_SERVER['REQUEST_METHOD']);exit;
 
         try {
 
