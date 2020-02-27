@@ -944,13 +944,14 @@
                 //
                 $columns = "
 
-                profile_ID,
+                profile_id,
                 profile_attributes,
                 profile_images,
                 profile_bio,
                 profile_headline,
                 profile_access,
-                profile_status
+                profile_status,
+                user_id
 
                 ";
 
