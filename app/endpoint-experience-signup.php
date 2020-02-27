@@ -27,6 +27,7 @@
     if(isset($_REQUEST['name_first'])){$request['name_first'] = clean($_REQUEST['name_first']);}
     if(isset($_REQUEST['email'])){$request['email'] = clean($_REQUEST['email']);}
     if(isset($_REQUEST['authorize'])){$request['authorize'] = clean($_REQUEST['authorize']);}
+    if(isset($_REQUEST['alias'])){$request['alias'] = clean($_REQUEST['alias']);}
 
     //
     if($_SERVER['REQUEST_METHOD']=='POST') {
