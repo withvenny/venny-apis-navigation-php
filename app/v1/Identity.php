@@ -553,7 +553,8 @@
                 user_lastlogin,		
                 user_status,		
                 user_validation,		
-                user_welcome	
+                user_welcome,
+                person_id	
 
                 ";
 
