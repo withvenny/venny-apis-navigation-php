@@ -46,6 +46,7 @@
             */
         
             // insert a person and get person ID
+            $request['domain'] = 'persons';
             $person_id = $person->insertPerson($request);
 
             // add new person ID to overall request
@@ -55,6 +56,7 @@
             $person_details = $person->selectPersons($request);
 
             // insert a user and get user ID
+            $request['domain'] = 'users';
             $user_id = $user->insertUser($request);
 
             // add new person ID to overall request
@@ -64,6 +66,7 @@
             $user_details = $user->selectUsers($request);
 
             // insert a profile and get profile ID
+            $request['domain'] = 'profiles';
             $profile_id = $profile->insertProfile($request);
 
             // add new person ID to overall request
