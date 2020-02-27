@@ -920,6 +920,7 @@
         * Return all rows in the stocks table
         * @return array
         */
+        
         public function selectProfiles($request) {
 
             //echo json_encode($request); exit;
