@@ -52,7 +52,7 @@
             $request['domain'] = 'persons';
             $person_id = $person->insertPerson($request);
 
-            echo json_encode($person_id) . '<br/>';
+            //echo json_encode($person_id) . '<br/>';
 
             // add new person ID to overall request
             $request['id'] = $person_id;
@@ -60,9 +60,9 @@
             // get person ID's details
             $person_details = $person->selectPersons($request);
 
-            echo json_encode($person_details) . '<br/>';
-            echo json_encode($person_details['data']) . '<br/>';
-            echo json_encode($person_details['data'][0]) . '<br/>';
+            //echo json_encode($person_details) . '<br/>';
+            //echo json_encode($person_details['data']) . '<br/>';
+            //echo json_encode($person_details['data'][0]) . '<br/>';
 
             $request['person'] = $person_details['data'][0]['id'];
 
@@ -70,7 +70,7 @@
             $request['domain'] = 'users';
             $user_id = $user->insertUser($request);
 
-            echo json_encode($user_id) . '<br/>';
+            //echo json_encode($user_id) . '<br/>';
 
             // add new person ID to overall request
             $request['id'] = $user_id;
@@ -78,7 +78,7 @@
             // get person ID's details
             $user_details = $user->selectUsers($request);
 
-            echo json_encode($user_details) . '<br/>';
+            //echo json_encode($user_details) . '<br/>';
 
             // insert a profile and get profile ID
             $request['user'] = $user_details['data'][0]['id'];
@@ -86,15 +86,15 @@
             $request['domain'] = 'profiles';
             $profile_id = $profile->insertProfile($request);
 
-            echo json_encode($profile_id).'<br/>';
-            echo json_encode($user_details['data'][0]['id']).'<br/>';
+            //echo json_encode($profile_id).'<br/>';
+            //echo json_encode($user_details['data'][0]['id']).'<br/>';
 
             // add new person ID to overall request
             $request['id'] = $profile_id;
 
             // get person ID's details
             $profile_details = $profile->selectProfiles($request);
-            echo json_encode($profile_details) . '<br/>';
+            //echo json_encode($profile_details) . '<br/>';
 
             //
             $results['persons']['data']=$person_details;
