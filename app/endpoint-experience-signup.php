@@ -61,6 +61,7 @@
             $person_details = $person->selectPersons($request);
 
             echo json_encode($person_details) . '<br/>';
+            echo json_encode($person_details['data']) . '<br/>';
 
             // insert a user and get user ID
             $request['domain'] = 'users';
