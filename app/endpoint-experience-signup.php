@@ -63,9 +63,11 @@
             echo json_encode($person_details) . '<br/>';
             echo json_encode($person_details['data']) . '<br/>';
 
+            $request['person'] = $person_details['data']['id'];
+
             // insert a user and get user ID
             $request['domain'] = 'users';
-            $user_id = $user->insertUser($request[0]['data']);
+            $user_id = $user->insertUser($request);
 
             echo json_encode($user_id) . '<br/>';
 
