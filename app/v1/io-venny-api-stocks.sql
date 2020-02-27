@@ -1301,6 +1301,7 @@ time_updated	TIMESTAMP	NOT NULL DEFAULT NOW(),
 time_finished	TIMESTAMP	NOT NULL DEFAULT NOW(),
 active	INT	NOT NULL DEFAULT 1
 );
+
 CREATE SEQUENCE users_sequence;		
 ALTER SEQUENCE users_sequence RESTART WITH 8301;		
 ALTER TABLE users ALTER COLUMN ID SET DEFAULT nextval('users_sequence');		
@@ -1354,12 +1355,14 @@ SELECT id
    AND password = crypt('wrongpassword', password);
 
 
-  
+ALTER TABLE users 
+RENAME user_access TO user_authorize;
+
 /* USERS */
  SELECT user_id
   FROM users
  WHERE user_alias = 'sonofadolphus' 
-   AND user_access = crypt('B1@thering!', user_access);
+   AND user_authorize = crypt('B1@thering!', user_authorize);
 
 drop table users;
 CREATE TABLE IF NOT EXISTS	users	(
@@ -1413,17 +1416,22 @@ profile_attributes	JSON	NULL,
 profile_images	JSON	NULL,
 profile_bio	VARCHAR(255)	NULL,
 profile_headline	VARCHAR(255)	NULL,
-profile_access	VARCHAR(30)	NOT NULL,
-profile_status	VARCHAR(30)	NOT NULL,
-user_id	VARCHAR(30)	NOT NULL,
-app_id	VARCHAR(30)	NOT NULL,
-event_id	VARCHAR(30)	NOT NULL,
-process_id	VARCHAR(30)	NOT NULL,
+profile_access	VARCHAR(30)	NOT null default 'public',
+profile_status	VARCHAR(30)	NOT null default 'active',
+user_id	VARCHAR(30)	NOT null,
+app_id	VARCHAR(30)	NOT null,
+event_id	VARCHAR(30)	NOT null,
+process_id	VARCHAR(30)	NOT null,
 time_started	TIMESTAMP	NOT NULL DEFAULT NOW(),
 time_updated	TIMESTAMP	NOT NULL DEFAULT NOW(),
 time_finished	TIMESTAMP	NOT NULL DEFAULT NOW(),
 active	INT	NOT NULL DEFAULT 1
-);		
+);
+
+ALTER TABLE profiles alter COLUMN profile_access type VARCHAR(30);
+ALTER TABLE profiles alter COLUMN profile_status type VARCHAR(30);
+alter table profiles modify profile_access varchar(30) not null default 'public';
+
 CREATE SEQUENCE profiles_sequence;		
 ALTER SEQUENCE profiles_sequence RESTART WITH 8301;		
 ALTER TABLE profiles ALTER COLUMN ID SET DEFAULT nextval('profiles_sequence');		
@@ -1433,4 +1441,6 @@ SELECT * FROM profiles;
 DROP TABLE profiles;
 INSERT INTO profiles (profile_ID,profile_attributes,profile_images,profile_bio,profile_headline,profile_access,user_id,app_id,event_ID,process_ID)		
  VALUES ('30 characters','{}','{}','255 characters','255 characters','1','30 characters','30 characters','30 characters','30 characters');		
-SELECT * FROM profiles;		  
+SELECT * FROM profiles;	
+
+select * from persons order by time_finished desc limit 11;

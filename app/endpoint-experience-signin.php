@@ -49,6 +49,8 @@
             $request['domain'] = 'persons';
             $person_id = $person->insertPerson($request);
 
+            echo var_dump($person_id);exit;
+
             // add new person ID to overall request
             $request['id'] = $person_id;
 
