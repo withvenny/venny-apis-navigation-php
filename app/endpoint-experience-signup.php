@@ -97,6 +97,13 @@
             echo json_encode($profile_details) . '<br/>';
 
             //
+            $results['persons']=$person_details;
+            $results['user']=$user_details;
+            $results['profile']=$profile_details;
+
+            //
+            $results = json_encode($results);
+
             echo $results;
         
         } catch (\PDOException $e) {
