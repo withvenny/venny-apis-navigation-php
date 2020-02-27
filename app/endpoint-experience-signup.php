@@ -97,9 +97,9 @@
             echo json_encode($profile_details) . '<br/>';
 
             //
-            $results['persons']=$person_details;
-            $results['user']=$user_details;
-            $results['profile']=$profile_details;
+            $results['persons']['data']=$person_details;
+            $results['user']['data']=$user_details;
+            $results['profile']['data']=$profile_details;
 
             //
             $results = json_encode($results);
