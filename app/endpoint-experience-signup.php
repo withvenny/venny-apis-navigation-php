@@ -55,8 +55,6 @@
             // get person ID's details
             $person_details = $person->selectPersons($request);
 
-            echo var_dump($person_details);exit;
-
             // insert a user and get user ID
             $request['domain'] = 'users';
             $user_id = $user->insertUser($request);
@@ -66,6 +64,8 @@
 
             // get person ID's details
             $user_details = $user->selectUsers($request);
+
+            echo var_dump($user_details);exit;
 
             // insert a profile and get profile ID
             $request['domain'] = 'profiles';
