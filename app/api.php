@@ -24,7 +24,7 @@
                 case 'profiles': require 'endpoint-identity-profiles.php'; break;
      
                 //
-                case 'signup': require 'endpoint-identity-profiles.php'; break;
+                case 'signup': require 'endpoint-experience-signup.php'; break;
 
                 //
                 default: header("Location: template-guest-hello.php");
