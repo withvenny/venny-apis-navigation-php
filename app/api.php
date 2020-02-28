@@ -22,9 +22,11 @@
                 case 'persons': require 'endpoint-identity-persons.php'; break;
                 case 'users': require 'endpoint-identity-users.php'; break;
                 case 'profiles': require 'endpoint-identity-profiles.php'; break;
-     
+    
+                
                 //
                 case 'signup': require 'endpoint-experience-signup.php'; break;
+                case 'payment': require 'endpoint-experience-payment.php'; break;
 
                 //
                 default: header("Location: template-guest-hello.php");
