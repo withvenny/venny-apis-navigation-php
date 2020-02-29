@@ -21,7 +21,7 @@ switch ($_REQUEST['type']) {
 
         case 'retrievetoken':
             \Stripe\Token::retrieve(
-                $_REQUEST['card']
+                $_REQUEST['token']
               );
     
             break;
