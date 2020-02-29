@@ -1,5 +1,8 @@
 <?php
 
+    //
+    header('Content-Type: application/json');
+
 \Stripe\Stripe::setApiKey('sk_test_mTRBViwNmba7buxiOehiBZu400QVrwfzzN');
 
 \Stripe\Token::create([
