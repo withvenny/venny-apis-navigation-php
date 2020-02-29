@@ -1,12 +1,14 @@
 <?php
 
-\Stripe\Stripe::setApiKey("sk_test_mTRBViwNmba7buxiOehiBZu400QVrwfzzN");
+\Stripe\Stripe::setApiKey('sk_test_mTRBViwNmba7buxiOehiBZu400QVrwfzzN');
 
-\Stripe\Charge::create([
-  "amount" => 2000,
-  "currency" => "usd",
-  "source" => "tok_mastercard", // obtained with Stripe.js
-  "metadata" => ["order_id" => "6735"]
+\Stripe\Token::create([
+  'card' => [
+    'number' => $_REQUEST['card'],
+    'exp_month' => 2,
+    'exp_year' => 2021,
+    'cvc' => '314',
+  ],
 ]);
 
 ?>
