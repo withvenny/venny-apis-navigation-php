@@ -104,6 +104,32 @@
 
             echo $listCharges;
 
-        }
+        break;
+
+        //
+        case 'createCustomer':
+
+            //
+            $customer = \Stripe\Customer::create([
+                'description' => 'My First Test Customer (created for API docs)'
+            ]);
+
+            echo $customer;
+
+            break;
+
+        //
+        case 'createIntent':
+
+            $intent = StripeSetupIntent::create([
+                //'customer' => $customer->id
+                'customer' => $_REQUEST['customer_id']
+              ]);;
+
+            echo $intent;
+            
+            break;
+
+    }
 
 ?>
