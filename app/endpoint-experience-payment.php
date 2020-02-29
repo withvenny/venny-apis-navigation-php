@@ -190,7 +190,7 @@
             break;
 
         //
-        case 'createIntent':
+        case 'createPaymentIntent':
             
             $createIntent = \Stripe\PaymentIntent::create([
                 'amount' => 4321,
@@ -198,7 +198,7 @@
                 'payment_method_types' => ['card'],
             ]);
 
-            echo $createIntent;
+            echo $createPaymentIntent;
     
             break;
 
