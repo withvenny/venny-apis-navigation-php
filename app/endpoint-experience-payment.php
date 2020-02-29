@@ -158,13 +158,30 @@
         case 'updateIntent':
 
             $updateIntent = \Stripe\SetupIntent::update(
-                $_REQUEST['intent'],
+                $_REQUEST['intent_id'],
                 ['metadata' => ['user_id' => $_REQUEST['user_id']]]
             );
 
             echo $updateIntent;
             
             break;
+
+        //
+        case 'confirmIntent':
+
+            //
+            $setup_intent = \Stripe\SetupIntent::retrieve(
+                $_REQUEST['intent_id']
+            );
+            
+            //
+            $setup_intent->confirm([
+                'payment_method' => 'pm_card_visa',
+            ]);
+
+            echo $setup_intent;
+            
+        break;
 
     }
 
