@@ -20,27 +20,40 @@ switch ($_REQUEST['type']) {
     case 'token':
         $token = \Stripe\Token::create([
             'card' => [
-              'number' => $_REQUEST['card'],
-              'exp_month' => 2,
-              'exp_year' => 2021,
-              'cvc' => '314',
+            'number' => $_REQUEST['card'],
+            'exp_month' => 2,
+            'exp_year' => 2021,
+            'cvc' => '314',
             ],
-          ]);
+        ]);
 
-          echo $token;
+        echo $token;
 
         break;
 
         case 'retrievetoken':
-            $retrievetoken = \Stripe\Token::retrieve(
-                $_REQUEST['token']
-              );
+        $retrievetoken = \Stripe\Token::retrieve(
+        $_REQUEST['token']
+        );
 
-              echo $retrievetoken;
+        echo $retrievetoken;
 
-    
-            break;
+        break;
 
-        }
+    case 'charge':
+
+        // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
+        $charge = \Stripe\Charge::create([
+          'amount' => 2000,
+          'currency' => 'usd',
+          'source' => 'tok_visa',
+          'description' => 'My First Test Charge (created for API docs)',
+        ]);
+
+        echo $charge;
+
+        break;
+
+    }
 
 ?>
