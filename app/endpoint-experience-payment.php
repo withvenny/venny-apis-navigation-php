@@ -10,8 +10,8 @@ switch ($_REQUEST['type']) {
     case 'authentication':
 
         $ch = \Stripe\Charge::retrieve(
-            "ch_1GHJRGEp9b2l1tcUAcotCgom",
-            ['api_key' => 'sk_test_mTRBViwNmba7buxiOehiBZu400QVrwfzzN'],
+            $_REQUEST['charge'],
+            ['api_key' => 'sk_test_mTRBViwNmba7buxiOehiBZu400QVrwfzzN']
           );
           $ch->capture(); // Uses the same API Key.
 
