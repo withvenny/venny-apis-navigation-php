@@ -133,10 +133,16 @@
         //
         case 'createIntent':
 
-            $intent = \Stripe\StripeIntent::create([
+            $intent = \Stripe\SetupIntent::create([
                 //'customer' => $customer->id
                 'customer' => $_REQUEST['customer_id']
             ]);
+
+            /*
+            $intent = \Stripe\SetupIntent::create([
+                'payment_method_types' => ['card'],
+            ]);
+            */
 
             echo $intent;
             
