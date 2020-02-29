@@ -135,7 +135,8 @@
 
             $intent = \Stripe\SetupIntent::create([
                 //'customer' => $customer->id
-                'customer' => $_REQUEST['customer_id']
+                'customer' => $_REQUEST['customer_id'],
+                'payment_method_types' => ['card'],
             ]);
 
             /*
@@ -145,6 +146,17 @@
             */
 
             echo $intent;
+            
+            break;
+
+        //
+        case 'retrieveIntent':
+
+            $retrieveIntent = \Stripe\SetupIntent::retrieve(
+                $_REQUEST['intent']
+            );
+
+            echo $retrieveIntent;
             
             break;
 
