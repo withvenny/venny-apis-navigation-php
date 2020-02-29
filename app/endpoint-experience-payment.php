@@ -31,7 +31,8 @@ switch ($_REQUEST['type']) {
 
         break;
 
-        case 'retrievetoken':
+    case 'retrievetoken':
+        
         $retrievetoken = \Stripe\Token::retrieve(
         $_REQUEST['token']
         );
@@ -40,19 +41,59 @@ switch ($_REQUEST['type']) {
 
         break;
 
-    case 'charge':
+    case 'createCharge':
 
         // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
-        $charge = \Stripe\Charge::create([
+        $createCharge = \Stripe\Charge::create([
           'amount' => 2000,
           'currency' => 'usd',
           'source' => 'tok_visa',
           'description' => 'My First Test Charge (created for API docs)',
         ]);
 
-        echo $charge;
+        echo $createCharge;
 
         break;
+
+    case 'retrieveCharge':
+
+        $retrieveCharge = \Stripe\Charge::retrieve(
+            'ch_1GHJb0Ep9b2l1tcUSQywTOkp'
+          );
+
+        
+        echo $retrieveCharge;
+
+        break;
+
+    case 'updateCharge':
+
+        $updateCharge = \Stripe\Charge::update(
+            $_REQUEST['charge'],
+            ['metadata' => ['order_id' => $_REQUEST['order_id']]]
+          );
+        
+        echo $updateCharge;
+
+        break;
+
+    case 'captureCharge':
+
+        $captureCharge = \Stripe\Charge::retrieve(
+            $_REQUEST['charge']
+        );
+        $charge->capture();
+
+        echo $captureCharge;
+
+        break;
+
+
+    case 'listCharges':
+
+        $listCharges = \Stripe\Charge::all(['limit' => 3]);
+
+        echo $listCharges;
 
     }
 
