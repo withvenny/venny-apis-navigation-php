@@ -191,9 +191,11 @@
 
         //
         case 'createPaymentIntent':
+
+            if(isset($_REQUEST['amount'])){$amount=$_REQUEST['amount'];}else{$amount=81.81;}
             
             $createPaymentIntent = \Stripe\PaymentIntent::create([
-                'amount' => 4321,
+                'amount' => $amount,
                 'currency' => 'usd',
                 'payment_method_types' => ['card'],
             ]);
