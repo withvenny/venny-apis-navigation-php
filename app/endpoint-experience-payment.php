@@ -8,7 +8,7 @@
 switch ($_REQUEST['type']) {
 
     case 'token':
-        \Stripe\Token::create([
+        $token = \Stripe\Token::create([
             'card' => [
               'number' => $_REQUEST['card'],
               'exp_month' => 2,
@@ -17,12 +17,17 @@ switch ($_REQUEST['type']) {
             ],
           ]);
 
+          return $token;
+
         break;
 
         case 'retrievetoken':
-            \Stripe\Token::retrieve(
+            $retrievetoken = \Stripe\Token::retrieve(
                 $_REQUEST['token']
               );
+
+              return $retrievetoken;
+
     
             break;
 
