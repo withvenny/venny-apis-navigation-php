@@ -100,11 +100,17 @@
         //
         case 'listCharges':
 
-            $listCharges = \Stripe\Charge::all(['limit' => 3]);
+            if(isset($_REQUEST['limit'])){$limit = $_REQUEST['limit'];}else{$limit=10;}
+            if(isset($_REQUEST['customer_id'])){$customer_id=$_REQUEST['customer_id'];}else{$customer_id='cus_GpBMkNJMrtktdF';}
+
+            $listCharges = \Stripe\Charge::all([
+                'limit' => $limit,
+                'customer' => $customer_id
+            ]);
 
             echo $listCharges;
 
-        break;
+            break;
 
         //
         case 'createCustomer':
