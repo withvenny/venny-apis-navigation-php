@@ -127,7 +127,7 @@
             );
 
             echo $retrieveCustomer;
-;
+
             break;
 
         //
@@ -136,7 +136,7 @@
             $intent = \Stripe\StripeSetupIntent::create([
                 //'customer' => $customer->id
                 'customer' => $_REQUEST['customer_id']
-              ]);;
+            ]);
 
             echo $intent;
             
