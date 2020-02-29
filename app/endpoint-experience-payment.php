@@ -17,7 +17,7 @@ switch ($_REQUEST['type']) {
             ],
           ]);
 
-          return $token;
+          echo $token;
 
         break;
 
@@ -26,7 +26,7 @@ switch ($_REQUEST['type']) {
                 $_REQUEST['token']
               );
 
-              return $retrievetoken;
+              echo $retrievetoken;
 
     
             break;
