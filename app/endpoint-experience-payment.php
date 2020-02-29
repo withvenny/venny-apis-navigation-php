@@ -133,7 +133,7 @@
         //
         case 'createIntent':
 
-            $intent = StripeSetupIntent::create([
+            $intent = \Stripe\StripeSetupIntent::create([
                 //'customer' => $customer->id
                 'customer' => $_REQUEST['customer_id']
               ]);;
