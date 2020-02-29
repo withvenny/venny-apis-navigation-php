@@ -100,7 +100,7 @@
         //
         case 'listCharges':
 
-            if(isset($_REQUEST['limit'])){$limit = $_REQUEST['limit'];}else{$limit=10;}
+            if(isset($_REQUEST['limit'])){$limit=$_REQUEST['limit'];}else{$limit=10;}
             if(isset($_REQUEST['customer_id'])){$customer_id=$_REQUEST['customer_id'];}else{$customer_id='cus_GpBMkNJMrtktdF';}
 
             $listCharges = \Stripe\Charge::all([
@@ -187,7 +187,20 @@
 
             echo $setup_intent;
             
-        break;
+            break;
+
+        //
+        case 'createIntent':
+            
+            $createIntent = \Stripe\PaymentIntent::create([
+                'amount' => 4321,
+                'currency' => 'usd',
+                'payment_method_types' => ['card'],
+            ]);
+
+            echo $createIntent;
+    
+            break;
 
     }
 
