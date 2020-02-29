@@ -111,11 +111,23 @@
 
             //
             $customer = \Stripe\Customer::create([
-                'description' => 'My First Test Customer (created for API docs)'
+                'email' => $_REQUEST['email'],
+                'name' => $_REQUEST['name'],
+                'description' => $_REQUEST['description']
             ]);
 
             echo $customer;
 
+            break;
+
+        //
+        case 'retrieveCustomer':
+            $retrieveCustomer = \Stripe\Customer::retrieve(
+                $_REQUEST['customer_id']
+            );
+
+            echo $retrieveCustomer;
+;
             break;
 
         //
