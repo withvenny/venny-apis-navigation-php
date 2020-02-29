@@ -139,12 +139,6 @@
                 'payment_method_types' => ['card'],
             ]);
 
-            /*
-            $intent = \Stripe\SetupIntent::create([
-                'payment_method_types' => ['card'],
-            ]);
-            */
-
             echo $intent;
             
             break;
@@ -153,10 +147,22 @@
         case 'retrieveIntent':
 
             $retrieveIntent = \Stripe\SetupIntent::retrieve(
-                $_REQUEST['intent']
+                $_REQUEST['intent_id']
             );
 
             echo $retrieveIntent;
+            
+            break;
+
+        //
+        case 'updateIntent':
+
+            $updateIntent = \Stripe\SetupIntent::update(
+                $_REQUEST['intent'],
+                ['metadata' => ['user_id' => $_REQUEST['user_id']]]
+            );
+
+            echo $updateIntent;
             
             break;
 
