@@ -3,98 +3,107 @@
     //
     header('Content-Type: application/json');
 
-\Stripe\Stripe::setApiKey('sk_test_mTRBViwNmba7buxiOehiBZu400QVrwfzzN');
+    //
+    \Stripe\Stripe::setApiKey('sk_test_mTRBViwNmba7buxiOehiBZu400QVrwfzzN');
 
-switch ($_REQUEST['type']) {
+    //
+    switch ($_REQUEST['type']) {
 
-    case 'authentication':
+        //
+        case 'authentication':
 
-        $ch = \Stripe\Charge::retrieve(
-            $_REQUEST['charge'],
-            ['api_key' => 'sk_test_mTRBViwNmba7buxiOehiBZu400QVrwfzzN']
-          );
-          $ch->capture(); // Uses the same API Key.
+            $ch = \Stripe\Charge::retrieve(
+                $_REQUEST['charge'],
+                ['api_key' => 'sk_test_mTRBViwNmba7buxiOehiBZu400QVrwfzzN']
+            );
+            $ch->capture(); // Uses the same API Key.
 
-          echo $ch;
+            echo $ch;
 
-    case 'token':
-        $token = \Stripe\Token::create([
-            'card' => [
-            'number' => $_REQUEST['card'],
-            'exp_month' => 2,
-            'exp_year' => 2021,
-            'cvc' => '314',
-            ],
-        ]);
+        //
+        case 'token':
+            $token = \Stripe\Token::create([
+                'card' => [
+                'number' => $_REQUEST['card'],
+                'exp_month' => 2,
+                'exp_year' => 2021,
+                'cvc' => '314',
+                ],
+            ]);
 
-        echo $token;
+            echo $token;
 
-        break;
+            break;
 
-    case 'retrievetoken':
-        
-        $retrievetoken = \Stripe\Token::retrieve(
-        $_REQUEST['token']
-        );
+        //
+        case 'retrievetoken':
+            
+            $retrievetoken = \Stripe\Token::retrieve(
+            $_REQUEST['token']
+            );
 
-        echo $retrievetoken;
+            echo $retrievetoken;
 
-        break;
+            break;
 
-    case 'createCharge':
+        //
+        case 'createCharge':
 
-        // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
-        $createCharge = \Stripe\Charge::create([
-          'amount' => 2000,
-          'currency' => 'usd',
-          'source' => 'tok_visa',
-          'description' => 'My First Test Charge (created for API docs)',
-        ]);
+            // `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
+            $createCharge = \Stripe\Charge::create([
+            'amount' => 2000,
+            'currency' => 'usd',
+            'source' => 'tok_visa',
+            'description' => 'My First Test Charge (created for API docs)',
+            ]);
 
-        echo $createCharge;
+            echo $createCharge;
 
-        break;
+            break;
 
-    case 'retrieveCharge':
+        //
+        case 'retrieveCharge':
 
-        $retrieveCharge = \Stripe\Charge::retrieve(
-            'ch_1GHJb0Ep9b2l1tcUSQywTOkp'
-          );
+            $retrieveCharge = \Stripe\Charge::retrieve(
+                $_REQUEST['charge']
+            );
 
-        
-        echo $retrieveCharge;
+            
+            echo $retrieveCharge;
 
-        break;
+            break;
 
-    case 'updateCharge':
+        //
+        case 'updateCharge':
 
-        $updateCharge = \Stripe\Charge::update(
-            $_REQUEST['charge'],
-            ['metadata' => ['order_id' => $_REQUEST['order_id']]]
-          );
-        
-        echo $updateCharge;
+            $updateCharge = \Stripe\Charge::update(
+                $_REQUEST['charge'],
+                ['metadata' => ['order_id' => $_REQUEST['order_id']]]
+            );
+            
+            echo $updateCharge;
 
-        break;
+            break;
 
-    case 'captureCharge':
+        //
+        case 'captureCharge':
 
-        $captureCharge = \Stripe\Charge::retrieve(
-            $_REQUEST['charge']
-        );
-        $charge->capture();
+            $captureCharge = \Stripe\Charge::retrieve(
+                $_REQUEST['charge']
+            );
+            $charge->capture();
 
-        echo $captureCharge;
+            echo $captureCharge;
 
-        break;
+            break;
 
+        //
+        case 'listCharges':
 
-    case 'listCharges':
+            $listCharges = \Stripe\Charge::all(['limit' => 3]);
 
-        $listCharges = \Stripe\Charge::all(['limit' => 3]);
+            echo $listCharges;
 
-        echo $listCharges;
-
-    }
+        }
 
 ?>
