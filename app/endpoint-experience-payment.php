@@ -192,7 +192,7 @@
         //
         case 'createPaymentIntent':
             
-            $createIntent = \Stripe\PaymentIntent::create([
+            $createPaymentIntent = \Stripe\PaymentIntent::create([
                 'amount' => 4321,
                 'currency' => 'usd',
                 'payment_method_types' => ['card'],
