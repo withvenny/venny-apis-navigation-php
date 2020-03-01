@@ -127,7 +127,6 @@
                 'name' => $_REQUEST['name'],
                 'description' => $_REQUEST['description'],
                 'payment_method' => $payment_method
-                
             ]);
 
             echo $customer;
@@ -141,6 +140,28 @@
             );
 
             echo $retrieveCustomer;
+
+            break;
+
+        //
+        case 'updateCustomer':
+
+            //
+            if(isset($_REQUEST['payment_method'])){$parameters['payment_method'] = $_REQUEST['payment_method'];}
+            if(isset($_REQUEST['phone'])){$parameters['phone'] = $_REQUEST['phone'];}
+
+            echo json_encode($parameters);
+            
+            //
+            $customer = \Stripe\Customer::update(
+                $_REQUEST['customer_id'],
+                [
+                    'metadata' => ['order_id' => '6735'],
+                    $parameters
+                ]
+            );
+
+            echo $customer;
 
             break;
 
