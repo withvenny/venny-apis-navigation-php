@@ -202,7 +202,7 @@
                 'payment_method_types' => ['card'],
                 'description' => 'Trying something interesting...',
                 'customer' => $customer_id,
-                'off_session' => $off_session
+                //'off_session' => $off_session
             ]);
 
             echo $createPaymentIntent;
