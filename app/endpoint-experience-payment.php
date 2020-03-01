@@ -147,11 +147,11 @@
         case 'updateCustomer':
 
             //
-            if(isset($_REQUEST['payment_method'])){$parameters['payment_method'] = $_REQUEST['payment_method'];}
+            if(isset($_REQUEST['payment_method'])){$parameters['invoice_settings']['default_payment_method'] = $_REQUEST['payment_method'];}
             if(isset($_REQUEST['phone'])){$parameters['phone'] = $_REQUEST['phone'];}
 
             echo json_encode($parameters);
-            
+
             //
             $customer = \Stripe\Customer::update(
                 $_REQUEST['customer_id'],
