@@ -266,6 +266,41 @@
             echo $payment_intent;
 
             break;
+            
+        //
+        case 'createPaymentMethod':
+
+            //
+            if(isset($_REQUEST['number'])){$number=$_REQUEST['number'];}else{$number=4111111111111111;}
+            if(isset($_REQUEST['exp_month'])){$exp_month=$_REQUEST['exp_month'];}else{$exp_month=12;}
+            if(isset($_REQUEST['exp_year'])){$exp_year=$_REQUEST['exp_year'];}else{$exp_year=2022;}
+            if(isset($_REQUEST['cvc'])){$cvc=$_REQUEST['cvc'];}else{$cvc=314;}
+            if(isset($_REQUEST['email'])){$email=$_REQUEST['email'];}else{$email='letsvenny@gmail.com';}
+            if(isset($_REQUEST['name'])){$name=$_REQUEST['name'];}else{$name='Al Nolan';}
+            if(isset($_REQUEST['phone'])){$phone=$_REQUEST['phone'];}else{$phone='4697590006';}
+            //if(isset($_REQUEST['address'])){$address=$_REQUEST['address'];}else{$address='';}
+            
+            // To create a requires_capture PaymentIntent, see our guide at: https://stripe.com/docs/payments/capture-later
+            $payment_method = \Stripe\PaymentMethod::create([
+                'type' => 'card',
+                'card' => [
+                  'number' => $number,
+                  'exp_month' => $exp_month,
+                  'exp_year' => $exp_year,
+                  'cvc' => $cvc,
+                ],
+                'billing_details' => [
+                    //'address' => $address,
+                    'email' => $email,
+                    'name' => $name,
+                    'phone' => $phone,
+                  ],
+            ]);
+
+            echo $payment_method;
+
+            break;
+
 
     }
 
