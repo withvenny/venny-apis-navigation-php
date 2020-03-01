@@ -227,7 +227,10 @@
             //
             $updatePaymentIntent = \Stripe\PaymentIntent::update(
                 $_REQUEST['payment_intent'],
-                ['metadata' => ['order_id' => '6735']]
+                [
+                    'metadata' => ['order_id' => '6735'],
+                    'description' => 'This is the description of updating payment intent...'
+                ]
             );
 
             echo $updatePaymentIntent;
