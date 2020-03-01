@@ -279,8 +279,9 @@
             if(isset($_REQUEST['name'])){$name=$_REQUEST['name'];}else{$name='Al Nolan';}
             if(isset($_REQUEST['phone'])){$phone=$_REQUEST['phone'];}else{$phone='4697590006';}
             //if(isset($_REQUEST['address'])){$address=$_REQUEST['address'];}else{$address='';}
+            if(isset($_REQUEST['customer_id'])){$customer_id=$_REQUEST['customer_id'];}else{$customer_id='cus_GpBFfLEA22A5gg';}
             
-            // To create a requires_capture PaymentIntent, see our guide at: https://stripe.com/docs/payments/capture-later
+                        // To create a requires_capture PaymentIntent, see our guide at: https://stripe.com/docs/payments/capture-later
             $payment_method = \Stripe\PaymentMethod::create([
                 'type' => 'card',
                 'card' => [
@@ -294,7 +295,8 @@
                     'email' => $email,
                     'name' => $name,
                     'phone' => $phone,
-                  ],
+                ],
+                'customer' => $customer_id
             ]);
 
             echo $payment_method;
