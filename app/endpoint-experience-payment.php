@@ -229,12 +229,26 @@
                 $_REQUEST['payment_intent'],
                 [
                     'metadata' => ['order_id' => '6735'],
-                    'description' => 'This is the description of updating payment intent...'
+                    'description' => 'This is the description of updating payment intent...',
+                    'customer' => $_REQUEST['customer_id']
                 ]
             );
 
             echo $updatePaymentIntent;
     
+            break;
+
+        //
+        case 'confirmPaymentIntent':
+
+            // To create a PaymentIntent for confirmation, see our guide at: https://stripe.com/docs/payments/payment-intents/creating-payment-intents#creating-for-automatic
+            $payment_intent = \Stripe\PaymentIntent::retrieve(
+                $_REQUEST['payment_intent']
+            );
+            $payment_intent->confirm([
+                'payment_method' => $_REQUEST['card'],
+            ]);;
+        
             break;
 
     }
