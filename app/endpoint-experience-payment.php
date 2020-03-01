@@ -311,7 +311,7 @@
             
             //
             $payment_method->attach([
-                'customer' => $_REQUEST['payment_method'],
+                'customer' => $_REQUEST['customer_id'],
               ]);
 
             echo $payment_method;
