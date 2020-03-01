@@ -214,10 +214,23 @@
 
             //
             $retrievePaymentIntent = \Stripe\PaymentIntent::retrieve(
-                'pi_1GHf8VEp9b2l1tcUD4nzbcfL'
+                $_REQUEST['payment_intent']
             );
 
             echo $retrievePaymentIntent;
+    
+            break;
+
+            //
+        case 'updatePaymentIntent':
+
+            //
+            $updatePaymentIntent = \Stripe\PaymentIntent::update(
+                $_REQUEST['payment_intent'],
+                ['metadata' => ['order_id' => '6735']]
+            );
+
+            echo $updatePaymentIntent;
     
             break;
 
