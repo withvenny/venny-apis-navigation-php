@@ -40,6 +40,20 @@
 
             break;
 
+        //
+        case 'listProducts':
+
+            //
+            $listProducts = \Stripe\Product::all([
+                'limit' => $_REQUEST['limit'],
+                'active' => $_REQUEST['active'],
+                'type' => $_REQUEST['type']
+            ]);
+
+            echo $listProducts;
+
+            break;
+
     }
 
 ?>
