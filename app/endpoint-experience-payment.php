@@ -253,6 +253,20 @@
         
             break;
 
+        //
+        case 'capturePaymentIntent':
+            
+            // To create a requires_capture PaymentIntent, see our guide at: https://stripe.com/docs/payments/capture-later
+            $payment_intent = \Stripe\PaymentIntent::retrieve(
+                $_REQUEST['payment_intent']
+            );
+
+            $payment_intent->capture();
+
+            echo $payment_intent;
+
+            break;
+
     }
 
 ?>
