@@ -115,11 +115,19 @@
         //
         case 'createCustomer':
 
+            if(isset($_REQUEST['payment_method'])) {
+                $payment_method = $_REQUEST['payment_method'];
+            } else {
+                $payment_method = NULL;
+            }
+
             //
             $customer = \Stripe\Customer::create([
                 'email' => $_REQUEST['email'],
                 'name' => $_REQUEST['name'],
-                'description' => $_REQUEST['description']
+                'description' => $_REQUEST['description'],
+                'payment_method' => $payment_method
+                
             ]);
 
             echo $customer;
