@@ -7,7 +7,7 @@
     \Stripe\Stripe::setApiKey('sk_test_mTRBViwNmba7buxiOehiBZu400QVrwfzzN');
 
     //
-    switch ($_REQUEST['type']) {
+    switch ($_REQUEST['function']) {
 
         //
         case 'authentication':
