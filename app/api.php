@@ -27,6 +27,7 @@
                 //
                 case 'signup': require 'endpoint-experience-signup.php'; break;
                 case 'payment': require 'endpoint-experience-payment.php'; break;
+                case 'products': require 'endpoint-experience-product.php'; break;
 
                 //
                 default: header("Location: template-guest-hello.php");

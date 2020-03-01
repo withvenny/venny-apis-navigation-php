@@ -137,7 +137,7 @@
             break;
 
         //
-        case 'createIntent':
+        case 'createSetupIntent':
 
             $intent = \Stripe\SetupIntent::create([
                 //'customer' => $customer->id
@@ -150,7 +150,7 @@
             break;
 
         //
-        case 'retrieveIntent':
+        case 'retrieveSetupIntent':
 
             $retrieveIntent = \Stripe\SetupIntent::retrieve(
                 $_REQUEST['intent_id']
@@ -161,7 +161,7 @@
             break;
 
         //
-        case 'updateIntent':
+        case 'updateSetupIntent':
 
             $updateIntent = \Stripe\SetupIntent::update(
                 $_REQUEST['intent_id'],
@@ -173,7 +173,7 @@
             break;
 
         //
-        case 'confirmIntent':
+        case 'confirmSetupIntent':
 
             //
             $setup_intent = \Stripe\SetupIntent::retrieve(
