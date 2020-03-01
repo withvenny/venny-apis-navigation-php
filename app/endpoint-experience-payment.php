@@ -209,6 +209,18 @@
     
             break;
 
+        //
+        case 'retrievePaymentIntent':
+
+            //
+            $retrievePaymentIntent = \Stripe\PaymentIntent::retrieve(
+                'pi_1GHf8VEp9b2l1tcUD4nzbcfL'
+            );
+
+            echo $retrievePaymentIntent;
+    
+            break;
+
     }
 
 ?>
