@@ -28,6 +28,18 @@
 
             break;
 
+        //
+        case 'retrieveProduct':
+
+            //
+            $retrieveProduct = \Stripe\Product::retrieve(
+                $_REQUEST['product_id']
+            );
+
+            echo $retrieveProduct;
+
+            break;
+
     }
 
 ?>
