@@ -246,9 +246,8 @@
                 $_REQUEST['payment_intent']
             );
             $payment_intent->confirm([
-                'customer' => $_REQUEST['customer_id'],
                 'payment_method' => $_REQUEST['card'],
-            ]);;
+            ]);
 
             echo $payment_intent;
         
