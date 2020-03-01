@@ -193,14 +193,16 @@
         case 'createPaymentIntent':
 
             if(isset($_REQUEST['amount'])){$amount=$_REQUEST['amount'];}else{$amount=8383;}
-            if(isset($_REQUEST['customer_id'])){$customer_id=$_REQUEST['$customer_id'];}else{$customer_id=8383;}
+            if(isset($_REQUEST['customer_id'])){$customer_id=$_REQUEST['customer_id'];}else{$customer_id=8383;}
+            if(isset($_REQUEST['off_session'])){$off_session=$_REQUEST['off_session'];}else{$off_session=true;}
             
             $createPaymentIntent = \Stripe\PaymentIntent::create([
                 'amount' => $amount,
                 'currency' => 'usd',
                 'payment_method_types' => ['card'],
                 'description' => 'Trying something interesting...',
-                'customer' => $customer_id
+                'customer' => $customer_id,
+                'off_session' => $off_session
             ]);
 
             echo $createPaymentIntent;
