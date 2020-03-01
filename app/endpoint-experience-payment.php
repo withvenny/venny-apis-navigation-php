@@ -248,6 +248,8 @@
             $payment_intent->confirm([
                 'payment_method' => $_REQUEST['card'],
             ]);;
+
+            echo $payment_intent;
         
             break;
 
