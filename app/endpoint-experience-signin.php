@@ -55,8 +55,10 @@
             // insert a profile and get profile ID
             $request['user'] = $user_details['data'][0]['id'];
 
+            //
             $request['domain'] = 'profiles';
 
+            //
             $profile_details = $profile->selectProfiles($request);
 
             //

@@ -1051,6 +1051,33 @@
 
                     //echo $sql; exit;
 
+                } elseif(!empty($request['user'])) {
+
+                    $conditions.= " WHERE";
+                    $conditions.= " user_id = :user ";
+                    $conditions.= " AND active = 1 ";
+                    $conditions.= " ORDER BY time_finished DESC ";
+                    
+                    $subset = " LIMIT 1";
+
+                    $sql = "SELECT ";
+                    $sql.= $columns;
+                    $sql.= " FROM " . $table;
+                    $sql.= $conditions;
+                    $sql.= $subset;
+                    
+                    //echo json_encode($request['id']);
+                    //echo '<br/>';
+                    //echo $sql; exit;
+
+                    //
+                    $statement = $this->pdo->prepare($sql);
+
+                    // bind value to the :id parameter
+                    $statement->bindValue(':user', $request['user']);
+
+                    //echo $sql; exit;
+
                 } else {
 
                     $conditions = "";
