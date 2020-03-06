@@ -26,6 +26,7 @@
                 
                 //
                 case 'signup': require 'endpoint-experience-signup.php'; break;
+                case 'signin': require 'endpoint-experience-signin.php'; break;
                 case 'payment': require 'endpoint-experience-payment.php'; break;
                 case 'products': require 'endpoint-experience-product.php'; break;
 
