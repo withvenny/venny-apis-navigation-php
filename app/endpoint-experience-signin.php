@@ -65,7 +65,7 @@
             //
             $results['status'] = 200;
             $results['message'] = 'SUCCESSFULL';
-            $results['data']=array();
+            $results['data']=[];
             $results['data'].=$person_details['data'];
             $results['data'].=$user_details['data'];
             $results['data'].=$profile_details['data'];
