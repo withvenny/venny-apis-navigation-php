@@ -627,7 +627,7 @@
 
                 } elseif(isset($request['authorize']) && isset($request['person'])) {
 
-                    //echo json_encode($request);//exit;
+                    echo json_encode($request);//exit;
 
                     $conditions.= " WHERE";
                     $conditions.= " person_id = :person ";
@@ -721,6 +721,7 @@
                             'validation' => $row['user_validation'],
                             'welcome' => json_decode($row['user_welcome']),
                             'person' => $row['person_id']
+
                         ];
 
                     }
