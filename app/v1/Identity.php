@@ -610,7 +610,7 @@
 
                     $sql = "SELECT ";
                     $sql.= $columns;
-                    $sql.= " FROM " . users;
+                    $sql.= " FROM " . "users";
                     $sql.= $conditions;
                     $sql.= $subset;
                     
