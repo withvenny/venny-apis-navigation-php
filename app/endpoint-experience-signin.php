@@ -45,7 +45,7 @@
             $person_response = $person->selectPersons($request);
 
             //
-            $request['person'] = $person_response['id'];
+            $request['person'] = $person_response['data'][0]['id'];
 
             // get person ID's details
             $user_details = $user->selectUsers($request);
