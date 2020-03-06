@@ -39,6 +39,7 @@
             $profile = new Profile($pdo);
             $person = new Person($pdo);
             $user = new User($pdo);
+            $token = new Token($pdo);
 
             //
             // get person ID's details
@@ -70,8 +71,8 @@
             $results['data'].=json_encode($profile_details['data']);
 
             $results['log'] = [
-                'process' => $this->token->process_id(),
-                'event' => $this->token->event_id($process_id)
+                'process' => $token->process_id(),
+                'event' => $token->event_id($process_id)
             ];
 
             //
