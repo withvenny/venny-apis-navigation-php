@@ -65,13 +65,15 @@
             //
             $results['status'] = 200;
             $results['message'] = 'SUCCESSFULL';
-            $data = json_encode(array_push($person_details['data'],$user_details['data'],$profile_details['data']));
-            $results['data']=$data;
             
-            //$results['data']=array();
-            //$results['data'].=$person_details['data'];
-            //$results['data'].=$user_details['data'];
-            //$results['data'].=$profile_details['data'];
+            //
+            //$data = array_push(...$person_details['data'],...$user_details['data'],...$profile_details['data']);
+            //$results['data']=$data;
+            
+            $results['data']=array();
+            $results['data'].=$person_details['data'];
+            $results['data'].=$user_details['data'];
+            $results['data'].=$profile_details['data'];
             
             $results['log'] = [
                 'process' => $process_id = $token->process_id(),
