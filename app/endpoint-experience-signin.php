@@ -71,7 +71,7 @@
             //$results['data']=$data;
             
             $results['data']=NULL;
-            $results['data']['person'].=$person_details['data'];
+            $results['data']['person'].=json_encode($person_details['data']);
             $results['data']['user'].=$user_details['data'];
             $results['data']['profile'].=$profile_details['data'];
             
