@@ -61,10 +61,37 @@
             //
             $profile_details = $profile->selectProfiles($request);
 
+
+            $results = array(
+
+                'status' => $code,
+                'message' => $message,
+                'metadata' => [
+                    'page' => $request['page'],
+                    'pages' => $pages,
+                    'total' => $total
+                ],
+                'data' => $data,
+                'log' => [
+                    'process' => $process_id = $this->token->process_id(),
+                    'event' => $event_id = $this->token->event_id($process_id)
+                ]
+
+            );
+
+
             //
-            $results['data']=$person_details['data'];
-            $results['data']=$user_details['data'];
-            $results['data']=$profile_details['data'];
+            $results['status'] = 200;
+            $results['message'] = 'SUCCESSFULL';
+            $results['data']=NULL;
+            $results['data'].=$person_details['data'];
+            $results['data'].=$user_details['data'];
+            $results['data'].=$profile_details['data'];
+
+            $results['log'] = [
+                'process' => $process_id = $this->token->process_id(),
+                'event' => $event_id = $this->token->event_id($process_id)
+            ];
 
             //
             $results = json_encode($results);
