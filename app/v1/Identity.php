@@ -128,6 +128,7 @@
                 if(!isset($request['per'])){$request['per']=20;}
                 if(!isset($request['page'])){$request['page']=1;}
                 if(!isset($request['limit'])){$request['limit']=100;}
+
                 //
                 $conditions = "";
                 $domain = $request['domain'];
@@ -186,6 +187,32 @@
 
                     // bind value to the :id parameter
                     $statement->bindValue(':id', $request['id']);
+
+                    //echo $sql; exit;
+
+                } elseif(!empty($request['email'])) {
+
+                    $conditions.= " WHERE";
+                    $conditions.= " person_email = :email ";
+                    $conditions.= " AND active = 1 ";
+                    
+                    $subset = " LIMIT 1";
+
+                    $sql = "SELECT ";
+                    $sql.= $columns;
+                    $sql.= " FROM " . " persons ";//$table;
+                    $sql.= $conditions;
+                    $sql.= $subset;
+                    
+                    //echo json_encode($request['id']);
+                    //echo '<br/>';
+                    //echo $sql; exit;
+
+                    //
+                    $statement = $this->pdo->prepare($sql);
+
+                    // bind value to the :id parameter
+                    $statement->bindValue(':email', $request['email']);
 
                     //echo $sql; exit;
 
@@ -599,10 +626,10 @@
 
                     //echo $sql; exit;
 
-                } elseif(isset($request['authorize'])) {
+                } elseif(isset($request['authorize']) && isset($request['person'])) {
 
                     $conditions.= " WHERE";
-                    $conditions.= " user_email = :email ";
+                    $conditions.= " person_id = :person ";
                     $conditions.= " AND " . " user_authorize = crypt(':authorize', user_authorize)";
                     $conditions.= " AND active = 1 ";
                     
@@ -622,7 +649,8 @@
                     $statement = $this->pdo->prepare($sql);
 
                     // bind value to the :id parameter
-                    $statement->bindValue(':id', $request['id']);
+                    $statement->bindValue(':person', $request['person']);
+                    $statement->bindValue(':authorize', $request['authorize']);
 
                     //echo $sql; exit;
 

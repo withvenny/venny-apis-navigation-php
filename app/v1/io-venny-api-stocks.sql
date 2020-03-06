@@ -1452,5 +1452,14 @@ select * from profiles order by time_finished desc limit 11;
   FROM users
  WHERE user_alias = 'teamd' 
    AND user_authorize = crypt('B1@thering!', user_authorize);
+  
+select person_id from persons where person_email = 'teamf@thentrl.ccom.uk';
+  
+SELECT user_id,	user_attributes, user_alias,	user_authorize,	user_lastlogin,	user_status, user_validation,	user_welcome, person_id	
+FROM users 
+WHERE person_id = '77ecc0c212be1' AND user_authorize = crypt('B1@thering!', user_authorize) AND active = 1 LIMIT 1;
+
+
+
    
 

@@ -40,6 +40,13 @@
             $person = new Person($pdo);
             $user = new User($pdo);
 
+            //
+            // get person ID's details
+            $person_response = $person->selectPersons($request);
+
+            //
+            $request['person'] = $person_response['id'];
+
             // get person ID's details
             $user_details = $user->selectUsers($request);
 
