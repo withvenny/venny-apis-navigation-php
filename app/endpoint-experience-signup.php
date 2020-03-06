@@ -70,7 +70,7 @@
             $request['domain'] = 'users';
             
             //Set ID
-            $request['id']='';
+            $request['id']=NULL;
 
             //
             $user_id = $user->insertUser($request);
