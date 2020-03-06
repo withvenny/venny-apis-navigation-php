@@ -65,12 +65,13 @@
             //
             $results['status'] = 200;
             $results['message'] = 'SUCCESSFULL';
-            $results['data']=array_push($person_details['data'],$user_details['data'],$profile_details['data']);
-            /*
-            $results['data'].=$person_details['data'];
-            $results['data'].=$user_details['data'];
-            $results['data'].=$profile_details['data'];
-            */
+            //$results['data']=array_push($person_details['data'],$user_details['data'],$profile_details['data']);
+            
+            $results['data']=NULL;
+            $results['data']+=$person_details['data'];
+            $results['data']+=$user_details['data'];
+            $results['data']+=$profile_details['data'];
+            
             $results['log'] = [
                 'process' => $process_id = $token->process_id(),
                 'event' => $token->event_id($process_id)
