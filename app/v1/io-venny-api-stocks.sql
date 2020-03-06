@@ -1445,7 +1445,7 @@ SELECT * FROM profiles;
 
 select * from persons order by time_finished desc limit 11;
 select * from users order by time_finished desc limit 11;
-select * from profiles order by time_finished desc limit 11;	
+select * from profiles order by time_finished desc limit 11;
 
 /* USERS */
  SELECT user_id
@@ -1469,7 +1469,10 @@ LIMIT 1;
 {"app":"app_eRdsWAqgHNcRi","domain":"signin","token":"tok_NrydxsCvffPgD","email":"teamf@thentrl.ccom.uk","authorize":"B1@thering!","person":"7831227668cce","per":20,"page":1,"limit":100}
 
 
-select person_email from persons order by time_finished desc limit 11;
+select person_email from persons;
+UPDATE persons SET person_email = '0306200952@gmail.com' WHERE person_email = 'sonofadolphus@gmail.com' RETURNING person_id;
+UPDATE users SET user_alias = '0306200952' WHERE user_alias = 'sonofadolphus' RETURNING user_id;
+UPDATE profiles SET person_email = '0306200941@gmail.com' WHERE person_id = 'sonofadolphus@gmail.com' RETURNING person_id;
 
 
 

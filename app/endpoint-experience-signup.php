@@ -68,6 +68,11 @@
 
             // insert a user and get user ID
             $request['domain'] = 'users';
+            
+            //Set ID
+            $request['id']='';
+
+            //
             $user_id = $user->insertUser($request);
 
             //echo json_encode($user_id) . '<br/>';
