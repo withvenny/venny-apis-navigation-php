@@ -651,7 +651,7 @@
                     $statement->bindValue(':person', $request['person']);
                     $statement->bindValue(':authorize', $request['authorize']);
 
-                    //echo $sql; //exit;
+                    echo $sql; //exit;
 
                 } else {
 
