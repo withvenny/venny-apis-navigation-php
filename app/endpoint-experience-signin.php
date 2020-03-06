@@ -67,8 +67,8 @@
             $results['message'] = 'SUCCESSFULL';
             $results['data']=[];
             $results['data'].=json_encode($person_details['data']);
-            $results['data'].=json_decode($user_details['data']);
-            $results['data'].=json_decode($profile_details['data']);
+            $results['data'].=json_encode($user_details['data']);
+            $results['data'].=json_encode($profile_details['data']);
             $results['log'] = [
                 'process' => $process_id = $token->process_id(),
                 'event' => $token->event_id($process_id)
