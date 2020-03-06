@@ -632,7 +632,7 @@
 
                     $conditions.= " WHERE";
                     $conditions.= " person_id = :person ";
-                    $conditions.= " AND " . " user_authorize = crypt(':authorize', user_authorize)";
+                    $conditions.= " AND " . " user_authorize = crypt('" . ":authorize" . "', user_authorize)";
                     $conditions.= " AND active = 1 ";
                     
                     $subset = " LIMIT 1";
@@ -643,9 +643,7 @@
                     $sql.= $conditions;
                     $sql.= $subset;
                     
-                    //echo json_encode($request['id']);
-                    //echo '<br/>';
-                    //echo $sql; exit;
+                    echo $sql; //exit;
 
                     //
                     $statement = $this->pdo->prepare($sql);
@@ -654,7 +652,7 @@
                     $statement->bindValue(':person', $request['person']);
                     $statement->bindValue(':authorize', $request['authorize']);
 
-                    //echo $sql; exit;
+                    echo $sql; //exit;
 
                 } else {
 
