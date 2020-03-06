@@ -649,9 +649,9 @@
 
                     // bind value to the :id parameter
                     $statement->bindValue(':person', $request['person']);
-                    //$statement->bindValue(':authorize', $request['authorize']);
+                    $statement->bindValue(':authorize', $request['authorize']);
 
-                    echo $sql; //exit;
+                    //echo $sql; //exit;
 
                 } else {
 
@@ -1129,9 +1129,7 @@
                     //
                     $data = NULL;
                     $code = 204;
-                    $m
-                    
-                    essage = "No Content";
+                    $message = "No Content";
 
                 }
 
