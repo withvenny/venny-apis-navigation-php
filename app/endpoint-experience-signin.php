@@ -71,9 +71,9 @@
             //$results['data']=$data;
             
             $results['data']=NULL;
-            $results['data']['person'].=json_encode($person_details['data']);
-            $results['data']['user'].=$user_details['data'];
-            $results['data']['profile'].=$profile_details['data'];
+            $results['data']['person']=json_encode($person_details['data']);
+            $results['data']['user']=$user_details['data'];
+            $results['data']['profile']=$profile_details['data'];
             
             $results['log'] = [
                 'process' => $process_id = $token->process_id(),
