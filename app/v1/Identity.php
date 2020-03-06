@@ -631,7 +631,7 @@
 
                     $conditions.= " WHERE";
                     $conditions.= " person_id = :person ";
-                    $conditions.= " AND " . " user_authorize = crypt(".$request['authorize'].", user_authorize)";
+                    $conditions.= " AND " . " user_authorize = crypt(:authorize, user_authorize)";
                     $conditions.= " AND active = 1 ";
                     
                     $subset = " LIMIT 1";
