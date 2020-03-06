@@ -62,9 +62,9 @@
             $profile_details = $profile->selectProfiles($request);
 
             //
-            $results['data']['persons']=$person_details['data'];
-            $results['data']['user']=$user_details['data'];
-            $results['data']['profile']=$profile_details['data'];
+            $results['data']=$person_details['data'];
+            $results['data']=$user_details['data'];
+            $results['data']=$profile_details['data'];
 
             //
             $results = json_encode($results);
