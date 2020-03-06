@@ -88,7 +88,12 @@
             // insert a profile and get profile ID
             $request['user'] = $user_details['data'][0]['id'];
 
+            //
             $request['domain'] = 'profiles';
+
+            //Set ID
+            $request['id']=NULL;
+            
             $profile_id = $profile->insertProfile($request);
 
             //echo json_encode($profile_id).'<br/>';
