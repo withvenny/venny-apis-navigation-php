@@ -70,12 +70,10 @@
             //$data = array_push(...$person_details['data'],...$user_details['data'],...$profile_details['data']);
             //$results['data']=$data;
             
-            $results['data']=array();
-            $results['data'].=$person_details['data'];
-            $results['data'].=$user_details['data'];
-            $results['data'].=$profile_details['data'];
-
-            echo json_encode($results);
+            $results['data']=NULL;
+            $results['data']['person'].=$person_details['data'];
+            $results['data']['user'].=$user_details['data'];
+            $results['data']['profile'].=$profile_details['data'];
             
             $results['log'] = [
                 'process' => $process_id = $token->process_id(),
