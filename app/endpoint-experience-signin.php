@@ -65,7 +65,7 @@
             //
             $results['status'] = 200;
             $results['message'] = 'SUCCESSFULL';
-            $data[] = $person_details['data'] . $user_details['data'] . $profile_details['data'];
+            $data[] = json_encode($person_details['data']) . json_encode($user_details['data']) . json_encode($profile_details['data']);
             $results['data']=$data;
             
             //$results['data']=array();
