@@ -1469,5 +1469,7 @@ LIMIT 1;
 {"app":"app_eRdsWAqgHNcRi","domain":"signin","token":"tok_NrydxsCvffPgD","email":"teamf@thentrl.ccom.uk","authorize":"B1@thering!","person":"7831227668cce","per":20,"page":1,"limit":100}
 
 
-   
+select person_email from persons order by time_finished desc limit 11;
+
+
 

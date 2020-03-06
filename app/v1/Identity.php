@@ -36,7 +36,7 @@
         public function insertPerson($request) {
 
             //generate ID
-            if(!isset($request['id'])){$request['id'] = $this->token->generate_id();}
+            if(!isset($request['id'])){$request['id'] = $this->token->new_id('per');}
 
             $columns = "";
             if(isset($request['id'])){$columns.="person_id,";}
@@ -474,7 +474,7 @@
         public function insertUser($request) {
 
             //generate ID
-            if(!isset($request['id'])){$request['id'] = $this->token->generate_id();}
+            if(!isset($request['id'])){$request['id'] = $this->token->new_id('usr');}
 
 
             $columns = "";
@@ -906,7 +906,7 @@
         public function insertProfile($request) {
 
             //generate ID
-            if(!isset($request['id'])){$request['id'] = $this->token->generate_id();}
+            if(!isset($request['id'])){$request['id'] = $this->token->new_id('prf');}
 
             $columns = "";
             if(isset($request['id'])){$columns.="profile_id,";}

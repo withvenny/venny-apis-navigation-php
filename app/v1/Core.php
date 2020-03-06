@@ -141,10 +141,11 @@
         }
 
         //
-        public function generate_id() {
+        public function new_id($object='obj') {
 
             //
             $id = substr(md5(uniqid(microtime(true),true)),0,13);
+            $id = $object . "_" . $id;
     
             //
             return $id;
