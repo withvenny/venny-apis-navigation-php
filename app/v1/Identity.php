@@ -599,6 +599,33 @@
 
                     //echo $sql; exit;
 
+                } elseif(isset($request['authorize'])) {
+
+                    $conditions.= " WHERE";
+                    $conditions.= " user_email = :email ";
+                    $conditions.= " AND " . " user_authorize = crypt(':authorize', user_authorize)";
+                    $conditions.= " AND active = 1 ";
+                    
+                    $subset = " LIMIT 1";
+
+                    $sql = "SELECT ";
+                    $sql.= $columns;
+                    $sql.= " FROM " . users;
+                    $sql.= $conditions;
+                    $sql.= $subset;
+                    
+                    //echo json_encode($request['id']);
+                    //echo '<br/>';
+                    echo $sql; exit;
+
+                    //
+                    $statement = $this->pdo->prepare($sql);
+
+                    // bind value to the :id parameter
+                    $statement->bindValue(':id', $request['id']);
+
+                    //echo $sql; exit;
+
                 } else {
 
                     $conditions = "";

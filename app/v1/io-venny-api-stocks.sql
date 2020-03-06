@@ -1444,3 +1444,13 @@ INSERT INTO profiles (profile_ID,profile_attributes,profile_images,profile_bio,p
 SELECT * FROM profiles;	
 
 select * from persons order by time_finished desc limit 11;
+select * from users order by time_finished desc limit 11;
+select * from profiles order by time_finished desc limit 11;	
+
+/* USERS */
+ SELECT user_id
+  FROM users
+ WHERE user_alias = 'teamd' 
+   AND user_authorize = crypt('B1@thering!', user_authorize);
+   
+

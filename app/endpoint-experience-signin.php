@@ -24,12 +24,14 @@
     */
 
     // data cleanse
-    if(isset($_REQUEST['name_first'])){$request['name_first'] = clean($_REQUEST['name_first']);}
     if(isset($_REQUEST['email'])){$request['email'] = clean($_REQUEST['email']);}
     if(isset($_REQUEST['authorize'])){$request['authorize'] = clean($_REQUEST['authorize']);}
+    //if(isset($_REQUEST['alias'])){$request['alias'] = clean($_REQUEST['alias']);}
 
     //
-    if($_SERVER['REQUEST_METHOD']=='POST'){
+    if($_SERVER['REQUEST_METHOD']=='POST') {
+
+        //echo json_encode($_REQUEST);exit;
 
         try {
 
@@ -38,46 +40,35 @@
             $person = new Person($pdo);
             $user = new User($pdo);
 
-            /*
-            name_first
-            name_last
-            email
-            access
-            */
-        
-            // insert a person and get person ID
-            $request['domain'] = 'persons';
-            $person_id = $person->insertPerson($request);
-
-            echo var_dump($person_id);exit;
-
-            // add new person ID to overall request
-            $request['id'] = $person_id;
-
-            // get person ID's details
-            $person_details = $person->selectPersons($request);
-
-            // insert a user and get user ID
-            $request['domain'] = 'users';
-            $user_id = $user->insertUser($request);
-
-            // add new person ID to overall request
-            $request['id'] = $user_id;
-
             // get person ID's details
             $user_details = $user->selectUsers($request);
 
+            //echo json_encode($user_details) . '<br/>';
+
             // insert a profile and get profile ID
+            $request['user'] = $user_details['data'][0]['id'];
+
             $request['domain'] = 'profiles';
             $profile_id = $profile->insertProfile($request);
+
+            //echo json_encode($profile_id).'<br/>';
+            //echo json_encode($user_details['data'][0]['id']).'<br/>';
 
             // add new person ID to overall request
             $request['id'] = $profile_id;
 
             // get person ID's details
             $profile_details = $profile->selectProfiles($request);
-            
+            //echo json_encode($profile_details) . '<br/>';
+
             //
+            $results['data']['persons']=$person_details['data'];
+            $results['data']['user']=$user_details['data'];
+            $results['data']['profile']=$profile_details['data'];
+
+            //
+            $results = json_encode($results);
+
             echo $results;
         
         } catch (\PDOException $e) {
