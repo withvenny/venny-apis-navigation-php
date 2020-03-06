@@ -1459,6 +1459,12 @@ SELECT user_id,	user_attributes, user_alias,	user_authorize,	user_lastlogin,	use
 FROM users 
 WHERE person_id = '77ecc0c212be1' AND user_authorize = crypt('B1@thering!', user_authorize) AND active = 1 LIMIT 1;
 
+SELECT user_id,	user_attributes,	user_alias,	user_authorize,	user_lastlogin,	user_status, user_validation,	user_welcome, person_id	
+FROM users 
+WHERE person_id = '77ecc0c212be1' 
+AND user_authorize = crypt('B1@thering!', user_authorize) 
+AND active = 1 
+LIMIT 1;
 
 
    
