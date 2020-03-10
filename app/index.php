@@ -1,245 +1,30 @@
 <?php
- 
-    //
-    header('Content-Type: application/json');
-
-    //
-    require '../vendor/autoload.php';
-    
-    //use PostgreSQLTutorial\Connection as Connection;
-    //use PostgreSQLTutorial\PostgreSQLCreateTable as PostgreSQLCreateTable;
-    //use PostgreSQLTutorial\PostgreSQLPHPInsert as PostgreSQLPHPInsert;
-    //use PostgreSQLTutorial\PostgreSQLPHPUpdate as PostgreSQLPHPUpdate;
-    //use PostgreSQLTutorial\StockDB as StockDB;
-    //use PostgreSQLTutorial\AccountDB as AccountDB;
-    //use PostgreSQLTutorial\StoreProc as StoreProc;
-    //use PostgreSQLTutorial\BlobDB as BlobDB;
-
-    use Venny\Connection as Connection;
-    use Venny\Person as Person;
-
-
-    // Connection
-    /*
-    try {
-        Connection::get()->connect();
-        echo 'A connection to the PostgreSQL database sever has been established successfully.';
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
-    }
-    */
-
-    // PostgreSQLCreateTable
-    /*
-    try {
-    
-        // connect to the PostgreSQL database
-        $pdo = Connection::get()->connect();
-        
-        // 
-        $tableCreator = new PostgreSQLCreateTable($pdo);
-        
-        // create tables and query the table from the
-        // database
-        $tables = $tableCreator->createTables()
-                                ->getTables();
-        
-        foreach ($tables as $table){
-            echo $table . '<br>';
-        }
-        
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
-    }
-    */
-
-    // PostgreSQLPHPInsert
-    /*
-    try {
-        // connect to the PostgreSQL database
-        $pdo = Connection::get()->connect();
-        // 
-        $insertDemo = new PostgreSQLPHPInsert($pdo);
-     
-        // insert a stock into the stocks table
-        $id = $insertDemo->insertStock('MSFT', 'Microsoft Corporation');
-        echo 'The stock has been inserted with the id ' . $id . '<br>';
-     
-        // insert a list of stocks into the stocks table
-        $list = $insertDemo->insertStockList([
-            ['symbol' => 'GOOG', 'company' => 'Google Inc.'],
-            ['symbol' => 'YHOO', 'company' => 'Yahoo! Inc.'],
-            ['symbol' => 'FB', 'company' => 'Facebook, Inc.'],
-        ]);
-     
-        foreach ($list as $id) {
-            echo 'The stock has been inserted with the id ' . $id . '<br>';
-        }
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
-    }
-    */
-
-    //
-    /*
-    try {
-        // connect to the PostgreSQL database
-        $pdo = Connection::get()->connect();
-    
-        // 
-        $updateDemo = new PostgreSQLPHPUpdate($pdo);
-    
-        // insert a stock into the stocks table
-        $affectedRows = $updateDemo->updateStock(3, 'GOOGL', 'Alphabet Inc.');
-    
-        echo 'Number of row affected ' . $affectedRows;
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
-    }*/
-
-    //
-    /*
-    try {
-        // connect to the PostgreSQL database
-        $pdo = Connection::get()->connect();
-        // 
-        $stockDB = new StockDB($pdo);
-        // get all stocks data
-        $stocks = $stockDB->all();
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
-    }
-    */
-
-    //
-    /*
-    try {
-        // connect to the PostgreSQL database
-        $pdo = Connection::get()->connect();
-     
-        $accountDB = new AccountDB($pdo);
-     
-        // add accounts
-        $accountDB->addAccount('John', 'Doe', 1, date('Y-m-d'));
-        $accountDB->addAccount('Linda', 'Williams', 2, date('Y-m-d'));
-        $accountDB->addAccount('Maria', 'Miller', 3, date('Y-m-d'));
-     
-     
-        echo 'The new accounts have been added.' . '<br>';
-        // 
-        $accountDB->addAccount('Susan', 'Wilson', 99, date('Y-m-d'));
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
-    }
-    */
-
-    //
-    /*
-    try {
-        // connect to the PostgreSQL database
-        $pdo = Connection::get()->connect();
-        // 
-        $storeProc = new StoreProc($pdo);
-     
-        $result = $storeProc->add(20, 30);
-        echo $result;
-        
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
-    }
-    */
-
-    //
-    /*
-    try {
-        // connect to the PostgreSQL database
-        $pdo = Connection::get()->connect();
-        // 
-        $storeProc = new StoreProc($pdo);
-       
-        $accounts = $storeProc->getAccounts();
-        
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
-    }
-    */
-
-    /*
-    try {
-        // connect to the PostgreSQL database
-        $pdo = Connection::get()->connect();
-        // 
-        $blobDB = new BlobDB($pdo);
-        $fileId = $blobDB->insert(5, 'logo', 'image/png', 'assets/images/google.png');
-     
-        echo 'A file has been inserted with id ' . $fileId;
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
-    }
-    */
-
-    /*
-    try {
-        // connect to the PostgreSQL database
-        $pdo = Connection::get()->connect();
-        // 
-        $stockDB = new StockDB($pdo);
-        // delete a stock with a specified id
-        $deletedRows = $stockDB->delete(4);
-        //$deletedRows = $stockDB->deleteAll(); // didn't try this because there's still fkeys for some.
-        echo 'The number of row(s) deleted: ' . $deletedRows . '<br>';
-        
-    } catch (\PDOException $e) {
-        echo $e->getMessage();
-    }
-    */
-
-    //
-    switch ($_SERVER['REQUEST_METHOD']) {
-
-        //
-        case 'POST':
-
-            try {
-                // connect to the PostgreSQL database
-                $pdo = Connection::get()->connect();
-                // 
-                $person = new Person($pdo);
-            
-                // insert a stock into the stocks table
-                $id = $person->insertPerson($_REQUEST);
-
-                echo 'The stock has been inserted with the id ' . $id . '<br>';
-            
-            } catch (\PDOException $e) {
-                echo $e->getMessage();
-            }
-
-        break;
-
-        case 'GET':
-
-            try {
-
-                // connect to the PostgreSQL database
-                $pdo = Connection::get()->connect();
-
-                // 
-                $person = new Person($pdo);
-
-                // get all stocks data
-                $persons = $person->selectPersons($_REQUEST);
-
-                echo json_encode($persons);
-
-            } catch (\PDOException $e) {
-
-                echo $e->getMessage();
-
-            }
-
-        break;
-
-    }
-
+require('../vendor/autoload.php');
+// this will simply read AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY from env vars
+$s3 = new Aws\S3\S3Client([
+    'version'  => '2006-03-01',
+    'region'   => 'us-east-1',
+]);
+$bucket = getenv('S3_BUCKET')?: die('No "S3_BUCKET" config var in found in env!');
 ?>
+<html>
+    <head><meta charset="UTF-8"></head>
+    <body>
+        <h1>S3 upload example</h1>
+<?php
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['userfile']) && $_FILES['userfile']['error'] == UPLOAD_ERR_OK && is_uploaded_file($_FILES['userfile']['tmp_name'])) {
+    // FIXME: add more validation, e.g. using ext/fileinfo
+    try {
+        // FIXME: do not use 'name' for upload (that's the original filename from the user's computer)
+        $upload = $s3->upload($bucket, $_FILES['userfile']['name'], fopen($_FILES['userfile']['tmp_name'], 'rb'), 'public-read');
+?>
+        <p>Upload <a href="<?=htmlspecialchars($upload->get('ObjectURL'))?>">successful</a> :)</p>
+<?php } catch(Exception $e) { ?>
+        <p>Upload error :(</p>
+<?php } } ?>
+        <h2>Upload a file</h2>
+        <form enctype="multipart/form-data" action="<?=$_SERVER['PHP_SELF']?>" method="POST">
+            <input name="userfile" type="file"><input type="submit" value="Upload">
+        </form>
+    </body>
+</html>
