@@ -28,7 +28,7 @@
             if ($db === false) {throw new \Exception("Error reading database configuration file");}
             // connect to the postgresql database
             $conStr = sprintf("pgsql:host=%s;port=%d;dbname=%s;user=%s;password=%s", 
-                    $db['host'], 
+                    $db['host'],
                     $db['port'], 
                     ltrim($db["path"], "/"), 
                     $db['user'], 
