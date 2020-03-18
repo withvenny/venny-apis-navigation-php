@@ -22,19 +22,19 @@
 
             // read parameters in the ini configuration file
             //$params = parse_ini_file('database.ini');
-            $db = parse_url(getenv("DATABASE_URL"));
+            $db = parse_url(APP_DB_URL);
 
             //if ($params === false) {throw new \Exception("Error reading database configuration file");}
             if ($db === false) {throw new \Exception("Error reading database configuration file");}
             // connect to the postgresql database
-            $conStr = sprintf("pgsql:host=%s;port=%d;dbname=%s;user=%s;password=%s", 
+            $database = sprintf("pgsql:host=%s;port=%d;dbname=%s;user=%s;password=%s", 
                     $db['host'], 
                     $db['port'], 
                     ltrim($db["path"], "/"), 
                     $db['user'], 
                     $db['pass']);
     
-            $pdo = new \PDO($conStr);
+            $pdo = new \PDO($connection);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     
             return $pdo;
