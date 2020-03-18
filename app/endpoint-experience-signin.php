@@ -43,7 +43,7 @@
 
             //
             $request['domain'] = 'persons';
-            $request['per'] = 0;
+            $request['per'] = 1;
             $request['page'] = 1;
             $request['limit'] = 1;
 

@@ -4,9 +4,9 @@
     header('Content-Type: application/json');
 
     //
-    require '../vendor/autoload.php';
-    require 'v1/functions.php';
-    require 'v1/environments.php';
+    require 'autoload.php';
+    require 'functions.php';
+    require 'environments.php';
 
     //
     if(isset($_REQUEST['token'])) {
@@ -24,7 +24,6 @@
                 case 'users': require 'endpoint-identity-users.php'; break;
                 case 'profiles': require 'endpoint-identity-profiles.php'; break;
     
-                
                 //
                 case 'signup': require 'endpoint-experience-signup.php'; break;
                 case 'signin': require 'endpoint-experience-signin.php'; break;
