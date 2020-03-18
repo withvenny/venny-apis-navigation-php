@@ -1,5 +1,7 @@
 <?php
 
+require 'autoload.php';
+
 $loop = React\EventLoop\Factory::create();
 
 $server = stream_socket_server('tcp://127.0.0.1:8080');
