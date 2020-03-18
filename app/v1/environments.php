@@ -19,12 +19,7 @@
 		define ('APP_ST_UPLD',  '_assets/images/'); // directory for all image uploads
     define ('APP_ST_CDN',   'http://venny-cdn.imgix.net/'); // directory for all image uploads
 		define ('APP_DB_URL',   $app['test_db_url']); // db hostname
-		define ('APP_DB_HOST',  $app['test_db_host']); // db hostname
-    define ('APP_DB_PORT',  $app['test_db_port']); // db port
-    define ('APP_DB_NAME',  $app['test_db_name']); // db name
-    define ('APP_DB_USER',  $app['test_db_user']); // db username
-    define ('APP_DB_PASS',  $app['test_db_pass']); // db password
-    define ('APP_API_KEY',  $app['test_app_token']); // API key used for all intraapp API calls
+	  define ('APP_API_KEY',  $app['test_app_token']); // API key used for all intraapp API calls
     define ('APP_EM_FROM',  $app['test_em_from']); // app
     define ('APP_EM_HOST',  $app['test_em_host']); // Mailgun hostname
     define ('APP_EM_KEY',   $app['test_em_key']); // Private API Key
@@ -66,12 +61,7 @@
 		define ('APP_ST_UPLD',  '_assets/images/'); // directory for all image uploads
     define ('APP_ST_CDN',   'http://venny-cdn.imgix.net/'); // directory for all image uploads
 		define ('APP_DB_URL',   getenv('DATABASE_URL')); // db hostname
-		define ('APP_DB_HOST',  $app['live_db_host']); // db hostname
-    define ('APP_DB_PORT',  $app['live_db_port']); // db port
-    define ('APP_DB_NAME',  $app['live_db_name']); // db name
-    define ('APP_DB_USER',  $app['live_db_user']); // db username
-    define ('APP_DB_PASS',  $app['live_db_pass']); // db password
-    define ('APP_API_KEY',  $app['live_app_token']); // API key used for all intraapp API calls
+	  define ('APP_API_KEY',  $app['live_app_token']); // API key used for all intraapp API calls
     define ('APP_EM_FROM',  $app['live_em_from']); // app
     define ('APP_EM_HOST',  $app['live_em_host']); // Mailgun hostname
     define ('APP_EM_KEY',   $app['live_em_key']); // Private API Key
