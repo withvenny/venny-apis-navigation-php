@@ -9,7 +9,7 @@
 Header set Access-Control-Allow-Origin "*"
 
 # Include path for localhost
-php_value include_path "/app:/app/v1:/app/vendor:"
+php_value include_path "/app:/app/v1:/app/vendor"
 
 #Options -Indexes
 
