@@ -4,7 +4,7 @@ RewriteCond %{REQUEST_URI} !app
 RewriteRule (.*) app/$1 [L]
 
 # Include path for localhost
-php_value include_path ".:../app:../vendor"
+php_value include_path ".:/Library/WebServer/Documents/api.stocks.venny.io/app:/Library/WebServer/Documents/api.stocks.venny.io/vendor"
 
 # keeps root directory file paths hidden
 Options -Indexes
