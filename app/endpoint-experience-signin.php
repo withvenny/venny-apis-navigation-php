@@ -42,6 +42,9 @@
             $token = new Token($pdo);
 
             //
+            $request['domain'] = 'persons';
+
+            //
             // get person ID's details
             $person_details = $person->selectPersons($request);
 
