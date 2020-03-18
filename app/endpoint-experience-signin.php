@@ -43,6 +43,9 @@
 
             //
             $request['domain'] = 'persons';
+            $request['per'] = 0;
+            $request['page'] = 1;
+            $request['limit'] = 1;
 
             // get person ID's details
             $person_details = $person->selectPersons($request);
