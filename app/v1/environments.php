@@ -50,6 +50,10 @@
   else {
 
     //
+    $app = parse_ini_file('../app.ini');
+    echo var_dump($app); //exit;
+
+    //
     define ('APP_ENV_ROOT', $app['live_env_root']); // app environment root
     define ('APP_ST_NAME',  $app['live_st_name']); // app site name
     define ('APP_NAME',     $app['live_app_name']); // app
