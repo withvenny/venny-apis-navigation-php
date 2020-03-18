@@ -4,27 +4,12 @@ require 'autoload.php';
 
 $loop = React\EventLoop\Factory::create();
 
-$server = stream_socket_server('tcp://127.0.0.1:8080');
-stream_set_blocking($server, false);
-
-$loop->addReadStream($server, function ($server) use ($loop) {
-    $conn = stream_socket_accept($server);
-    $data = "HTTP/1.1 200 OK\r\nContent-Length: 3\r\n\r\nHi\n";
-    $loop->addWriteStream($conn, function ($conn) use (&$data, $loop) {
-        $written = fwrite($conn, $data);
-        if ($written === strlen($data)) {
-            fclose($conn);
-            $loop->removeWriteStream($conn);
-        } else {
-            $data = substr($data, $written);
-        }
-    });
+$loop->addTimer(0.8, function () {
+    echo 'world!' . PHP_EOL;
 });
 
-$loop->addPeriodicTimer(5, function () {
-    $memory = memory_get_usage() / 1024;
-    $formatted = number_format($memory, 3).'K';
-    echo "Current memory usage: {$formatted}\n";
+$loop->addTimer(0.3, function () {
+    echo 'hello ';
 });
 
 $loop->run();
