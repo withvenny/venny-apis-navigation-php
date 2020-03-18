@@ -49,7 +49,7 @@
 
             // get person ID's details
             $person_details = $person->selectPersons($request);
-            //echo var_dump($person_details);exit;
+
             //
             $request['person'] = $person_details['data'][0]['id'];
 
