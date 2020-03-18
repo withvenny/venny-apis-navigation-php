@@ -51,7 +51,7 @@
 
     //
     $app = parse_ini_file('../app.ini');
-    echo var_dump($app); //exit;
+    //echo var_dump($app); //exit;
 
     //
     define ('APP_ENV_ROOT', $app['live_env_root']); // app environment root
@@ -90,8 +90,8 @@
 
     */
     
-    echo var_dump($app); //exit;
-    echo var_dump(APP_DB_URL); //exit;
+    //echo var_dump($app); //exit;
+    //echo var_dump(APP_DB_URL); //exit;
 
 
   }
