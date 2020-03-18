@@ -5,8 +5,8 @@
 
     //
     require 'autoload.php';
-    require 'functions.php';
-    require 'environments.php';
+    require 'v1/functions.php';
+    require 'v1/environments.php';
 
     //
     if(isset($_REQUEST['token'])) {
