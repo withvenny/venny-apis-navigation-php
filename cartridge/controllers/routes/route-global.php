@@ -5,8 +5,9 @@
 
     //
     require 'autoload.php';
-    require 'v1/functions.php';
-    require 'v1/environments.php';
+    require 'controllers/components/component-functions.php';
+    require 'controllers/components/component-environments.php';
+    require 'controllers/routes/route-global.php';
 
     //
     if(isset($_REQUEST['token'])) {
@@ -20,16 +21,17 @@
             switch ($_REQUEST['domain']) {
 
                 //
-                case 'persons': require 'endpoint-identity-persons.php'; break;
-                case 'users': require 'endpoint-identity-users.php'; break;
-                case 'profiles': require 'endpoint-identity-profiles.php'; break;
-    
-                //
-                case 'signup': require 'endpoint-experience-signup.php'; break;
-                case 'signin': require 'endpoint-experience-signin.php'; break;
-                case 'payment': require 'endpoint-experience-payment.php'; break;
-                case 'products': require 'endpoint-experience-product.php'; break;
+                case 'signup': require 'controllers/endpoints/endpoint-experience-signup.php'; break;
+                case 'signin': require 'controllers/endpoints/endpoint-experience-signin.php'; break;
+                case 'payment': require 'controllers/endpoints/endpoint-experience-payment.php'; break;
+                case 'products': require 'controllers/endpoints/endpoint-experience-product.php'; break;
+                
 
+                //
+                case 'persons': require 'controllers/endpoints/endpoint-identity-persons.php'; break;
+                case 'users': require 'controllers/endpoints/endpoint-identity-users.php'; break;
+                case 'profiles': require 'controllers/endpoints/endpoint-identity-profiles.php'; break;
+    
                 //
                 default: header("Location: template-guest-hello.php");
             

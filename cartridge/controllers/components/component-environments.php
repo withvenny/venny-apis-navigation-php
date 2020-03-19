@@ -1,5 +1,8 @@
 <?php
 
+	//
+	$timezone = date_default_timezone_set("America/New_York");
+
   // Determine scope...
   if($_SERVER['HTTP_HOST'] == 'localhost') {
 

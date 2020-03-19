@@ -18,8 +18,4 @@ RewriteEngine On
 
 #API
 RewriteEngine On
-RewriteRule ^v1/([^/]*)(.*)$ api.php?domain=$1$2 [QSA]
-
-#API
-RewriteEngine On
 RewriteRule ^v2/([^/]*)(.*)$ api.php?domain=$1$2 [QSA]

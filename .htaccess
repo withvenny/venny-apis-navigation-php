@@ -1,36 +1,17 @@
+#SUPER IMPORTANT
+Header set Access-Control-Allow-Origin "*"
+
 # Routing all traffic to project directory
 RewriteEngine on
-RewriteCond %{REQUEST_URI} !app
-RewriteRule (.*) app/$1 [L]
+RewriteCond %{REQUEST_URI} !cartridge
+RewriteRule (.*) cartridge/$1 [L]
 
 # Include path for localhost
-php_value include_path ".:/Library/WebServer/Documents/api.stocks.venny.io/app:/Library/WebServer/Documents/api.stocks.venny.io/vendor"
+php_value include_path ".:/Library/WebServer/Documents/api.identity.venny.io/catridge:/Library/WebServer/Documents/api.identity.venny.io/vendor"
 
 # keeps root directory file paths hidden
 Options -Indexes
 
-#RewriteEngine On
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteRule ^ index.php [QSA,L]
-
-#Alternate default index page
-#DirectoryIndex template-guest-hello.php
-
-#SUPER IMPORTANT
-Header set Access-Control-Allow-Origin "*"
-
-#Options -Indexes
-
-#Options +FollowSymLinks +SymLinksIfOwnerMatch
-
-RewriteEngine On
-#RewriteRule ^([a-zA-Z0-9_-]+)$ profile.php?profile_username=$1
-#RewriteRule ^([a-zA-Z0-9_-]+)/$ profile.php?profile_username=$1
-
 #API
 RewriteEngine On
-RewriteRule ^v1/([^/]*)(.*)$ api.php?domain=$1$2 [QSA]
-
-#API
-RewriteEngine On
-RewriteRule ^v2/([^/]*)(.*)$ api.php?domain=$1$2 [QSA]
+RewriteRule ^v1/([^/]*)(.*)$ controllers/routes/route.global.php?domain=$1$2 [QSA]
