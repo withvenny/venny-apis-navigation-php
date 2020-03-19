@@ -15,8 +15,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Core\\": "app/v1/",
-      "Identity\\": "app/v1/"
+      "Core\\": "cartridge/models/classes/",
+      "Identity\\": "cartridge/models/classes/"
     }
   }
 }
