@@ -7,7 +7,6 @@
     require 'autoload.php';
     require 'controllers/components/component-functions.php';
     require 'controllers/components/component-environments.php';
-    require 'controllers/routes/route-global.php';
 
     //
     if(isset($_REQUEST['token'])) {
