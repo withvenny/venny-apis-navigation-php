@@ -14,4 +14,4 @@ Options -Indexes
 
 #API
 RewriteEngine On
-RewriteRule ^v1/([^/]*)(.*)$ controllers/routes/route.global.php?domain=$1$2 [QSA]
+RewriteRule ^v2/([^/]*)(.*)$ controllers/routes/route-global.php?domain=$1$2 [QSA]

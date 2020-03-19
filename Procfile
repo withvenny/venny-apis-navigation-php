@@ -1,2 +1,2 @@
-web: vendor/bin/heroku-php-apache2 apps/
+web: vendor/bin/heroku-php-apache2 cartridge/
 worker: php worker.php
