@@ -59,8 +59,8 @@
     //
     define ('APP_ENV_ROOT', $app['live_env_root']); // app environment root
     define ('APP_ST_NAME',  $app['live_st_name']); // app site name
-    define ('APP_NAME',     $app['live_app_name']); // app
-    define ('APP_ENV',      $app['live_app_env']); // app environment
+    define ('APP_NAME',     getenv('APP_NAME')); // app
+    define ('APP_ENV',      getenv('APP_ENV')); // app environment
     define ('APP_ENV_SRVR', 'http://localhost/'); // Site path
     define ('APP_ST_ALIS',  APP_ST_NAME);
 		define ('APP_ST_URL',   APP_ENV_SRVR . APP_ST_NAME); // host
