@@ -7,7 +7,7 @@
   if($_SERVER['HTTP_HOST'] == 'localhost') {
 
     //
-    $app = parse_ini_file('../app.ini');
+    $app = parse_ini_file('../../../app.ini');
     //echo var_dump($app); //exit;
 
     //
@@ -53,7 +53,7 @@
   else {
 
     //
-    $app = parse_ini_file('../../app.ini');
+    $app = parse_ini_file('../../../app.ini');
     //echo var_dump($app); //exit;
 
     //
