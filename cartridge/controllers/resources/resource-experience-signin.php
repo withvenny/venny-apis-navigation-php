@@ -53,7 +53,7 @@
             //
             $request['person'] = $person_details['data'][0]['id'];
 
-            echo json_encode($request);exit;
+            //echo json_encode($request);exit;
 
             // get person ID's details
             $user_details = $user->selectUsers($request);
