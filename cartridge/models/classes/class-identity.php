@@ -372,6 +372,7 @@
 
                     $conditions.= " WHERE";
                     $conditions.= " person_email = :email ";
+                    $conditions.= " person_email = '{$request['id']}' ";
                     $conditions.= " AND active = 1 ";
                     
                     $subset = " LIMIT 1";
