@@ -225,6 +225,7 @@
             //generate ID
             if(!isset($request['id'])){$request['id'] = $this->token->new_id('per');}
 
+            // INSERT OBJECT - COLUMNS
             $columns = "";
             if(isset($request['id'])){$columns.="person_id,";}
             if(isset($request['attributes'])){$columns.="person_attributes,";}
@@ -239,6 +240,7 @@
             $columns.= "event_id,";
             $columns.= "process_id";
 
+            // INSERT OBJECT - VALUES
             $values = "";
             if(isset($request['id'])){$values.=":person_id,";}
             if(isset($request['attributes'])){$values.=":person_attributes,";}
@@ -264,7 +266,7 @@
             //
             $statement = $this->pdo->prepare($sql);
             
-            // pass values to the statement
+            // INSERT OBJECT - BIND VALUES pass values to the statement
             if(isset($request['id'])){$statement->bindValue('person_id',$request['id']);}
             if(isset($request['attributes'])){$statement->bindValue('person_attributes',$request['attributes']);}
             if(isset($request['name_first'])){$statement->bindValue('person_name_first',$request['name_first']);}
@@ -278,22 +280,14 @@
             $statement->bindValue(':event_id', $this->token->event_id());
             $statement->bindValue(':process_id', $this->token->process_id());
             
-            // execute the insert statement
+            // UPDATE ID
             $statement->execute();
 
             $data = $statement->fetchAll();
             
-            //echo json_encode($data);
-            //echo json_encode($data);
-            //echo json_encode($data[0]);
-            //echo json_encode($data[0]['person_id']);
             $data = $data[0]['person_id'];
 
             return $data;
-
-            // return generated id
-            //return $this->pdo->lastInsertId('persons_sequence');
-            //return $this->pdo->selectPersons('persons_sequence');
         
         }
 
@@ -318,7 +312,7 @@
                 $domain = $request['domain'];
                 $prefix = prefixed($domain);
 
-                //
+                // SELECT OBJECT - COLUMNS
                 $columns = "
 
                     person_id,
@@ -404,7 +398,7 @@
 
                     $conditions = "";
                     $refinements = "";
-                    if(isset($request['id'])){$refinements.="person_id"." ILIKE "."'%".$request['id']."%' AND ";}
+                    // SELECT OBJECT - WHERE CLAUSES
                     if(isset($request['attributes'])){$refinements.="person_attributes"." ILIKE "."'%".$request['attributes']."%' AND ";}
                     if(isset($request['name_first'])){$refinements.="person_name_first"." ILIKE "."'%".$request['name_first']."%' AND ";}
                     if(isset($request['name_middle'])){$refinements.="person_name_middle"." ILIKE "."'%".$request['name_middle']."%' AND ";}
@@ -422,6 +416,8 @@
                     $conditions.= " active = 1 ";
                     $conditions.= " ORDER BY time_finished DESC ";
                     $subset = " OFFSET {$start}" . " LIMIT {$request['per']}";
+
+                    // build SQL statement
                     $sql = "SELECT ";
                     $sql.= $columns;
                     $sql.= "FROM " . $table;
@@ -458,7 +454,7 @@
                     //
                     while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
         
-                        //
+                        // SELECT OBJECT - DATA ARRAY
                         $data[] = [
 
                             'id' => $row['person_id'],

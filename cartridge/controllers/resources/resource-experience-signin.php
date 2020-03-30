@@ -4,8 +4,8 @@
     header('Content-Type: application/json');
 
     //
-    use Core\Connection as Connection;
-    use Core\Token as Token;
+    use Identity\Connection as Connection;
+    use Identity\Token as Token;
     use Identity\Profile as Profile;
     use Identity\Person as Person;
     use Identity\User as User;
