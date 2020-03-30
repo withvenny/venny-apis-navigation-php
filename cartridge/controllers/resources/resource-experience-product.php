@@ -12,6 +12,7 @@
         //
         case 'createProduct':
 
+            //
             if(isset($_REQUEST['name'])){$name=$_REQUEST['name'];}else{$name='Venny Product';}
             if(isset($_REQUEST['type'])){$type=$_REQUEST['type'];}else{$type='good';}
             if(isset($_REQUEST['description'])){$description=$_REQUEST['description'];}else{$description='Another omfortable cotton t-shirt';}
