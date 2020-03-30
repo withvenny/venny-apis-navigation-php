@@ -296,7 +296,7 @@
 
             //echo json_encode($request); exit;
 
-            //$token = new \Core\Token($this->pdo);
+            //$token = new \Identity\Token($this->pdo);
             $token = $this->token->validatedToken($request['token']);
 
             // Retrieve data ONLY if token  
@@ -625,7 +625,7 @@
             $this->pdo = $pdo;
 
             //
-            $this->token = new \Core\Token($this->pdo);
+            $this->token = new \Identity\Token($this->pdo);
 
         }
 
@@ -711,7 +711,7 @@
 
             //echo json_encode($request); exit;
 
-            //$token = new \Core\Token($this->pdo);
+            //$token = new \Identity\Token($this->pdo);
             $token = $this->token->validatedToken($request['token']);
 
             // Retrieve data ONLY if token  
@@ -1033,7 +1033,7 @@
             $this->pdo = $pdo;
 
             //
-            $this->token = new \Core\Token($this->pdo);
+            $this->token = new \Identity\Token($this->pdo);
 
         }
 
@@ -1112,7 +1112,7 @@
 
             //echo json_encode($request); exit;
 
-            //$token = new \Core\Token($this->pdo);
+            //$token = new \Identity\Token($this->pdo);
             $token = $this->token->validatedToken($request['token']);
 
             // Retrieve data ONLY if token  
