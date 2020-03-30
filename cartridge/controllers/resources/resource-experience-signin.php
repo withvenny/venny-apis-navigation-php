@@ -56,7 +56,7 @@
             // get person ID's details
             $user_details = $user->selectUsers($request);
 
-            //echo json_encode($user_details) . '<br/>';exit;
+            echo json_encode($user_details) . '<br/>';exit;
 
             // insert a profile and get profile ID
             $request['user'] = $user_details['data'][0]['id'];
