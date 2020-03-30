@@ -802,7 +802,7 @@
                     $sql.= $conditions;
                     $sql.= $subset;
                     
-                    echo $sql; //exit;
+                    //echo $sql; //exit;
 
                     //
                     $statement = $this->pdo->prepare($sql);
@@ -859,6 +859,8 @@
                 //$current = 1; // current page
                 //$limit = $result['limit'];
                 //$max = $result['max'];
+
+                echo var_dump($statement->rowCount()); exit;
 
                 //
                 if($statement->rowCount() > 0) {
