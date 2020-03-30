@@ -638,7 +638,6 @@
 
             $columns = "";
             if(isset($request['authorize'])){$columns.="user_authorize,";}
-
             if(isset($request['id'])){$columns.="user_id,";}		
             if(isset($request['attributes'])){$columns.="user_attributes,";}		
             if(isset($request['alias'])){$columns.="user_alias,";}		
@@ -670,6 +669,7 @@
             $sql = "INSERT INTO {$request['domain']} (";
             $sql.= $columns;
             $sql.= ") VALUES (";
+            //https://x-team.com/blog/storing-secure-passwords-with-postgresql/
             $sql.= "crypt('".$request['authorize']."', gen_salt('bf')),"; // custom case
             $sql.= $values;
             $sql.= ")";
@@ -769,9 +769,9 @@
                     $sql.= $conditions;
                     $sql.= $subset;
                     
-                    echo json_encode($request['id']);
-                    echo '<br/>';
-                    echo $sql; exit;
+                    //echo json_encode($request['id']);
+                    //echo '<br/>';
+                    //echo $sql; exit;
 
                     //
                     $statement = $this->pdo->prepare($sql);
