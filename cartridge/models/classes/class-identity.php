@@ -371,7 +371,7 @@
                 } elseif(!empty($request['email'])) {
 
                     $conditions.= " WHERE";
-                    $conditions.= " person_email = '{$request['email']}'";
+                    $conditions.= " person_email = :email ";
                     $conditions.= " AND active = 1 ";
                     
                     $subset = " LIMIT 1";
@@ -382,15 +382,15 @@
                     $sql.= $conditions;
                     $sql.= $subset;
                     
-                    echo json_encode($request);
+                    //echo json_encode($request['id']);
                     //echo '<br/>';
-                    echo $sql; //exit;
+                    //echo $sql; exit;
 
                     //
                     $statement = $this->pdo->prepare($sql);
 
                     // bind value to the :id parameter
-                    //$statement->bindValue(':email', $request['email']);
+                    $statement->bindValue(':email', $request['email']);
 
                     //echo $sql; //exit;
 
