@@ -802,7 +802,7 @@
                     $sql.= $conditions;
                     $sql.= $subset;
                     
-                    //echo $sql; //exit;
+                    echo $sql; //exit;
 
                     //
                     $statement = $this->pdo->prepare($sql);
