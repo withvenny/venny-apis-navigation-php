@@ -434,7 +434,7 @@
 
                 }
 
-                echo json_encode($sql);//exit;
+                echo $sql;//exit;
                     
                 // execute the statement
                 $statement->execute();
