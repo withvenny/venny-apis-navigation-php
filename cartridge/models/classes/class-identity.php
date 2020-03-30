@@ -785,12 +785,13 @@
 
                     //echo $sql; exit;
 
-                } elseif(isset($request['authorize']) && isset($request['person'])) {
+                } elseif(isset($request['email']) && isset($request['authorize']) && isset($request['person'])) {
 
                     //echo json_encode($request);//exit;
 
                     $conditions.= " WHERE";
                     $conditions.= " person_id = :person ";
+                    $conditions.= " AND " . " user_email = :email";
                     $conditions.= " AND " . " user_authorize = crypt(:authorize, user_authorize)";
                     $conditions.= " AND active = 1 ";
                     
@@ -809,6 +810,7 @@
 
                     // bind value to the :id parameter
                     $statement->bindValue(':person', $request['person']);
+                    $statement->bindValue(':email', $request['email']);
                     $statement->bindValue(':authorize', $request['authorize']);
 
                     //echo $sql; //exit;
