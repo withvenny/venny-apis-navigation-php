@@ -735,7 +735,7 @@
                     user_lastlogin,
                     user_status,
                     user_validation,
-                    user_welcomme,
+                    user_welcome,
                     person_id
 
                 ";
