@@ -20,16 +20,15 @@
             switch ($_REQUEST['domain']) {
 
                 //
-                case 'signup': require 'controllers/endpoints/endpoint-experience-signup.php'; break;
-                case 'signin': require 'controllers/endpoints/endpoint-experience-signin.php'; break;
-                case 'payment': require 'controllers/endpoints/endpoint-experience-payment.php'; break;
-                case 'products': require 'controllers/endpoints/endpoint-experience-product.php'; break;
-                
+                case 'signup': require 'controllers/resources/resource-experience-signup.php'; break;
+                case 'signin': require 'controllers/resources/resource-experience-signin.php'; break;
+                case 'payment': require 'controllers/resources/resource-experience-payment.php'; break;
+                case 'products': require 'controllers/resources/resource-experience-product.php'; break;
 
                 //
-                case 'persons': require 'controllers/endpoints/endpoint-identity-persons.php'; break;
-                case 'users': require 'controllers/endpoints/endpoint-identity-users.php'; break;
-                case 'profiles': require 'controllers/endpoints/endpoint-identity-profiles.php'; break;
+                case 'persons': require 'controllers/resources/resource-identity-persons.php'; break;
+                case 'users': require 'controllers/resources/resource-identity-users.php'; break;
+                case 'profiles': require 'controllers/resources/resource-identity-profiles.php'; break;
     
                 //
                 default: header("Location: template-guest-hello.php");
