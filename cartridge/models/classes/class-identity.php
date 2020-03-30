@@ -391,7 +391,7 @@
                     $statement = $this->pdo->prepare($sql);
 
                     // bind value to the :id parameter
-                    $statement->bindValue(':email', $request['email']);
+                    //$statement->bindValue(':email', $request['email']);
 
                     //echo $sql; //exit;
 
