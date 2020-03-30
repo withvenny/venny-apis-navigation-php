@@ -709,7 +709,7 @@
         //
         public function selectUsers($request) {
 
-            echo json_encode($request); //exit;
+            //echo json_encode($request); //exit;
 
             //$token = new \Identity\Token($this->pdo);
             $token = $this->token->validatedToken($request['token']);
