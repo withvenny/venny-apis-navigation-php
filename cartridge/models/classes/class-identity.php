@@ -392,7 +392,7 @@
                     // bind value to the :id parameter
                     $statement->bindValue(':email', $request['email']);
 
-                    //echo $sql; exit;
+                    echo $sql; //exit;
 
                 } else {
 
