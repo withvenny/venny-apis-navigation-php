@@ -382,7 +382,7 @@
                     $sql.= $conditions;
                     $sql.= $subset;
                     
-                    echo json_encode($request['id']);
+                    echo json_encode($request);
                     //echo '<br/>';
                     echo $sql; //exit;
 
