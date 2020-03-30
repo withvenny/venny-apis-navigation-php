@@ -371,7 +371,7 @@
                 } elseif(!empty($request['email'])) {
 
                     $conditions.= " WHERE";
-                    $conditions.= " person_email = ".$request['email'];
+                    $conditions.= " person_email = \"{$request['email']}\"";
                     $conditions.= " AND active = 1 ";
                     
                     $subset = " LIMIT 1";
