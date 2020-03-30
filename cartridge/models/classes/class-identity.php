@@ -371,8 +371,8 @@
                 } elseif(!empty($request['email'])) {
 
                     $conditions.= " WHERE";
-                    //$conditions.= " person_email = :email ";
-                    $conditions.= " person_email = '{$request['email']}' ";
+                    $conditions.= " person_email = :email ";
+                    //$conditions.= " person_email = '{$request['email']}' ";
                     $conditions.= " AND active = 1 ";
                     
                     $subset = " LIMIT 1";
@@ -391,7 +391,7 @@
                     $statement = $this->pdo->prepare($sql);
 
                     // bind value to the :id parameter
-                    //$statement->bindValue(':email', $request['email']);
+                    $statement->bindValue(':email', $request['email']);
 
                     //echo $sql; //exit;
 
@@ -416,7 +416,8 @@
                     $conditions.= $refinements;
                     $conditions.= " active = 1 ";
                     $conditions.= " ORDER BY time_finished DESC ";
-                    $subset = " OFFSET {$start}" . " LIMIT {$request['per']}";
+                    $subset = " LIMIT 1";
+                    //$subset = " OFFSET {$start}" . " LIMIT {$request['per']}";
 
                     // build SQL statement
                     $sql = "SELECT ";
