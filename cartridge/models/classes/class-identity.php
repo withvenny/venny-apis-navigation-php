@@ -783,7 +783,7 @@
 
                 } elseif(isset($request['authorize']) && isset($request['person'])) {
 
-                    echo json_encode($request);//exit;
+                    //echo json_encode($request);//exit;
 
                     $conditions.= " WHERE";
                     $conditions.= " person_id = :person ";
@@ -798,7 +798,7 @@
                     $sql.= $conditions;
                     $sql.= $subset;
                     
-                    echo $sql; //exit;
+                    //echo $sql; //exit;
 
                     //
                     $statement = $this->pdo->prepare($sql);
@@ -807,7 +807,7 @@
                     $statement->bindValue(':person', $request['person']);
                     $statement->bindValue(':authorize', $request['authorize']);
 
-                    echo $sql; //exit;
+                    //echo $sql; //exit;
 
                 } else {
 
