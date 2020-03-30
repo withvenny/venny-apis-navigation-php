@@ -433,6 +433,8 @@
                     $statement = $this->pdo->prepare($sql);
 
                 }
+
+                echo json_encode($sql);//exit;
                     
                 // execute the statement
                 $statement->execute();
@@ -709,7 +711,7 @@
         //
         public function selectUsers($request) {
 
-            echo json_encode($request); //exit;
+            //echo json_encode($request); //exit;
 
             //$token = new \Identity\Token($this->pdo);
             $token = $this->token->validatedToken($request['token']);
