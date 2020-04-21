@@ -51,7 +51,7 @@
             //check if email exists
             $request['domain'] = 'persons';
             
-            $good_email = $person->selectPersons($request['email']);
+            $good_email = $person->selectPersons($request);
             echo $good_email; exit;
         
             // insert a person and get person ID
