@@ -52,7 +52,7 @@
             $request['domain'] = 'persons';
             
             $good_email = $person->selectPersons($request);
-            echo $good_email; exit;
+            echo json_encode($good_email); exit;
         
             // insert a person and get person ID
             $request['domain'] = 'persons';
