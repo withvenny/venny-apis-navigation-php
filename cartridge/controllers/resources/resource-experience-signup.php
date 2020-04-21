@@ -53,6 +53,10 @@
             
             $good_email = $person->selectPersons($request);
             echo json_encode($good_email); exit;
+            if($good_email['status'] == 200) {
+                echo "not new email";
+            } else { echo 'new email';}
+            exit;
         
             // insert a person and get person ID
             $request['domain'] = 'persons';
