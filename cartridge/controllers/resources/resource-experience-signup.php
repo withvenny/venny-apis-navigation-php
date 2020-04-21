@@ -52,7 +52,7 @@
             $request['domain'] = 'persons';
             
             $good_email = $person->selectPersons($request);
-            echo json_encode($good_email); exit;
+            //echo json_encode($good_email); exit;
             if($good_email['status'] == 200) {
                 echo "not new email";
             } else { echo 'new email';}
