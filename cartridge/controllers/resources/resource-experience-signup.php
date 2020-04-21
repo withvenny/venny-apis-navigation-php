@@ -47,6 +47,12 @@
             email
             access
             */
+
+            //check if email exists
+            $request['domain'] = 'persons';
+            
+            $good_email = $person->selectPersons($request['email']);
+            echo $good_email; exit;
         
             // insert a person and get person ID
             $request['domain'] = 'persons';
