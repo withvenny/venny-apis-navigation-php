@@ -24,8 +24,8 @@
     */
 
     // data cleanse
-    if(isset($_REQUEST['email'])){$request['email'] = clean($_REQUEST['email']);}else{echo json_encode('"message":"Please provide a valid email address."');exit;}
-    if(isset($_REQUEST['authorize'])){$request['authorize'] = clean($_REQUEST['authorize']);}else{echo json_encode('"message":"Please provide valid login information."');exit;}
+    if(isset($_REQUEST['email'])){$request['email'] = clean($_REQUEST['email']);}else{echo json_encode('message'=>'Please provide a valid email address.');exit;}
+    if(isset($_REQUEST['authorize'])){$request['authorize'] = clean($_REQUEST['authorize']);}else{echo json_encode('message'=>'Please provide valid login information');exit;}
     //if(isset($_REQUEST['alias'])){$request['alias'] = clean($_REQUEST['alias']);}
 
     //
