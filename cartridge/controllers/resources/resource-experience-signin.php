@@ -71,7 +71,7 @@
             //
             $profile_details = $profile->selectProfiles($request);
 
-            echo json_encode($profile_details); exit;
+            //echo json_encode($profile_details); exit;
 
             //
             $results['status'] = 200;
