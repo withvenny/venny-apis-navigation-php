@@ -19,5 +19,3 @@ RewriteEngine On
 #API
 RewriteEngine On
 RewriteRule ^v2/([^/]*)(.*)$ controllers/routes/route-global.php?domain=$1$2 [QSA]
-
-RewriteRule ^v3/([^/]*)/([^/]*)(.*)$ controllers/routes/route-global.php?domain=$1$id=$2$3 [QSA]
